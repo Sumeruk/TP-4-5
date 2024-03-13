@@ -32,3 +32,7 @@
 - [Miro](https://miro.com/app/board/uXjVNsfyAZI=/?share_link_id=263686175546)
 - [YouTrack](https://dreamteam34.youtrack.cloud)
 - [Figma](https://www.figma.com/file/NzOW2O8pA7u6ZXGjfNM8mP/Free-Medical-Mobile-App-(Community)?type=design&node-id=0-1&mode=design&t=zMOFEd5Lwk0xiJ8t-0)
+
+[Презентация](https://github.com/Sumeruk/TP-4-5/blob/main/Документация/Презентация.pdf)
+[Видео пезентации](https://youtu.be/Uae18-5Jc48)
+  
