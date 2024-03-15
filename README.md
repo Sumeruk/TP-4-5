@@ -27,17 +27,11 @@
 - [Презентация ТЗ]()
 - [Cопроводительное письмо](https://github.com/Sumeruk/TP-4-5/blob/main/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F/%D0%A1%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE.pdf)
 - [Cопроводительное письмо(копия)](https://github.com/Sumeruk/TP-4-5/blob/main/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F/%D0%A1%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE(%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F).pdf)
-
+- [Презентация](https://github.com/Sumeruk/TP-4-5/blob/main/Документация/Презентация.pdf) 
+### Видео
+- [Видеопрезентация](https://youtu.be/Uae18-5Jc48)
+  
 ### Сервисы
 - [Miro](https://miro.com/app/board/uXjVNsfyAZI=/?share_link_id=263686175546)
 - [YouTrack](https://dreamteam34.youtrack.cloud)
 - [Figma](https://www.figma.com/file/NzOW2O8pA7u6ZXGjfNM8mP/Free-Medical-Mobile-App-(Community)?type=design&node-id=0-1&mode=design&t=zMOFEd5Lwk0xiJ8t-0)
-
-### Презентация
-- [Презентация](https://github.com/Sumeruk/TP-4-5/blob/main/Документация/Презентация.pdf)
-- [Видео пезентации](https://youtu.be/Uae18-5Jc48)
-
-### Сопроводительное письмо
-- [Сопроводительное письмо](https://github.com/Sumeruk/TP-4-5/blob/main/Документация/Сопроводительное%20письмо.pdf)
-
-  
