@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-03-13T20:11:43.258Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="Zxe-_VcXJMJCzUcPUPa4" version="24.0.1" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-17T17:18:08.967Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="T4b08qgEEqLx4zWVyad-" version="24.0.7" type="device">
   <diagram name="Страница — 1" id="t2iSeuDeXfLZz8AlIME1">
-    <mxGraphModel dx="1884" dy="949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2072" dy="1044" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -235,31 +235,40 @@
         <mxCell id="NtVApqarFYDSAofZwKIq-116" value="Составить отчет по&amp;nbsp;товарам" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="996" y="809.75" width="146" height="64.5" as="geometry" />
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-1" value="Изменения учетной записи сотрудника" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-1" value="Изменения учетной записи сотрудника" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="170" y="769" width="125" height="65.5" as="geometry" />
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-2" value="Добавление новой учетной записи" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-2" value="Добавление новой учетной записи" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="260" y="830" width="120" height="55.5" as="geometry" />
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-3" value="Удаление учетной записи сотрудника" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-3" value="Удаление учетной записи сотрудника" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="400" y="850" width="120" height="55.5" as="geometry" />
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-4" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.943;entryY=0.235;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;" edge="1" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-1">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-4" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.943;entryY=0.235;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="360" y="808" as="sourcePoint" />
             <mxPoint x="269" y="740" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0.227;exitY=0.936;exitDx=0;exitDy=0;entryX=0.675;entryY=-0.012;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-2">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0.227;exitY=0.936;exitDx=0;exitDy=0;entryX=0.675;entryY=-0.012;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="370" y="746" as="sourcePoint" />
             <mxPoint x="298" y="794" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="lKS8t6X3atTh-c9-ICnX-6" value="" style="endArrow=none;html=1;rounded=0;exitX=0.593;exitY=1.038;exitDx=0;exitDy=0;entryX=0.446;entryY=-0.038;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-3">
+        <mxCell id="lKS8t6X3atTh-c9-ICnX-6" value="" style="endArrow=none;html=1;rounded=0;exitX=0.593;exitY=1.038;exitDx=0;exitDy=0;entryX=0.446;entryY=-0.038;entryDx=0;entryDy=0;startArrow=block;startFill=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="NtVApqarFYDSAofZwKIq-76" target="lKS8t6X3atTh-c9-ICnX-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="380" y="756" as="sourcePoint" />
             <mxPoint x="308" y="804" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XzxYJgBn3b6C5Ff4FZLT-1" value="Посмотреть список предыдущих заказов" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="270" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XzxYJgBn3b6C5Ff4FZLT-2" value="" style="endArrow=none;html=1;rounded=0;endFill=0;" edge="1" parent="1" target="XzxYJgBn3b6C5Ff4FZLT-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="553" y="399.5" as="sourcePoint" />
+            <mxPoint x="503" y="400.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
