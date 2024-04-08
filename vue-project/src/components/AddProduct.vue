@@ -1,8 +1,43 @@
 <template>
-  <div>
-    <h1>О нас</h1>
-    <!-- Контент страницы о нас -->
-  </div>
+  <div class="container">
+      <h2>Добавить товар</h2>
+        <form action="/submit_product" method="POST">
+            <label for="product_name">Название товара</label>
+            <input type="text" id="product_name" name="product_name" required>
+
+            <label for="description">Описание</label>
+            <textarea id="description" name="description"></textarea>
+
+            <label for="sku">Артикул</label>
+            <input type="text" id="sku" name="sku">
+
+            <label for="barcode">Штрих-код</label>
+            <input type="text" id="barcode" name="barcode">
+
+            <label for="weight">Вес (г)</label>
+            <input type="number" id="weight" name="weight" min="0.01" step="0.01">
+
+            <label for="unit">Единица измерения</label>
+            <select id="unit" name="unit">
+                <option value="шт">шт</option>
+                <option value="кг">кг</option>
+                <option value="г">г</option>
+                <option value="л">л</option>
+                <option value="мл">мл</option>
+            </select>
+
+            <label for="supplier">Поставщик</label>
+            <input type="text" id="supplier" name="supplier">
+
+            <label for="price">Цена</label>
+            <input type="number" id="price" name="price" min="0.01" step="0.01" required>
+
+            <label for="quantity">Количество</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+
+            <input type="submit" value="Добавить товар">
+        </form>
+    </div>
 </template>
 
 <script>
@@ -12,5 +47,55 @@ export default {
 </script>
 
 <style>
-/* Стили компонента */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+        }
+        form {
+            border: 1px solid #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h2 {
+            position: absolute; /* Сделать заголовок абсолютно позиционированным */
+            top: 10px; /* Расположить его сверху */
+            left: 50%; /* Разместить в середине горизонтально */
+            transform: translateX(-50%); /* Центрировать относительно себя */
+            color: #7B5244;
+      }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #F9F6DE;
+            background-color: #F9F6DE;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+          margin-top: 10px;
+          padding: 10px 60px;
+          border-radius: 40px;
+          background-color: #D3AFAA;
+          color: #7B5244;
+          border: none;
+          cursor: pointer;
+          width: 50%; /* Ширина кнопки равна ширине формы */
+          font-size: 18px;
+        }
+        input[type="submit"]:hover {
+          background-color: #7B5244;
+          color: #D3AFAA;
+        }
 </style>
