@@ -1,16 +1,35 @@
 <template>
   <div id="home">
+    <!-- Шапка с кнопками -->
+    <div class="header">
+      <router-link to="/home">
+        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/employees">
+        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/product">
+        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+    </div>
+
+    <h1>Мой профиль</h1>
     <form @submit.prevent="submitForm">
-      <h2>Мой профиль</h2>
+      <img src="./assect/Face.jpg" alt="StockTrack Pro Logo">
       <label for="username">Джон Доу</label>
+      <div class="info-row">
+        <img src="./assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">
+        <router-link to="/policy">Политика конфидициальности</router-link>
+        <img src="./assect/Arrow.jpg" alt="StockTrack Pro Logo" class="logo">
+      </div>
+      <div class="info-row">
+        <img src="./assect/Ex.jpg" alt="StockTrack Pro Logo" class="logo">
+        <router-link to="/registration">Помощь</router-link>
+        <img src="./assect/Arrow.jpg" alt="StockTrack Pro Logo" class="logo">
+      </div>
 
-      <label for="email">Политика конфиденциальности</label>
-
-      <label for="phone">Помощь</label>
-
-      <label for="birthdate">Выйти</label>
-
-      <router-link to="/home">Зарегистрироваться</router-link>
+      <button @click="logout">Выйти</button>
+      <router-link to="/edit-profile">Редактировать профиль</router-link>
     </form>
   </div>
 </template>
@@ -20,65 +39,111 @@ export default {
   methods: {
     submitForm() {
       // Логика обработки отправки формы
+    },
+    logout() {
+      // Логика выхода пользователя
     }
   }
 };
 </script>
 
 <style scoped>
-  #home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-  }
+/* Стили для шапки */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+  background-color: #D3AFAA;
+  border-bottom: 1px solid #ccc;
+}
 
-  h2 {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #7B5244;
-  }
+.header router-link {
+  margin-right: 10px; /* Добавляем отступ между элементами */
+}
 
-  form label {
-    margin-bottom: 5px;
-  }
+.header router-link, .header button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  form input {
-    margin-bottom: 10px;
-    padding: 8px;
-    width: 300px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    background-color: #F9F6DE;
-  }
+.header router-link:hover, .header button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
+}
+h1{
+  margin-top: 100px;
+}
+/* Стили для формы */
+form {
+  width: 100%;
+  max-width: 600px;
+  max-height: 600px;
+  margin-top: 150px; /* Отступ сверху для формы */
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+}
 
-  form button {
-    margin-top: 10px;
-    padding: 10px 60px;
-    border-radius: 40px;
-    background-color: #D3AFAA;
-    color: #7B5244;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
+h2 {
+  color: #7B5244;
+  margin-bottom: 20px;
+}
 
-  form button:hover {
-    background-color: #7B5244;
-    color: #D3AFAA;
-  }
+.info-row {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 8px;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #F9F6DE;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
+}
 </style>

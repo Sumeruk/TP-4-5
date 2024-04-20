@@ -1,7 +1,19 @@
 <template>
   <div id="Registration">
+    <div class="header">
+      <router-link to="/home">
+        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/registration">
+        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/product">
+        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+    </div>
+
+    <h2>Новый аккаунт</h2>
     <form @submit.prevent="submitForm">
-      <h2>Новый аккаунт</h2>
       <label for="username">Имя</label>
       <input type="text" id="username" v-model="username">
 
@@ -45,6 +57,18 @@ export default {
   height: 100vh;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+  background-color: #D3AFAA;
+  border-bottom: 1px solid #ccc;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -57,10 +81,7 @@ form {
 }
 
 h2 {
-  position: absolute; /* Сделать заголовок абсолютно позиционированным */
-  top: -40px; /* Расположить его сверху */
-  left: 50%; /* Разместить в середине горизонтально */
-  transform: translateX(-50%); /* Центрировать относительно себя */
+  margin-top: 50px;
   color: #7B5244;
 }
 

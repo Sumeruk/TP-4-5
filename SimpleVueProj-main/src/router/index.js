@@ -3,10 +3,13 @@ import Registration from "@/views/RegistrationUser";
 import HomeAdmin from "@/views/HomeAdmin";
 import WelcomePage from "@/views/WelcomePage";
 import LoginPage from "@/views/LoginPage";
+import AddProduct from "@/views/AddProduct";
+import PrivacyPolicy from "@/views/PrivacyPolicy";
+import AllEmployees from "@/views/AllEmployees";
 
 const routes = [
   {
-    path: '/welcome',
+    path: '/',
     name: 'welcome',
     component: WelcomePage
   },
@@ -16,9 +19,14 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/',
+    path: '/registration',
     name: 'registration',
     component: Registration
+  },
+  {
+    path: '/product',
+    name: 'product',
+    component: AddProduct
   },
   {
     path: '/home',
@@ -27,6 +35,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: HomeAdmin
+  },
+  {
+    path: '/policy',
+    name: 'policy',
+    component: PrivacyPolicy
+  },
+  {
+    path: '/employees',
+    name: 'employees',
+    component: AllEmployees
   }
 ]
 
