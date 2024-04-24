@@ -1,5 +1,16 @@
 <template>
   <div class="container">
+    <div class="header">
+      <router-link to="/home">
+        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/employees">
+        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+      <router-link to="/report">
+        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
+      </router-link>
+    </div>
     <h1>Добавить товар</h1>
     <form action="/submit_product" method="POST">
       <label for="product_name">Название товара</label>
@@ -47,6 +58,22 @@ export default {
 </script>
 
 <style>
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+  background-color: #D3AFAA;
+  border-bottom: 1px solid #ccc;
+  z-index: 1;
+}
+
+h1{
+  margin-top: 100px;
+}
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -56,6 +83,7 @@ body {
 .container {
   width: 30%;
   margin: 20px auto;
+  margin-top: 200px;
 }
 form {
   border: 1px solid #fff;

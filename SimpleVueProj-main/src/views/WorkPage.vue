@@ -13,32 +13,20 @@
       </router-link>
     </div>
 
-    <div class="search">
-      <button class="butt">
-        <router-link to="/registration">Добавить</router-link>
-      </button>
-      <input type="text" placeholder="Поиск...">
+    <div class="homeBoss">
+      <div class="info-row">
+        <img src="./assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
+        <div>
+          <h1 class="welcome-text">Привет, Добро пожаловать</h1>
+          <h1 class="welcome-text">Джон доу</h1>
+        </div>
+      </div>
     </div>
 
     <!-- Формы для каждого сотрудника -->
     <div v-for="(employee, index) in employees" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
-
-      <div>
-        <img src="./assect/Face.jpg" class="avatar" alt="StockTrack Pro Logo">
-      </div>
-
-      <div>
-        <p>{{ employee.name }}</p>
-        <p>{{ employee.position }}</p>
-      </div>
-
-      <div>
-        <button>
-          <router-link to="/edit">Редактировать</router-link>
-        </button>
-        <button>
-          <router-link to="/delete">Удалить</router-link>
-        </button>
+      <div class="number">
+        <p>№240502-2845</p>
       </div>
     </div>
   </div>
@@ -143,6 +131,7 @@ export default {
   background-color: #D3AFAA;
   text-align: center;
   display: flex;
+  align-items: center; /* Выравниваем содержимое по центру */
 }
 
 .first-form {
@@ -152,8 +141,8 @@ export default {
 .avatar {
   width: 100px;
   height: 100px; /* Устанавливаем размеры */
-  border-radius: 50%; /* Добавляем скругление */
-  margin-bottom: 10px;
+  border-radius: 20%; /* Добавляем скругление */
+  margin-right: 20px;
 }
 
 label {
@@ -182,5 +171,18 @@ button {
 button:hover {
   background-color: #F9F6DE;
   color: #D3AFAA;
+}
+
+/* Стили для номеров */
+.number {
+  flex-grow: 1; /* Растягиваем элемент на всю доступную ширину */
+  background-color: #F9F6DE; /* Добавляем фоновый цвет */
+  padding: 10px; /* Добавляем внутренние отступы */
+  border-radius: 10px; /* Закругляем углы */
+  margin-right: 10px; /* Добавляем отступ между номерами */
+}
+
+.number p {
+  margin: 0; /* Убираем внешние отступы у абзаца */
 }
 </style>

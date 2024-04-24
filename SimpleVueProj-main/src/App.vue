@@ -11,6 +11,24 @@
   color: #2c3e50;
 }
 
+a{
+  text-decoration: none;
+  color: #7B5244;
+}
+router-link{
+  text-decoration: none;
+  color: #D3AFAA;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #D3AFAA;
+}
+router-link:hover{
+  text-decoration: none;
+  color: #7B5244;
+}
+
 nav {
   padding: 30px;
 }

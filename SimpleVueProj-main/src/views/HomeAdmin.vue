@@ -8,28 +8,25 @@
       <router-link to="/employees">
         <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
       </router-link>
-      <router-link to="/product">
+      <router-link to="/products">
         <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
       </router-link>
     </div>
 
     <h1>Мой профиль</h1>
     <form @submit.prevent="submitForm">
-      <img src="./assect/Face.jpg" alt="StockTrack Pro Logo">
+      <img src="./assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
       <label for="username">Джон Доу</label>
       <div class="info-row">
         <img src="./assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">
         <router-link to="/policy">Политика конфидициальности</router-link>
         <img src="./assect/Arrow.jpg" alt="StockTrack Pro Logo" class="logo">
       </div>
-      <div class="info-row">
-        <img src="./assect/Ex.jpg" alt="StockTrack Pro Logo" class="logo">
-        <router-link to="/registration">Помощь</router-link>
-        <img src="./assect/Arrow.jpg" alt="StockTrack Pro Logo" class="logo">
-      </div>
 
-      <button @click="logout">Выйти</button>
-      <router-link to="/edit-profile">Редактировать профиль</router-link>
+
+      <button>
+        <router-link to="/">Выйти</router-link>
+      </button>
     </form>
   </div>
 </template>
@@ -53,6 +50,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  overflow-y: visible;
 }
 
 /* Стили для шапки */
@@ -66,6 +64,7 @@ export default {
   padding: 5px 10px;
   background-color: #D3AFAA;
   border-bottom: 1px solid #ccc;
+  z-index: 1;
 }
 
 .header router-link {
@@ -100,6 +99,7 @@ form {
   border: 1px solid #ffffff;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
+  display: flex;
 }
 
 h2 {
@@ -110,6 +110,13 @@ h2 {
 .info-row {
   display: flex;
   align-items: center;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px; /* Устанавливаем размеры */
+  border-radius: 20%; /* Добавляем скругление */
+  margin-bottom: 10px;
 }
 
 .logo {

@@ -1,8 +1,8 @@
 <template>
   <div class="login-page">
     <form>
-      <h2>Авторизация</h2>
-      <h1>Добро пожаловать</h1>
+      <h2 class="auth-title">Авторизация</h2>
+      <h1 class="welcome-text">Добро пожаловать</h1>
       <label for="username">Электронная почта</label>
       <input type="text" id="username" name="username" required>
 
@@ -10,7 +10,7 @@
       <input type="password" id="password" name="password" required>
 
       <button>
-        <router-link to="/home">Авторизоваться</router-link>
+        <router-link to="/boss">Авторизоваться</router-link>
       </button>
     </form>
   </div>
@@ -23,53 +23,66 @@ export default {
 </script>
 
 <style scoped>
-/*.login-page {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}*/
+  .login-page {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* располагаем элементы слева */
-  padding: 20px;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  font-family: 'Roboto', sans-serif;
-  position: relative;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* располагаем элементы слева */
+    padding: 20px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+  }
 
-h1 {
-  color: #7B5244;
-}
+  form input{
+    border: 1px solid #ffffff;
 
-label {
-  margin-bottom: 5px;
-}
+  }
 
-input, button {
-  margin-bottom: 10px;
-  padding: 8px;
-}
+  .auth-title {
+    color: #7B5244;
+    margin: 0 auto; /* Центрируем по горизонтали */
+  }
 
-button {
-  margin-top: 10px;
-  padding: 10px 60px;
-  border-radius: 40px;
-  background-color: #D3AFAA;
-  color: #7B5244;
-  border: none;
-  cursor: pointer;
-  width: 100%; /* Ширина кнопки равна ширине формы */
-  font-size: 18px;
-}
+  label {
+    margin-bottom: 5px;
+  }
 
-button:hover {
-  background-color: #7B5244;
-  color: #D3AFAA;
-}
+  input, button {
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+
+  .welcome-text {
+    position: relative;
+    z-index: 2; /* Поднимаем надпись над остальными элементами */
+    font-size: 24px; /* Уменьшаем размер шрифта */
+    margin-left: -50px; /* Сдвигаем текст влево на 30px */
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 60px;
+    border-radius: 40px;
+    background-color: #D3AFAA;
+    color: #7B5244;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Ширина кнопки равна ширине формы */
+    font-size: 18px;
+  }
+
+  button:hover {
+    background-color: #7B5244;
+    color: #D3AFAA;
+  }
 </style>

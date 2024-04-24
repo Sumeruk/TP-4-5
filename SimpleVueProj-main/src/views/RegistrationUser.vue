@@ -4,10 +4,10 @@
       <router-link to="/home">
         <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
       </router-link>
-      <router-link to="/registration">
+      <router-link to="/employees">
         <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
       </router-link>
-      <router-link to="/product">
+      <router-link to="/products">
         <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
       </router-link>
     </div>
@@ -33,7 +33,7 @@
       <input type="text" id="position" v-model="position">
 
       <button>
-        <router-link to="/home">Зарегистрироваться</router-link>
+        <router-link to="/password">Зарегистрироваться</router-link>
       </button>
 
     </form>
