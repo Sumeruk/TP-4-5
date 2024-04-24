@@ -18,7 +18,7 @@
         <h1>Мой профиль</h1>
         <form @submit.prevent="submitForm">
           <img src="./assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
-          <label for="username">Начальник</label>
+          <label for="username">Начальник склада</label>
           <div class="info-row">
             <img src="./assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">
             <router-link to="/policy">Политика конфидициальности</router-link>
@@ -30,9 +30,6 @@
 
       <div class="butts">
         <button>
-          <router-link to="/">Выйти</router-link>
-        </button>
-        <button>
           <router-link to="/product">Добавить продукт</router-link>
         </button>
         <button>
@@ -40,6 +37,9 @@
         </button>
         <button>
           <router-link to="/let">Остатки товара</router-link>
+        </button>
+        <button>
+          <router-link to="/">Выйти</router-link>
         </button>
       </div>
     </div>

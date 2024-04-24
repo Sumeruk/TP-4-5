@@ -15,11 +15,10 @@
     <h2>Принять товар</h2>
     <form @submit.prevent="submitForm">
       <label for="username">Название</label>
-      <input type="text" id="username" v-model="username">
+      <input type="text" id="nameOfProduct" v-model="nameOfArrivedProduct">
 
       <label for="usersurname">Количество</label>
-      <input type="password" id="usersurname" v-model="usersurname">
-
+      <input type="number" id="amount" v-model="amountArrived">
 
       <input type="submit" value="Добавить товар">
 
