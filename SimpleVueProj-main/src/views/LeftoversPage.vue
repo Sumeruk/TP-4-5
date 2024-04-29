@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/employees">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/product">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
+    <HeadSiteForBoss />
 
     <h2 class="page-title">Остатки товара</h2>
 
@@ -48,7 +38,11 @@
 </template>
 
 <script>
+import HeadSiteForBoss from "@/components/HeadSiteForBoss";
 export default {
+  components:{
+    HeadSiteForBoss
+  },
   name: "LeftoversPage"
 }
 </script>

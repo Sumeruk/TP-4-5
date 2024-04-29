@@ -1,17 +1,7 @@
 <template>
   <div id="home">
     <!-- Шапка с кнопками -->
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/employees">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/report">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
+    <HeadSite />
 
     <div class="homeBoss">
       <div>
@@ -30,16 +20,19 @@
 
       <div class="butts">
         <button>
-          <router-link to="/product">Добавить продукт</router-link>
+          <router-link to="/employees" class="actions">Добавить сотрудника</router-link>
         </button>
         <button>
-          <router-link to="/accept">Принять товар</router-link>
+          <router-link to="/product" class="actions">Добавить продукт</router-link>
         </button>
         <button>
-          <router-link to="/let">Остатки товара</router-link>
+          <router-link to="/accept" class="actions">Принять товар</router-link>
         </button>
         <button>
-          <router-link to="/">Выйти</router-link>
+          <router-link to="/let" class="actions">Остатки товара</router-link>
+        </button>
+        <button>
+          <router-link to="/report" class="actions">Cоставить отчет</router-link>
         </button>
       </div>
     </div>
@@ -47,14 +40,12 @@
 </template>
 
 <script>
+
+import HeadSite from "@/components/HeadSiteForBoss";
+
 export default {
-  methods: {
-    submitForm() {
-      // Логика обработки отправки формы
-    },
-    logout() {
-      // Логика выхода пользователя
-    }
+  components: {
+    HeadSite
   }
 };
 </script>
@@ -165,7 +156,7 @@ input {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 5px;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;
@@ -175,8 +166,14 @@ button {
   font-size: 18px;
 }
 
+.actions{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 button:hover {
   background-color: #7B5244;
   color: #D3AFAA;
 }
+
 </style>

@@ -1,17 +1,7 @@
 <template>
   <div id="home">
     <!-- Шапка с кнопками -->
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/employees">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/product">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
+    <HeadSite />
 
     <div class="search">
       <button class="butt">
@@ -45,7 +35,12 @@
 </template>
 
 <script>
+import HeadSite from "@/components/HeadSiteForBoss";
 export default {
+  components: {
+    HeadSite
+  },
+
   data() {
     return {
       employees: [
@@ -73,42 +68,6 @@ export default {
   min-height: 100vh;
   height: 600px;
   overflow-y: visible;
-}
-
-
-/* Стили для шапки */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px 10px;
-  background-color: #D3AFAA;
-  border-bottom: 1px solid #ccc;
-
-}
-
-.header router-link {
-  margin-right: 10px; /* Добавляем отступ между элементами */
-}
-
-.header router-link, .header button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #D3AFAA;
-  color: #7B5244;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.header router-link:hover, .header button:hover {
-  background-color: #7B5244;
-  color: #D3AFAA;
-  text-decoration: underline;
 }
 
 .search {
