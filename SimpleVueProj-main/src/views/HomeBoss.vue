@@ -20,6 +20,9 @@
 
       <div class="butts">
         <button>
+          <router-link to="/getJob" class="actions">Выдача заданий</router-link>
+        </button>
+        <button>
           <router-link to="/accept" class="actions">Принять товар</router-link>
         </button>
         <button>

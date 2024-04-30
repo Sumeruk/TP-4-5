@@ -18,6 +18,7 @@ import OrderList from "@/views/OrderList";
 import HomeStorekeeper from "@/views/HomeStorekeeper";
 import WorkPage from "@/views/WorkPage";
 import HomeAdmin from "@/views/HomeAdmin";
+import GetJob from "@/views/GetJob";
 
 const routes = [
   {
@@ -117,6 +118,11 @@ const routes = [
     path: '/work',
     name: 'work',
     component: WorkPage
+  },
+  {
+    path: '/getJob',
+    name: 'getJob',
+    component: GetJob
   }
 ]
 
