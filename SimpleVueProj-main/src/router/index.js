@@ -19,6 +19,7 @@ import HomeStorekeeper from "@/views/HomeStorekeeper";
 import WorkPage from "@/views/WorkPage";
 import HomeAdmin from "@/views/HomeAdmin";
 import GetJob from "@/views/GetJob";
+import ShopHome from "@/views/ShopHome";
 
 const routes = [
   {
@@ -123,6 +124,11 @@ const routes = [
     path: '/getJob',
     name: 'getJob',
     component: GetJob
+  },
+  {
+    path: '/shop',
+    name: 'shop',
+    component: ShopHome
   }
 ]
 
