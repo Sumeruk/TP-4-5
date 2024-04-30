@@ -1,18 +1,7 @@
 <template>
   <div id="home">
     <!-- Шапка с кнопками -->
-    <div class="header">
-      <router-link to="/storekeeper">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/work">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/order">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
-
+    <HeadSiteForStorekeep />
     <div class="homeBoss">
       <div>
         <h1>Мой профиль</h1>
@@ -26,61 +15,32 @@
           </div>
 
         </form>
-
-        <button>
-          <router-link to="/">Выйти</router-link>
-        </button>
       </div>
+
+
     </div>
   </div>
 </template>
 
 <script>
+import HeadSiteForStorekeep from "@/components/HeadSiteForStorekeep";
 export default {
+  components:{
+    HeadSiteForStorekeep
+  },
   name: "HomeStorekeeper"
 }
 </script>
 
 <style scoped>
 #home {
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   height: 100vh;
 }
 
 /* Стили для шапки */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px 10px;
-  background-color: #D3AFAA;
-  border-bottom: 1px solid #ccc;
-  z-index: 1;
-}
 
-.header router-link {
-  margin-right: 10px; /* Добавляем отступ между элементами */
-}
-
-.header router-link, .header button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #D3AFAA;
-  color: #7B5244;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.header router-link:hover, .header button:hover {
-  background-color: #7B5244;
-  color: #D3AFAA;
-}
 h1{
   margin-top: 100px;
 }
@@ -103,7 +63,6 @@ form {
 }
 
 .butts{
-
   margin-top: 180px;
   width: 40%;
   align-items: center;

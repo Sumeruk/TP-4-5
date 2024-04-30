@@ -17,6 +17,7 @@ import LeftoversPage from "@/views/LeftoversPage";
 import OrderList from "@/views/OrderList";
 import HomeStorekeeper from "@/views/HomeStorekeeper";
 import WorkPage from "@/views/WorkPage";
+import HomeAdmin from "@/views/HomeAdmin";
 
 const routes = [
   {
@@ -40,8 +41,13 @@ const routes = [
     component: AddProduct
   },
   {
+    path: '/adm',
+    name: 'adm',
+    component: HomeAdmin
+  },
+  {
     path: '/home',
-    name: 'homeAdmin',
+    name: 'homeBoss',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
