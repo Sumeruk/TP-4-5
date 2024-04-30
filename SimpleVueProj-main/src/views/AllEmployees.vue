@@ -71,7 +71,7 @@ export default {
 }
 
 .search {
-  margin-top: 200px;
+  margin-top: 15%;
   display: flex;
   align-items: center;
   width: 80%;

@@ -13,8 +13,13 @@
             <router-link to="/policy">Политика конфидициальности</router-link>
             <img src="./assect/Arrow.jpg" alt="StockTrack Pro Logo" class="logo">
           </div>
-
         </form>
+      </div>
+
+      <div class="butts">
+        <button>
+          <router-link to="/work" class="action">Работа</router-link>
+        </button>
       </div>
 
 
@@ -42,7 +47,7 @@ export default {
 /* Стили для шапки */
 
 h1{
-  margin-top: 100px;
+  margin-top: 10%;
 }
 /* Стили для формы */
 form {
@@ -103,10 +108,13 @@ input {
   border: 1px solid #ccc;
   background-color: #F9F6DE;
 }
-
+.butts .action{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
 button {
   margin-top: 20px;
-  padding: 10px 20px;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;

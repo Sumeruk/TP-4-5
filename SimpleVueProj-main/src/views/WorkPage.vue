@@ -1,47 +1,31 @@
 <template>
   <div id="home">
     <!-- Шапка с кнопками -->
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/employees">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/product">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
-
-    <div class="homeBoss">
-      <div class="info-row">
-        <img src="./assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
-        <div>
-          <h1 class="welcome-text">Привет, Добро пожаловать</h1>
-          <h1 class="welcome-text">Джон доу</h1>
-        </div>
-      </div>
-    </div>
-
+    <HeadSiteForStorekeep/>
     <!-- Формы для каждого сотрудника -->
-    <div v-for="(employee, index) in employees" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
+    <div v-for="(order, index) in orders" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
-        <p>№240502-2845</p>
+        <p>№{{ order.name }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import HeadSiteForStorekeep from "@/components/HeadSiteForStorekeep";
+
 export default {
+  components: {
+    HeadSiteForStorekeep
+  },
   data() {
     return {
-      employees: [
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'}
+      orders: [
+        {name: '23457-994'},
+        {name: '23457-994'},
+        {name: '23457-994'},
+        {name: 'И23457-994'},
+        {name: '23457-994'}
       ]
     };
   },
@@ -62,63 +46,16 @@ export default {
   height: 600px;
   overflow-y: visible;
 }
-
-
-/* Стили для шапки */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+.homeBoss{
   display: flex;
-  justify-content: space-around;
-  padding: 5px 10px;
-  background-color: #D3AFAA;
-  border-bottom: 1px solid #ccc;
-
 }
-
-.header router-link {
-  margin-right: 10px; /* Добавляем отступ между элементами */
-}
-
-.header router-link, .header button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #D3AFAA;
-  color: #7B5244;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.header router-link:hover, .header button:hover {
-  background-color: #7B5244;
-  color: #D3AFAA;
-  text-decoration: underline;
-}
-
-.search {
-  margin-top: 200px;
+.welcome-text {
   display: flex;
-  align-items: center;
-  width: 80%;
-}
+  margin-top: 40%;
 
-.search input {
-  flex: 1; /* Растягиваем на всю доступную ширину */
-  padding: 12px; /* Увеличиваем внутренние отступы */
-  border-radius: 40px; /* Увеличиваем радиус скругления */
-  border: 2px solid #F9F6DE; /* Увеличиваем толщину границы */
-  margin-right: 10px; /* Уменьшаем отступ между строкой поиска и кнопкой */
-  font-size: 16px; /* Увеличиваем размер шрифта */
-  margin-top: 31px;
 }
-
-.butt {
-  width: 50%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
-  border: 10px solid #ffffff;
+.info-row {
+  margin-top: 30%;
 }
 
 /* Стили для формы */
