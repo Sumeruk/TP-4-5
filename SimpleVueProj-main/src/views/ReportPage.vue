@@ -10,12 +10,10 @@
       <label for="usersurname">Период</label>
       <input type="password" id="usersurname" v-model="usersurname">
 
-
-      <button>
-        <router-link to="/password">Создать</router-link>
-      </button>
-
     </form>
+    <button>
+      <router-link to="/password" class="actions">Создать</router-link>
+    </button>
   </div>
 </template>
 
@@ -49,6 +47,11 @@ h2 {
   color: #7B5244;
 }
 
+.actions{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
 form label {
   margin-bottom: 5px; /* добавляем небольшое расстояние между метками и полями ввода */
 }
@@ -62,28 +65,18 @@ form input {
   background-color: #F9F6DE;
 }
 
-form button {
+button {
   margin-top: 10px;
-  padding: 10px 60px;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 100%; /* Ширина кнопки равна ширине формы */
+  width: 90%; /* Ширина кнопки равна ширине формы */
   font-size: 18px;
-
-  /*padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;*/
-
 }
 
-form button:hover {
+button:hover {
   background-color: #7B5244;
   color: #D3AFAA;
 }

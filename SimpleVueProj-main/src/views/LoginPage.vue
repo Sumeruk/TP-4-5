@@ -9,10 +9,10 @@
       <label for="password">Пароль</label>
       <input type="password" id="password" name="password" required>
 
-      <button>
-        <router-link to="/boss">Авторизоваться</router-link>
-      </button>
     </form>
+    <button>
+      <router-link to="/boss" class="actions">Авторизоваться</router-link>
+    </button>
   </div>
 </template>
 
@@ -59,7 +59,6 @@ export default {
 
   input, button {
     margin-bottom: 10px;
-    padding: 8px;
   }
 
   .welcome-text {
@@ -68,10 +67,14 @@ export default {
     font-size: 24px; /* Уменьшаем размер шрифта */
     margin-left: -50px; /* Сдвигаем текст влево на 30px */
   }
+  .actions{
+    display: block;
+    padding: 10px;
+    border-radius: 40px;
+  }
 
   button {
     margin-top: 10px;
-    padding: 10px 60px;
     border-radius: 40px;
     background-color: #D3AFAA;
     color: #7B5244;

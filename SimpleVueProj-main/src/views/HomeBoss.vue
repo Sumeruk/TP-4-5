@@ -20,12 +20,6 @@
 
       <div class="butts">
         <button>
-          <router-link to="/employees" class="actions">Сотрудники</router-link>
-        </button>
-        <button>
-          <router-link to="/product" class="actions">Добавить продукт</router-link>
-        </button>
-        <button>
           <router-link to="/accept" class="actions">Принять товар</router-link>
         </button>
         <button>
@@ -85,6 +79,7 @@ form {
   width: 40%;
   align-items: center;
   margin-left: 7%;
+  margin-top: 3%;
 }
 
 h2 {

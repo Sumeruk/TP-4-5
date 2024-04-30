@@ -1,16 +1,6 @@
 <template>
   <div id="Edit">
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/registration">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/product">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
+    <HeadSiteForAdm/>
 
     <h2>Редактирование</h2>
     <form @submit.prevent="submitForm">
@@ -32,16 +22,19 @@
       <label for="position">Должность</label>
       <input type="text" id="position" v-model="position">
 
-      <button>
-        <router-link to="/password">Редактирование</router-link>
-      </button>
-
     </form>
+    <button>
+      <router-link to="/password" class="action">Редактирование</router-link>
+    </button>
   </div>
 </template>
 
 <script>
+import HeadSiteForAdm from "@/components/HeadSiteForAdm";
 export default {
+  components:{
+    HeadSiteForAdm
+  }
   // Логика компонента
 };
 </script>
@@ -49,25 +42,6 @@ export default {
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-#app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px 10px;
-  background-color: #D3AFAA;
-  border-bottom: 1px solid #ccc;
-}
 
 form {
   display: flex;
@@ -97,10 +71,13 @@ form input {
   border: 1px solid #ccc;
   background-color: #F9F6DE;
 }
-
-form button {
+.action{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
+button {
   margin-top: 10px;
-  padding: 10px 60px;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;
@@ -108,18 +85,9 @@ form button {
   cursor: pointer;
   width: 100%; /* Ширина кнопки равна ширине формы */
   font-size: 18px;
-
-  /*padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;*/
-
 }
 
-form button:hover {
+button:hover {
   background-color: #7B5244;
   color: #D3AFAA;
 }

@@ -5,7 +5,7 @@
 
     <div class="search">
       <button class="butt">
-        <router-link to="/registration">Добавить</router-link>
+        <router-link to="/registration" class="actions">Добавить</router-link>
       </button>
       <input type="text" placeholder="Поиск...">
     </div>
@@ -24,10 +24,10 @@
 
       <div>
         <button>
-          <router-link to="/edit">Редактировать</router-link>
+          <router-link to="/edit" class="actions">Редактировать</router-link>
         </button>
         <button>
-          <router-link to="/delete">Удалить</router-link>
+          <router-link to="/employees" class="actions">Удалить</router-link>
         </button>
       </div>
     </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import HeadSite from "@/components/HeadSiteForBoss";
+import HeadSite from "@/components/HeadSiteForAdm";
 export default {
   components: {
     HeadSite
@@ -91,6 +91,11 @@ export default {
   width: 50%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
   border: 10px solid #ffffff;
 }
+.actions{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
 
 /* Стили для формы */
 .employee-form {
@@ -128,7 +133,6 @@ input {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
   border-radius: 40px;
   background-color: #F9F6DE;
   color: #7B5244;

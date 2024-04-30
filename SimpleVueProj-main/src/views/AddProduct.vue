@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import HeadSite from "@/components/HeadSiteForBoss";
+import HeadSite from "@/components/HeadSiteForAdm";
 export default {
   components: {
     HeadSite

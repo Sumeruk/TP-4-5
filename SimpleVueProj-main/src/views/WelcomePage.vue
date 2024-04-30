@@ -3,10 +3,11 @@
     <form @submit.prevent="submitForm" class="login-form">
       <img src="./assect/Logo.jpg" alt="StockTrack Pro Logo" class="logo">
       <h1>StockTrack Pro</h1>
-      <button class="login-button">
-        <router-link to="/login">Войти</router-link>
-      </button>
+
     </form>
+    <button>
+      <router-link to="/login" class="actions">Войти</router-link>
+    </button>
   </div>
 </template>
 
@@ -30,8 +31,26 @@ h1 {
   margin-top: 140px;
 }
 
-.login-button {
+.actions{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
+
+button {
   margin-top: 80px; /* Отступ сверху для кнопки */
+  border-radius: 40px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
 }
 
 </style>
