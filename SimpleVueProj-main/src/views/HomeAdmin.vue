@@ -50,9 +50,7 @@ export default {
 </script>
 
 <style scoped>
-div{
-  border: 1px solid black;
-}
+
 #home {
   display: flex;
   flex-direction: row;
@@ -69,7 +67,7 @@ div{
 }
 
 .butts {
-  /*margin-top: 2%;*/
+  padding-top: 5%;
   width: 40%;
   margin-left: 6%;
   align-items: center;
@@ -79,7 +77,6 @@ div{
   display: block;
   padding: 10px;
   border-radius: 40px;
-  border: 1px solid black;
 
 }
 h1 {
@@ -91,8 +88,6 @@ form {
   width: 100%;
   max-width: 600px;
   max-height: 600px;
-  /*margin-top: 20%; !* Отступ сверху для формы *!*/
-  /*padding: 20px;*/
   border: 0 solid #ffffff;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;

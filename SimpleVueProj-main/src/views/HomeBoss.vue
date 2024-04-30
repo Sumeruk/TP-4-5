@@ -35,6 +35,7 @@
           <router-link to="/report" class="actions">Cоставить отчет</router-link>
         </button>
       </div>
+
     </div>
   </div>
 </template>
@@ -51,10 +52,12 @@ export default {
 </script>
 
 <style scoped>
+
 #home {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  width: 80%;
 }
 
 h1{
@@ -62,12 +65,9 @@ h1{
 }
 /* Стили для формы */
 form {
-
   width: 100%;
   max-width: 600px;
   max-height: 600px;
-  margin-top: 150px; /* Отступ сверху для формы */
-  padding: 20px;
   border: 1px ;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
@@ -75,15 +75,16 @@ form {
 }
 
 .homeBoss{
+  margin-top: 18%;
   display: flex;
+  width: 80%;
+  margin-left: 8%;
 }
 
 .butts{
-
-  margin-top: 180px;
   width: 40%;
   align-items: center;
-
+  margin-left: 7%;
 }
 
 h2 {
@@ -123,7 +124,6 @@ input {
 
 button {
   margin-top: 20px;
-  padding: 10px 5px;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;
@@ -134,8 +134,9 @@ button {
 }
 
 .actions{
-  padding-top: 10px;
-  padding-bottom: 10px;
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
 }
 
 button:hover {
