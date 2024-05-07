@@ -8,7 +8,7 @@
       <input type="text" id="username" v-model="username">
 
       <label for="usersurname">Период</label>
-      <input type="password" id="usersurname" v-model="usersurname">
+      <input id="usersurname" v-model="usersurname">
 
     </form>
     <button>
