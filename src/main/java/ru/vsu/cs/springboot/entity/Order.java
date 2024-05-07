@@ -19,7 +19,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int loaderId;
-    private List<Product> products;
     private Date date;
     private String status;
 }
