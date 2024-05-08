@@ -26,7 +26,7 @@
           <router-link to="/accept" class="actions">Принять товар</router-link>
         </button>
         <button>
-          <router-link to="/let" class="actions">Остатки товара</router-link>
+          <router-link to="/product/allProducts" class="actions">Остатки товара</router-link>
         </button>
         <button>
           <router-link to="/report" class="actions">Cоставить отчет</router-link>

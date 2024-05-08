@@ -5,7 +5,7 @@
 
     <div class="search">
       <button class="butt">
-        <router-link to="/registration" class="actions">Добавить</router-link>
+        <router-link to="/employee/newEmployee" class="actions">Добавить</router-link>
       </button>
       <input type="text" placeholder="Поиск...">
     </div>

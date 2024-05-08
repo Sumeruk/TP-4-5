@@ -33,7 +33,7 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/registration',
+    path: '/employee/newEmployee',
     name: 'registration',
     component: Registration
   },
@@ -61,7 +61,7 @@ const routes = [
     component: PrivacyPolicy
   },
   {
-    path: '/employees',
+    path: '/employee/allEmployers',
     name: 'employees',
     component: AllEmployees
   },
@@ -91,7 +91,7 @@ const routes = [
     component: ReportPage
   },
   {
-    path: '/products',
+    path: '/product',
     name: 'products',
     component: ProductPage
   },
@@ -101,7 +101,7 @@ const routes = [
     component: HomeBoss
   },
   {
-    path: '/let',
+    path: '/product/allProducts',
     name: 'let',
     component: LeftoversPage
   },
