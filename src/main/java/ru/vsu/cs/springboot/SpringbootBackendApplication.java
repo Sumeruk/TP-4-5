@@ -9,7 +9,7 @@ import ru.vsu.cs.springboot.repository.UserRepository;
 
 @SpringBootApplication
 public class SpringbootBackendApplication implements CommandLineRunner {
-
+    // HI NIKOLAY
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootBackendApplication.class, args);
 	}
