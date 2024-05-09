@@ -18,7 +18,7 @@
 
       <div class="butts">
         <button>
-          <router-link to="/work" class="action">Работа</router-link>
+          <router-link to="/orders/toDo" class="action">Работа</router-link>
         </button>
       </div>
 

@@ -24,10 +24,10 @@
 
       <div>
         <button>
-          <router-link to="/edit" class="actions">Редактировать</router-link>
+          <router-link :to="{name : 'editEmpl', params:{id : 11} }" class="actions">Редактировать</router-link>
         </button>
         <button>
-          <router-link to="/employees" class="actions">Удалить</router-link>
+          <router-link :to="{name : 'deleteEmpl', params:{id : 11} }" class="actions">Удалить</router-link>
         </button>
       </div>
     </div>

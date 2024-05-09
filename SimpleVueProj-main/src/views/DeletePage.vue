@@ -1,16 +1,6 @@
 <template>
   <div id="Delete">
-    <div class="header">
-      <router-link to="/home">
-        <img src="./assect/Home.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/registration">
-        <img src="./assect/Profile.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-      <router-link to="/product">
-        <img src="./assect/Add.jpg" alt="StockTrack Pro Logo">
-      </router-link>
-    </div>
+    <HeadSiteForAdm />
 
     <h2>Удалить аккаунт</h2>
     <form @submit.prevent="submitForm">
@@ -41,33 +31,17 @@
 </template>
 
 <script>
+import HeadSiteForAdm from "@/components/HeadSiteForAdm";
 export default {
-  // Логика компонента
+  components: {
+    HeadSiteForAdm
+  },
 };
 </script>
 
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-#app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px 10px;
-  background-color: #D3AFAA;
-  border-bottom: 1px solid #ccc;
-}
 
 form {
   display: flex;

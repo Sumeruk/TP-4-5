@@ -20,16 +20,16 @@
 
       <div class="butts">
         <button>
-          <router-link to="/getJob" class="actions">Выдача заданий</router-link>
+          <router-link to="/orders/getOrders" class="actions">Выдача заданий</router-link>
         </button>
         <button>
-          <router-link to="/accept" class="actions">Принять товар</router-link>
+          <router-link to="/product/setProducts" class="actions">Принять товар</router-link>
         </button>
         <button>
           <router-link to="/product/allProducts" class="actions">Остатки товара</router-link>
         </button>
         <button>
-          <router-link to="/report" class="actions">Cоставить отчет</router-link>
+          <router-link to="/analytics" class="actions">Cоставить отчет</router-link>
         </button>
       </div>
 

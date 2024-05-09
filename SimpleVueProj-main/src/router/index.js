@@ -71,22 +71,24 @@ const routes = [
     component: AddPassword
   },
   {
-    path: '/edit',
-    name: 'edit',
+    path: '/employee/edit/:id',
+    name: 'editEmpl',
     component: EditPage
   },
   {
-    path: '/delete',
-    name: 'delete',
+    //-----ATTENTION-WRONG-COMPONENT---------
+    //-----SHOULD-BE-REDIRECT-TO-AllEmployees---------
+    path: '/employee/delete/:id',
+    name: 'deleteEmpl',
     component: DeletePage
   },
   {
-    path: '/accept',
+    path: '/product/setProducts',
     name: 'accept',
     component: AcceptTheGoods
   },
   {
-    path: '/report',
+    path: '/analytics',
     name: 'report',
     component: ReportPage
   },
@@ -116,12 +118,12 @@ const routes = [
     component: HomeStorekeeper
   },
   {
-    path: '/work',
+    path: '/orders/toDo',
     name: 'work',
     component: WorkPage
   },
   {
-    path: '/getJob',
+    path: '/orders/getOrders',
     name: 'getJob',
     component: GetJob
   },
