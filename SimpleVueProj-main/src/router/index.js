@@ -1,25 +1,27 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Registration from "@/views/RegistrationUser";
+import Registration from "@/views/adm/RegistrationUser";
 //import HomeAdmin from "@/views/HomeAdmin";
 import WelcomePage from "@/views/WelcomePage";
 import LoginPage from "@/views/LoginPage";
-import AddProduct from "@/views/AddProduct";
+import AddProduct from "@/views/adm/AddProduct";
 import PrivacyPolicy from "@/views/PrivacyPolicy";
-import AllEmployees from "@/views/AllEmployees";
-import AddPassword from "@/views/AddPassword";
-import EditPage from "@/views/EditPage";
-import DeletePage from "@/views/DeletePage";
-import AcceptTheGoods from "@/views/AcceptTheGoods";
-import ReportPage from "@/views/ReportPage";
+import AllEmployees from "@/views/adm/AllEmployees";
+import AddPassword from "@/views/adm/AddPassword";
+import EditPage from "@/views/adm/EditPage";
+import DeletePage from "@/views/adm/DeletePage";
+import AcceptTheGoods from "@/views/boss/AcceptTheGoods";
+import ReportPage from "@/views/boss/ReportPage";
 import ProductPage from "@/views/ProductPage";
-import HomeBoss from "@/views/HomeBoss";
-import LeftoversPage from "@/views/LeftoversPage";
-import OrderList from "@/views/OrderList";
-import HomeStorekeeper from "@/views/HomeStorekeeper";
-import WorkPage from "@/views/WorkPage";
-import HomeAdmin from "@/views/HomeAdmin";
-import GetJob from "@/views/GetJob";
-import ShopHome from "@/views/ShopHome";
+import HomeBoss from "@/views/boss/HomeBoss";
+import LeftoversPage from "@/views/boss/LeftoversPage";
+import OrderList from "@/views/adm/OrderList";
+import HomeStorekeeper from "@/views/strorekeeper/HomeStorekeeper";
+import WorkPage from "@/views/strorekeeper/WorkPage";
+import HomeAdmin from "@/views/adm/HomeAdmin";
+import GetJob from "@/views/boss/GetJob";
+import ShopHome from "@/views/shop/ShopHome";
+import AddProductToOrder from "@/views/shop/AddProductToOrder";
+import RecentOrders from "@/views/shop/RecentOrders";
 
 const routes = [
   {
@@ -88,6 +90,11 @@ const routes = [
     component: AcceptTheGoods
   },
   {
+    path: '/order/newOrder/:shopId',
+    name: 'newOrder',
+    component: AddProductToOrder
+  },
+  {
     path: '/analytics',
     name: 'report',
     component: ReportPage
@@ -121,6 +128,11 @@ const routes = [
     path: '/orders/toDo',
     name: 'work',
     component: WorkPage
+  },
+  {
+    path: '/orders/recentOrders/:shopId',
+    name: 'recentOrders',
+    component: RecentOrders
   },
   {
     path: '/orders/getOrders',

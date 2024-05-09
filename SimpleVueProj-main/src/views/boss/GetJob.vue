@@ -21,7 +21,7 @@
            :class="{ 'first-form': index === 0 }">
 
         <div>
-          <img src="./assect/Face.jpg" class="avatar" alt="StockTrack Pro Logo">
+          <img src="../assect/Face.jpg" class="avatar" alt="StockTrack Pro Logo">
         </div>
 
         <div>

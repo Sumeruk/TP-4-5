@@ -1,0 +1,94 @@
+<template>
+  <div id="Edit">
+    <HeadSiteForAdm/>
+
+    <h2>Редактирование</h2>
+    <form @submit.prevent="submitForm">
+      <label for="username">Имя</label>
+      <input type="text" id="username" v-model="username">
+
+      <label for="usersurname">Фамилия</label>
+      <input type="text" id="usersurname" v-model="usersurname">
+
+      <label for="email">Почта</label>
+      <input type="email" id="email" v-model="email">
+
+      <label for="phone">Номер телефона</label>
+      <input type="tel" id="phone" v-model="phone">
+
+      <label for="birthdate">Дата Рождения</label>
+      <input type="date" id="birthdate" v-model="birthdate">
+
+      <label for="position">Должность</label>
+      <input type="text" id="position" v-model="position">
+
+    </form>
+    <button>
+      <router-link to="/password" class="action">Редактирование</router-link>
+    </button>
+  </div>
+</template>
+
+<script>
+import HeadSiteForAdm from "@/components/HeadSiteForAdm";
+export default {
+  components:{
+    HeadSiteForAdm
+  }
+  // Логика компонента
+};
+</script>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* располагаем элементы слева */
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+}
+
+h2 {
+  margin-top: 50px;
+  color: #7B5244;
+}
+
+form label {
+  margin-bottom: 5px; /* добавляем небольшое расстояние между метками и полями ввода */
+}
+
+form input {
+  margin-bottom: 10px; /* добавляем небольшое расстояние между полями ввода */
+  padding: 8px;
+  width: 300px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #F9F6DE;
+}
+.action{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
+button {
+  margin-top: 10px;
+  border-radius: 40px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Ширина кнопки равна ширине формы */
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
+}
+</style>
