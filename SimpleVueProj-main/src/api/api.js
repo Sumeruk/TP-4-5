@@ -10,6 +10,9 @@ export default {
     getAllEmployers() {
         return axiosApi.get('/employee/allEmployers');
     },
+    getEmployer(employerId){
+        return axiosApi.get('/employee/edit/' + employerId);
+    },
     createUser(firstName, lastName) {
         return axiosApi.post('/user/' + firstName + '/' + lastName);
     },

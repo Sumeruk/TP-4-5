@@ -36,7 +36,7 @@
 
 <script>
 import HeadSite from "@/components/HeadSiteForAdm";
-import getAllEmployers from '../../api/api.js';
+//import api from '../../api/api.js';
 export default {
   components: {
     HeadSite
@@ -55,13 +55,13 @@ export default {
     };
   },
   methods: {
-    logout() {
-      getAllEmployers().then(entities => {
-        this.employees = entities;
-      })
-          .catch(error => {
-            console.error(error);
-          });
+    created() {
+      // api.getAllEmployers().then(entities => {
+      //   this.employees = entities;
+      // })
+      //     .catch(error => {
+      //       console.error(error);
+      //     });
     }
   }
 };

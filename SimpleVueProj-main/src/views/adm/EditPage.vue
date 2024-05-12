@@ -5,22 +5,22 @@
     <h2>Редактирование</h2>
     <form @submit.prevent="submitForm">
       <label for="username">Имя</label>
-      <input type="text" id="username" v-model="username">
+      <input type="text" id="username" v-model="currentUser.name">
 
       <label for="usersurname">Фамилия</label>
-      <input type="text" id="usersurname" v-model="usersurname">
+      <input type="text" id="usersurname" v-model="currentUser.surname">
 
       <label for="email">Почта</label>
-      <input type="email" id="email" v-model="email">
+      <input type="email" id="email" v-model="currentUser.email">
 
       <label for="phone">Номер телефона</label>
-      <input type="tel" id="phone" v-model="phone">
+      <input type="tel" id="phone" v-model="currentUser.phone">
 
       <label for="birthdate">Дата Рождения</label>
-      <input type="date" id="birthdate" v-model="birthdate">
+      <input type="date" id="birthdate" v-model="currentUser.birthday">
 
       <label for="position">Должность</label>
-      <input type="text" id="position" v-model="position">
+      <input type="text" id="position" v-model="currentUser.role">
 
     </form>
     <button>
@@ -31,12 +31,37 @@
 
 <script>
 import HeadSiteForAdm from "@/components/HeadSiteForAdm";
+import api from '../../api/api.js';
+
 export default {
-  components:{
+  components: {
     HeadSiteForAdm
+  },
+  data() {
+    return {
+      currentUser: {
+        name: 'Имя',
+        surname: 'Фамилия',
+        email: 'dd@gmail.com',
+        phone:'940',
+        birthday:'',
+        role:'role',
+      },
+      id: this.$route.params.id
+    }
+  },
+  created() {
+    api.getEmployer(this.id).then(entity => {
+      this.currentUser = entity;
+    })
+        .catch(error => {
+          console.error(error);
+        });
   }
-  // Логика компонента
-};
+
+// Логика компонента
+}
+;
 </script>
 
 <style>
@@ -71,11 +96,13 @@ form input {
   border: 1px solid #ccc;
   background-color: #F9F6DE;
 }
-.action{
+
+.action {
   display: block;
   padding: 10px;
   border-radius: 40px;
 }
+
 button {
   margin-top: 10px;
   border-radius: 40px;
