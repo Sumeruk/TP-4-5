@@ -24,10 +24,10 @@
 
       <div>
         <button>
-          <router-link :to="{name : 'editEmpl', params:{id : 11} }" class="actions">Редактировать</router-link>
+          <router-link :to="{name : 'editEmpl', params:{id: employee.id}}" class="actions">Редактировать</router-link>
         </button>
         <button>
-          <router-link :to="{name : 'deleteEmpl', params:{id : 11} }" class="actions">Удалить</router-link>
+          <router-link :to="{name : 'deleteEmpl', params:{id: employee.id}}" class="actions">Удалить</router-link>
         </button>
       </div>
     </div>
@@ -36,6 +36,7 @@
 
 <script>
 import HeadSite from "@/components/HeadSiteForAdm";
+import getAllEmployers from '../../api/api.js';
 export default {
   components: {
     HeadSite
@@ -44,17 +45,23 @@ export default {
   data() {
     return {
       employees: [
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'},
-        { name: 'Иван Иванов', position: 'Кладовщик'}
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
       ]
     };
   },
   methods: {
     logout() {
-      // Логика выхода пользователя
+      getAllEmployers().then(entities => {
+        this.employees = entities;
+      })
+          .catch(error => {
+            console.error(error);
+          });
     }
   }
 };
