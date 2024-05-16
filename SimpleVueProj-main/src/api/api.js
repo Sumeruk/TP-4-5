@@ -24,5 +24,14 @@ export default {
     },
     deleteEmployer(employerId) {
         return axiosApi.delete('/employee/edit/' + employerId);
+    },
+    getAllProducts() {
+        return axiosApi.get('/products/allProducts');
+    },
+    createProduct(product){
+        return axiosApi.post("/products/edit/", product)
+    },
+    deleteProduct(productId) {
+        return axiosApi.delete('/product/edit/' + productId)
     }
 }

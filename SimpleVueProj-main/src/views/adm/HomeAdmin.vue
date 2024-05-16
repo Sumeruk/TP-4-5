@@ -22,7 +22,7 @@
           <router-link to="/employee/allEmployers" class="actions">Cотрудники</router-link>
         </button>
         <button>
-          <router-link to="/product/allProducts" class="actions">Товары</router-link>
+          <router-link to="/adminProduct" class="actions">Товары</router-link>
         </button>
 
 

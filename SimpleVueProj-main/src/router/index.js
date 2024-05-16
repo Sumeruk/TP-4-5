@@ -11,7 +11,7 @@ import EditPage from "@/views/adm/EditPage";
 import DeletePage from "@/views/adm/DeletePage";
 import AcceptTheGoods from "@/views/boss/AcceptTheGoods";
 import ReportPage from "@/views/boss/ReportPage";
-import ProductPage from "@/views/ProductPage";
+import ProductPage from "@/views/adm/ProductPage";
 import HomeBoss from "@/views/boss/HomeBoss";
 import LeftoversPage from "@/views/boss/LeftoversPage";
 import OrderList from "@/views/adm/OrderList";
@@ -40,9 +40,20 @@ const routes = [
     component: Registration
   },
   {
-    path: '/product',
+    path: '/product/addProduct',
     name: 'product',
     component: AddProduct
+  },
+    //todo создать страницу обновления товара
+  // {
+  //   path: '/product/edit/:id',
+  //   name: 'editProduct',
+  //   component: EditProduct
+  // },
+  {
+    path: '/adminProduct',
+    name: 'admProd',
+    component: ProductPage
   },
   {
     path: '/adm',
