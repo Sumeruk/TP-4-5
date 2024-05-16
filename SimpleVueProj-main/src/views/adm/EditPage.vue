@@ -3,7 +3,7 @@
     <HeadSiteForAdm/>
 
     <h2>Редактирование</h2>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="updateEmployer">
       <label for="username">Имя</label>
       <input type="text" id="username" v-model="currentUser.name">
 
@@ -22,16 +22,17 @@
       <label for="position">Должность</label>
       <input type="text" id="position" v-model="currentUser.role">
 
+      <button type="submit" @click="updateEmployer">
+        Редактирование
+      </button>
     </form>
-    <button>
-      <router-link to="/password" class="action">Редактирование</router-link>
-    </button>
   </div>
 </template>
 
 <script>
 import HeadSiteForAdm from "@/components/HeadSiteForAdm";
 import api from '../../api/api.js';
+import router from "@/router";
 
 export default {
   components: {
@@ -51,15 +52,28 @@ export default {
     }
   },
   created() {
-    api.getEmployer(this.id).then(entity => {
-      this.currentUser = entity;
-    })
-        .catch(error => {
-          console.error(error);
-        });
-  }
+    this.getEmployer();
+  },
+  methods:{
+    getEmployer(){
+      api.getEmployer(this.id).then(entity => {
+        this.currentUser = entity;
+      })
+          .catch(error => {
+            console.error(error);
+          });
+    },
 
-// Логика компонента
+    updateEmployer(){
+      api.updateEmployer(this.id, this.currentUser).then(response =>{
+        console.log(response.data);
+        router.push('/employee/allEmployers')
+      })
+          .catch(error => {
+            console.error(error);
+          });
+    }
+  }
 }
 ;
 </script>

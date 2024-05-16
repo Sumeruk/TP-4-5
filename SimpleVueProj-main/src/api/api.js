@@ -16,4 +16,7 @@ export default {
     createUser(firstName, lastName) {
         return axiosApi.post('/user/' + firstName + '/' + lastName);
     },
+    updateEmployer(employerId, employer) {
+        return axiosApi.post('/employee/edit/' + employerId, employer);
+    }
 }
