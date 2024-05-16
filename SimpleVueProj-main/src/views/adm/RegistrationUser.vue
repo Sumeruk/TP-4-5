@@ -1,39 +1,66 @@
 <template>
   <div id="Registration">
-    <HeadSiteForAdm />
+    <HeadSiteForAdm/>
 
     <h2>Новый аккаунт</h2>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="createUser">
       <label for="username">Имя</label>
-      <input type="text" id="username" v-model="username">
+      <input type="text" id="username" v-model="newUser.name">
 
       <label for="usersurname">Фамилия</label>
-      <input type="text" id="usersurname" v-model="usersurname">
+      <input type="text" id="usersurname" v-model="newUser.surname">
 
       <label for="email">Почта</label>
-      <input type="email" id="email" v-model="email">
+      <input type="email" id="email" v-model="newUser.email">
 
       <label for="phone">Номер телефона</label>
-      <input type="tel" id="phone" v-model="phone">
+      <input type="tel" id="phone" v-model="newUser.phone">
 
       <label for="birthdate">Дата Рождения</label>
-      <input type="date" id="birthdate" v-model="birthdate">
+      <input type="date" id="birthdate" v-model="newUser.birthday">
 
       <label for="position">Должность</label>
-      <input type="text" id="position" v-model="position">
+      <input type="text" id="position" v-model="newUser.role">
 
+      <button type="submit" @click="createUser">
+        Создать
+      </button>
     </form>
-    <button>
-      <router-link to="/password" class="action">Зарегистрировать</router-link>
-    </button>
   </div>
 </template>
 
 <script>
 import HeadSiteForAdm from "@/components/HeadSiteForAdm";
+import api from "@/api/api";
+
 export default {
-  components:{
+  components: {
     HeadSiteForAdm
+  },
+
+  data() {
+    return {
+      newUser: {
+        name: '',
+        surname: '',
+        email: '',
+        phone: '',
+        birthday: '',
+        role: '',
+      },
+    }
+  },
+
+  methods: {
+    createUser() {
+      api.createUser(this.newUser).then(response => {
+        console.log(response.data);
+        console.log(response.data);
+      })
+          .catch(error => {
+            console.error(error);
+          });
+    }
   }
   // Логика компонента
 };
@@ -72,7 +99,7 @@ form input {
   background-color: #F9F6DE;
 }
 
-.action{
+.action {
   display: block;
   padding: 10px;
   border-radius: 40px;

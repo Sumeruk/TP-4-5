@@ -1,17 +1,17 @@
 <template>
   <div id="home">
     <!-- Шапка с кнопками -->
-    <HeadSite />
+    <HeadSite/>
 
     <div class="search">
       <button class="butt">
-        <router-link to="/employee/newEmployee" class="actions">Добавить</router-link>
+        <router-link to="/employee/newUser" class="actions">Добавить</router-link>
       </button>
       <input type="text" placeholder="Поиск...">
     </div>
 
     <!-- Формы для каждого сотрудника -->
-    <div v-for="(employee, index) in employees" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
+    <div v-for="(employee) in employees" :key="employee.id" class="employee-form">
 
       <div>
         <img src="../assect/Face.jpg" class="avatar" alt="StockTrack Pro Logo">
@@ -26,8 +26,8 @@
         <button>
           <router-link :to="{name : 'editEmpl', params:{id: employee.id}}" class="actions">Редактировать</router-link>
         </button>
-        <button>
-          <router-link :to="{name : 'deleteEmpl', params:{id: employee.id}}" class="actions">Удалить</router-link>
+        <button class="actions" @click="deleteEmployer(employee.id)">
+          Удалить
         </button>
       </div>
     </div>
@@ -37,6 +37,7 @@
 <script>
 import HeadSite from "@/components/HeadSiteForAdm";
 import api from '../../api/api.js';
+
 export default {
   components: {
     HeadSite
@@ -46,11 +47,11 @@ export default {
     return {
       employees: [
         {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 12, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 13, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 14, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 15, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 16, name: 'Иван Иванов', position: 'Кладовщик'},
       ]
     };
   },
@@ -67,12 +68,25 @@ export default {
           .catch(error => {
             console.error(error);
           });
+    },
+    deleteEmployer(id) {
+      api.deleteEmployer(id).then(response => {
+        console.log(response.data);
+        this.getAllEmployers();
+      })
+          .catch(error => {
+            console.error(error);
+          });
     }
   }
+
 };
 </script>
 
 <style scoped>
+/*div{*/
+/*  border: 1px solid black;*/
+/*}*/
 #home {
   display: flex;
   flex-direction: column;
@@ -80,6 +94,7 @@ export default {
   min-height: 100vh;
   height: 600px;
   overflow-y: visible;
+  width: 50%;
 }
 
 .search {
@@ -103,7 +118,8 @@ export default {
   width: 50%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
   border: 10px solid #ffffff;
 }
-.actions{
+
+.actions {
   display: block;
   padding: 10px;
   border-radius: 40px;
@@ -153,6 +169,7 @@ button {
   width: 100%;
   font-size: 18px;
 }
+
 
 button:hover {
   background-color: #F9F6DE;

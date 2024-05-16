@@ -35,7 +35,7 @@ const routes = [
     component: LoginPage
   },
   {
-    path: '/employee/newEmployee',
+    path: '/employee/newUser',
     name: 'registration',
     component: Registration
   },
