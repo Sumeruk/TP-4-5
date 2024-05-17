@@ -6,11 +6,12 @@
 
     <h2 class="page-title">Список продуктов</h2>
 
-    <div class="addAndSearch">
-      <button>
+    <div class="searchDiv">
+      <button class="butt">
         <router-link to="/product/addProduct" class="action">Добавить товар</router-link>
       </button>
-      <input type="text" placeholder="Поиск...">
+      <input type="text" v-model="search" placeholder="Поиск...">
+      <button class="actions" @click="searchProduct(search)">Найти</button>
     </div>
 
     <table>
@@ -42,8 +43,10 @@
         </td>
         <td>
           <button>
-            <!--            <router-link :to="{name : 'editProduct', params:{id: product.id}}>Изменить</router-link></button>-->
-            Изменить
+            <router-link :to="{name : 'editProduct', params:{id: product.id}}">Изменить</router-link>
+          </button>
+          <button>
+            изменить
           </button>
         </td>
       </tr>
@@ -62,6 +65,7 @@ export default {
 
   data() {
     return {
+      search:'',
       products: [
         {
           id: 1,
@@ -110,6 +114,7 @@ export default {
     getAllProducts() {
       api.getAllProducts().then(response => {
         this.products = response.data;
+        console.log(response.status);
       })
           .catch(error => {
             console.error(error);
@@ -117,8 +122,18 @@ export default {
     },
     deleteProduct(id) {
       api.deleteProduct(id).then(response => {
-        console.log(response.data);
+        console.log(response.status);
         this.getAllProducts();
+      })
+          .catch(error => {
+            console.error(error);
+          });
+    },
+    searchProduct(parameters){
+      console.log(parameters);
+      api.searchProducts(parameters).then(response =>{
+          this.products = response.data;
+          console.log(response.status);
       })
           .catch(error => {
             console.error(error);
@@ -130,29 +145,43 @@ export default {
 </script>
 
 <style scoped>
+/*div{*/
+/*  border: 1px solid black;*/
+/*}*/
+
 .page-title {
   text-align: center;
-  margin-top: -300px; /* Уменьшил отрицательный отступ */
+  margin-top: -15%; /* Уменьшил отрицательный отступ */
 }
-.addAndSearch{
-  flex-direction: row;
-}
-.addAndSearch button{
-  margin-top: 10px;
-  margin-bottom: 15px;
-  margin-right: 10px;
-  border-radius: 40px;
-  background-color: #D3AFAA;
-  color: #7B5244;
-  border: none;
-  cursor: pointer;
-  width: 40%; /* Ширина кнопки равна ширине формы */
-  font-size: 18px;
+.searchDiv {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  /*padding-left: 10%;*/
+  margin-left: 10%;
 }
 
-.addAndSearch input{
-  width: 40%;
-  margin-left: 10px;
+.searchDiv input {
+  padding: 12px; /* Увеличиваем внутренние отступы */
+  border-radius: 40px; /* Увеличиваем радиус скругления */
+  border: 2px solid #F9F6DE; /* Увеличиваем толщину границы */
+  margin-right: 10px; /* Уменьшаем отступ между строкой поиска и кнопкой */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  width: 33%;
+}
+
+.searchDiv .actions{
+  margin-right: 10px;
+  border-radius: 40px;
+  display: block;
+  padding: 10px;
+  width: 33%;
+}
+
+.butt {
+  width: 33%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
+  border: 10px solid #ffffff;
 }
 
 table {

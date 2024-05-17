@@ -65,7 +65,8 @@ export default {
   methods: {
     getAllEmployers() {
       api.getAllEmployers().then(entities => {
-        this.employees = entities;
+        this.employees = entities.data;
+        console.log(entities.status)
       })
           .catch(error => {
             console.error(error);
@@ -73,7 +74,7 @@ export default {
     },
     deleteEmployer(id) {
       api.deleteEmployer(id).then(response => {
-        console.log(response.data);
+        console.log(response.status);
         this.getAllEmployers();
       })
           .catch(error => {
@@ -82,7 +83,8 @@ export default {
     },
     searchEmployers(parameters){
       api.searchEmployers(parameters).then(response => {
-        this.employees = response;
+        this.employees = response.data;
+        console.log(response.status);
       })
           .catch(error => {
             console.error(error);

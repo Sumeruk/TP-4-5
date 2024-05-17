@@ -57,7 +57,8 @@ export default {
   methods:{
     getEmployer(){
       api.getEmployer(this.id).then(entity => {
-        this.currentUser = entity;
+        this.currentUser = entity.data;
+        console.log(entity.status);
       })
           .catch(error => {
             console.error(error);
@@ -66,7 +67,7 @@ export default {
 
     updateEmployer(){
       api.updateEmployer(this.id, this.currentUser).then(response =>{
-        console.log(response.data);
+        console.log(response.status);
         router.push('/employee/allEmployers')
       })
           .catch(error => {

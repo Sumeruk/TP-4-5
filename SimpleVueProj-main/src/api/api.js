@@ -31,8 +31,17 @@ export default {
     getAllProducts() {
         return axiosApi.get('/products/allProducts');
     },
+    getProduct(employerId){
+        return axiosApi.get('/product/edit/' + employerId);
+    },
     createProduct(product){
         return axiosApi.post("/products/edit/", product)
+    },
+    updateProduct(employerId, employer) {
+        return axiosApi.post('/products/edit/' + employerId, employer);
+    },
+    searchProducts(parameters) {
+        return axiosApi.get('/products/allProducts', parameters)
     },
     deleteProduct(productId) {
         return axiosApi.delete('/product/edit/' + productId)

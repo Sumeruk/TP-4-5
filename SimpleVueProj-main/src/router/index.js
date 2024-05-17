@@ -22,6 +22,7 @@ import GetJob from "@/views/boss/GetJob";
 import ShopHome from "@/views/shop/ShopHome";
 import AddProductToOrder from "@/views/shop/AddProductToOrder";
 import RecentOrders from "@/views/shop/RecentOrders";
+import EditProduct from "@/views/adm/EditProduct";
 
 const routes = [
   {
@@ -45,11 +46,11 @@ const routes = [
     component: AddProduct
   },
     //todo создать страницу обновления товара
-  // {
-  //   path: '/product/edit/:id',
-  //   name: 'editProduct',
-  //   component: EditProduct
-  // },
+  {
+    path: '/product/edit/:id',
+    name: 'editProduct',
+    component: EditProduct
+  },
   {
     path: '/adminProduct',
     name: 'admProd',
