@@ -22,7 +22,7 @@
       <label for="position">Должность</label>
       <input type="text" id="position" v-model="currentUser.role">
 
-      <button type="submit" @click="updateEmployer">
+      <button type="submit" >
         Редактирование
       </button>
     </form>

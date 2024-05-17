@@ -37,7 +37,7 @@ export default {
   components:{
     HeadSiteForShop
   },
-  name: "ShopHome"
+  name: "ShopHome",
 }
 </script>
 

@@ -34,7 +34,7 @@
       <label for="quantity">Количество</label>
       <input type="number" id="quantity" name="quantity" min="1" v-model="currentProduct.number">
 
-      <button type="submit" @click="updateProduct">
+      <button type="submit">
         Редактирование
       </button>
     </form>

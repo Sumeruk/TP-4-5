@@ -22,7 +22,7 @@
       <label for="position">Должность</label>
       <input type="text" id="position" v-model="newUser.role">
 
-      <button type="submit" @click="createUser">
+      <button type="submit">
         Создать
       </button>
     </form>

@@ -45,9 +45,6 @@
           <button>
             <router-link :to="{name : 'editProduct', params:{id: product.id}}">Изменить</router-link>
           </button>
-          <button>
-            изменить
-          </button>
         </td>
       </tr>
       </tbody>

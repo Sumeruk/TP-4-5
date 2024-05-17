@@ -33,7 +33,7 @@
       <label for="quantity">Количество</label>
       <input type="number" id="quantity" name="quantity" min="1" v-model="newProduct.number">
 
-      <button type="submit" @click="addProduct">Добавить товар</button>
+      <button type="submit">Добавить товар</button>
     </form>
   </div>
 </template>

@@ -45,5 +45,8 @@ export default {
     },
     deleteProduct(productId) {
         return axiosApi.delete('/product/edit/' + productId)
+    },
+    createOrder(shopId, order){
+        return axiosApi.post('/order/newOrder/', shopId, order)
     }
 }
