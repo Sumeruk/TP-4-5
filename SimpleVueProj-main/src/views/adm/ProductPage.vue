@@ -1,5 +1,4 @@
-<!--todo сделать шапку для админа-->
-<!--todo переделать под админа-->
+<!--todo сделать что-то с кнопкой-->
 <template>
   <div>
     <HeadSiteForAdm/>
@@ -144,9 +143,9 @@ export default {
 </script>
 
 <style scoped>
-div {
-  border: 1px solid black;
-}
+/*div {*/
+/*  border: 1px solid black;*/
+/*}*/
 
 .page-title {
   text-align: center;
@@ -154,12 +153,11 @@ div {
 }
 
 .searchDiv {
-  margin-top: 0;
   display: flex;
   align-items: center;
-  width: 80%;
-  /*padding-left: 10%;*/
-  margin-left: 10%;
+  flex-direction: row;
+  width: 200%;
+  margin-left: -50%;
 }
 
 .searchDiv input {
