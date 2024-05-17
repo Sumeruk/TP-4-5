@@ -3,11 +3,12 @@
     <!-- Шапка с кнопками -->
     <HeadSite/>
 
-    <div class="search">
+    <div class="searchDiv">
       <button class="butt">
         <router-link to="/employee/newUser" class="actions">Добавить</router-link>
       </button>
-      <input type="text" placeholder="Поиск...">
+      <input type="text" v-model="search" placeholder="Поиск...">
+      <button class="actions" @click="searchEmployers(search)">найти</button>
     </div>
 
     <!-- Формы для каждого сотрудника -->
@@ -52,7 +53,8 @@ export default {
         {id: 14, name: 'Иван Иванов', position: 'Кладовщик'},
         {id: 15, name: 'Иван Иванов', position: 'Кладовщик'},
         {id: 16, name: 'Иван Иванов', position: 'Кладовщик'},
-      ]
+      ],
+      search:''
     };
   },
 
@@ -77,6 +79,14 @@ export default {
           .catch(error => {
             console.error(error);
           });
+    },
+    searchEmployers(parameters){
+      api.searchEmployers(parameters).then(response => {
+        this.employees = response;
+      })
+          .catch(error => {
+            console.error(error);
+          });
     }
   }
 
@@ -97,25 +107,32 @@ export default {
   width: 50%;
 }
 
-.search {
+.searchDiv {
   margin-top: 15%;
   display: flex;
   align-items: center;
   width: 80%;
 }
 
-.search input {
-  flex: 1; /* Растягиваем на всю доступную ширину */
+.searchDiv input {
   padding: 12px; /* Увеличиваем внутренние отступы */
   border-radius: 40px; /* Увеличиваем радиус скругления */
   border: 2px solid #F9F6DE; /* Увеличиваем толщину границы */
   margin-right: 10px; /* Уменьшаем отступ между строкой поиска и кнопкой */
   font-size: 16px; /* Увеличиваем размер шрифта */
   margin-top: 31px;
+  width: 33%;
+}
+
+.searchDiv .actions{
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+  width: 33%;
 }
 
 .butt {
-  width: 50%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
+  width: 33%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
   border: 10px solid #ffffff;
 }
 

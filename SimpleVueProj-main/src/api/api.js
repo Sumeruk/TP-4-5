@@ -16,6 +16,9 @@ export default {
     getEmployer(employerId){
         return axiosApi.get('/employee/edit/' + employerId);
     },
+    searchEmployers(parameters) {
+        return axiosApi.get('/employee/allEmployers', parameters)
+    },
     createUser(user) {
         return axiosApi.post("/employee/edit/", user);
     },
