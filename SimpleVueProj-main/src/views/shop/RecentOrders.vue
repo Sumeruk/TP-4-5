@@ -5,7 +5,10 @@
     <!-- Формы для каждого сотрудника -->
     <div v-for="(order, index) in orders" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
-        <p>№{{ order.name }}</p>
+
+        <router-link :to="{name : 'oldOrder', params :{shopId : this.shopId, orderId: order.name} }">
+          №{{ order.name }}
+        </router-link>
       </div>
     </div>
   </div>
@@ -13,6 +16,7 @@
 
 <script>
 import HeadSiteForShop from "@/components/HeadSiteForShop";
+import api from '../../api/api.js';
 
 export default {
   components: {
@@ -21,6 +25,7 @@ export default {
   name: 'RecentOrders',
   data() {
     return {
+      shopId: this.$route.params.shopId,
       orders: [
         {name: '33442-998'},
         {name: '55302-008'},
@@ -30,9 +35,17 @@ export default {
       ]
     };
   },
+  created() {
+    this.getAllOrdersFromShopWithShopId();
+  },
   methods: {
-    logout() {
-      // Логика выхода пользователя
+    getAllOrdersFromShopWithShopId() {
+      api.getAllOrdersFromShopWithShopId(this.shopId).then(response => {
+        this.orders = response.data;
+        console.log(response.status);
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 };
@@ -47,14 +60,17 @@ export default {
   height: 600px;
   overflow-y: visible;
 }
-.homeBoss{
+
+.homeBoss {
   display: flex;
 }
+
 .welcome-text {
   display: flex;
   margin-top: 40%;
 
 }
+
 .info-row {
   margin-top: 30%;
 }

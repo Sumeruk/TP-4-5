@@ -23,6 +23,7 @@ import ShopHome from "@/views/shop/ShopHome";
 import AddProductToOrder from "@/views/shop/AddProductToOrder";
 import RecentOrders from "@/views/shop/RecentOrders";
 import EditProduct from "@/views/adm/EditProduct";
+import OldOrder from "@/views/shop/OldOrder";
 
 const routes = [
   {
@@ -107,6 +108,11 @@ const routes = [
     component: AddProductToOrder
   },
   {
+    path: '/shop/oldOrder/:shopId/:orderId',
+    name: 'oldOrder',
+    component: OldOrder
+  },
+  {
     path: '/analytics',
     name: 'report',
     component: ReportPage
@@ -131,6 +137,7 @@ const routes = [
     name: 'order',
     component: OrderList
   },
+
   {
     path: '/storekeeper',
     name: 'storekeeper',

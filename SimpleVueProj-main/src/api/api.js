@@ -47,6 +47,12 @@ export default {
         return axiosApi.delete('/product/edit/' + productId)
     },
     createOrder(shopId, order){
-        return axiosApi.post('/order/newOrder/', shopId, order)
+        return axiosApi.post('/order/newOrder/'+ shopId, order)
+    },
+    getAllOrdersFromShopWithShopId(shopId){
+        return axiosApi.get('/order/getOrders/'+ shopId);
+    },
+    getProductsFromOrder(shopId, orderId) {
+        return axiosApi.get('/order/getOrders/'+ shopId + '/' + orderId);
     }
 }
