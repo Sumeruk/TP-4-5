@@ -14,41 +14,43 @@
       <button class="actions" @click="searchProduct(search)">Найти</button>
     </div>
 
-    <table>
-      <thead>
-      <tr>
-        <th>Артикул</th>
-        <th>Название продукта</th>
-        <th>Цена</th>
-        <th>Вес</th>
-        <th>Мера измерения</th>
-        <th>Поставщик</th>
-        <th>Описание</th>
-        <th></th>
-        <th></th>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>Артикул</th>
+          <th>Название продукта</th>
+          <th>Цена</th>
+          <th>Вес</th>
+          <th>Мера измерения</th>
+          <th>Поставщик</th>
+          <th>Описание</th>
+          <th></th>
+          <th></th>
 
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="product in products" :key="product.id">
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.weight }}</td>
-        <td>{{ product.units }}</td>
-        <td>{{ product.provider }}</td>
-        <td>{{ product.description }}</td>
-        <td>
-          <button @click="deleteProduct(product.id)">Удалить</button>
-        </td>
-        <td>
-          <button>
-            <router-link :to="{name : 'editProduct', params:{id: product.id}}">Изменить</router-link>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="product in products" :key="product.id">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.weight }}</td>
+          <td>{{ product.units }}</td>
+          <td>{{ product.provider }}</td>
+          <td>{{ product.description }}</td>
+          <td>
+            <button @click="deleteProduct(product.id)">Удалить</button>
+          </td>
+          <td>
+            <button>
+              <router-link :to="{name : 'editProduct', params:{id: product.id}}">Изменить</router-link>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -62,7 +64,7 @@ export default {
 
   data() {
     return {
-      search:'',
+      search: '',
       products: [
         {
           id: 1,
@@ -126,11 +128,11 @@ export default {
             console.error(error);
           });
     },
-    searchProduct(parameters){
+    searchProduct(parameters) {
       console.log(parameters);
-      api.searchProducts(parameters).then(response =>{
-          this.products = response.data;
-          console.log(response.status);
+      api.searchProducts(parameters).then(response => {
+        this.products = response.data;
+        console.log(response.status);
       })
           .catch(error => {
             console.error(error);
@@ -142,14 +144,15 @@ export default {
 </script>
 
 <style scoped>
-/*div{*/
-/*  border: 1px solid black;*/
-/*}*/
+div {
+  border: 1px solid black;
+}
 
 .page-title {
   text-align: center;
-  margin-top: -15%; /* Уменьшил отрицательный отступ */
+  margin-top: -80%; /* Уменьшил отрицательный отступ */
 }
+
 .searchDiv {
   margin-top: 0;
   display: flex;
@@ -168,7 +171,7 @@ export default {
   width: 33%;
 }
 
-.searchDiv .actions{
+.searchDiv .actions {
   margin-right: 10px;
   border-radius: 40px;
   display: block;
@@ -182,9 +185,12 @@ export default {
 }
 
 table {
-  width: 100vw;
+  width: 100%;
   border-collapse: collapse;
-  margin: auto;
+  margin-left: -36.5%;
+  align-items: flex-start;
+  position: absolute;
+
 }
 
 th, td {
