@@ -1,7 +1,7 @@
 <template>
-  <div id="home">
-    <!-- Шапка с кнопками -->
+  <div id="homeStorekeeper">
     <HeadSiteForStorekeep />
+
     <div class="homeBoss">
       <div>
         <h1>Мой профиль</h1>
@@ -17,8 +17,8 @@
       </div>
 
       <div class="butts">
-        <button>
-          <router-link to="/orders/toDo" class="action">Работа</router-link>
+        <button class="action" @click="goToJob">
+          Работа
         </button>
       </div>
 
@@ -29,11 +29,17 @@
 
 <script>
 import HeadSiteForStorekeep from "@/components/HeadSiteForStorekeep";
+import router from "@/router";
 export default {
   components:{
     HeadSiteForStorekeep
   },
-  name: "HomeStorekeeper"
+  name: "HomeStorekeeper",
+  methods:{
+    goToJob(){
+      router.push('/orders/toDo');
+    }
+  }
 }
 </script>
 
@@ -41,8 +47,9 @@ export default {
 /*div{*/
 /*  border: 1px solid black;*/
 /*}*/
-#home {
-  flex-direction: row;
+#homeStorekeeper {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
 }
@@ -75,7 +82,6 @@ h1{
   margin-top: 60%;
   width: 40%;
   align-items: center;
-
 }
 
 h2 {

@@ -152,7 +152,6 @@ export default {
 /*}*/
 
 .prodPage {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
