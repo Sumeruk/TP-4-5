@@ -200,7 +200,6 @@ h2 {
   width: 95%;
   border-collapse: collapse;
   position: absolute;
-
 }
 
 .table th, td {
