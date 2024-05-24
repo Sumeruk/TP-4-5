@@ -54,5 +54,8 @@ export default {
     },
     getProductsFromOrder(shopId, orderId) {
         return axiosApi.get('/order/getOrders/'+ shopId + '/' + orderId);
+    },
+    setProductFromDelivery(product) {
+        return axiosApi.put('/product/setProducts/' + product);
     }
 }
