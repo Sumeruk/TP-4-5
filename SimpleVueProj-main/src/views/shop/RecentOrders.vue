@@ -58,7 +58,7 @@ export default {
   align-items: center;
   min-height: 100vh;
   height: 600px;
-  overflow-y: visible;
+  /*overflow-y: visible;*/
 }
 
 .homeBoss {
