@@ -1,20 +1,21 @@
-<!--todo сделать что-то с кнопкой-->
 <template>
-  <div>
+  <div class="prodPage">
     <HeadSiteForAdm/>
 
-    <h2 class="page-title">Список продуктов</h2>
-
-    <div class="searchDiv">
-      <button class="butt">
-        <router-link to="/product/addProduct" class="action">Добавить товар</router-link>
-      </button>
-      <input type="text" v-model="search" placeholder="Поиск...">
-      <button class="actions" @click="searchProduct(search)">Найти</button>
+    <div>
+      <h2 class="page-title">Список продуктов</h2>
+      <div class="searchDiv">
+        <button class="actions" @click="goToAddProduct">
+          Добавить товар
+        </button>
+        <input type="text" v-model="search" placeholder="Поиск...">
+        <button class="actions" @click="searchProduct(search)">Найти</button>
+      </div>
     </div>
 
-    <div>
-      <table>
+
+    <div class="table">
+      <table class="table">
         <thead>
         <tr>
           <th>Артикул</th>
@@ -26,7 +27,6 @@
           <th>Описание</th>
           <th></th>
           <th></th>
-
         </tr>
         </thead>
         <tbody>
@@ -56,6 +56,7 @@
 <script>
 import HeadSiteForAdm from "@/components/HeadSiteForAdm";
 import api from '../../api/api.js';
+import router from "@/router";
 
 export default {
   name: "ProductPage",
@@ -127,6 +128,9 @@ export default {
             console.error(error);
           });
     },
+    goToAddProduct() {
+      router.push('/product/addProduct');
+    },
     searchProduct(parameters) {
       console.log(parameters);
       api.searchProducts(parameters).then(response => {
@@ -147,9 +151,18 @@ export default {
 /*  border: 1px solid black;*/
 /*}*/
 
-.page-title {
-  text-align: center;
-  margin-top: -80%; /* Уменьшил отрицательный отступ */
+.prodPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow-y: visible;
+
+}
+
+h2 {
+  align-items: center;
 }
 
 .searchDiv {
@@ -177,28 +190,26 @@ export default {
   width: 33%;
 }
 
-.butt {
-  width: 33%; /* Автоматическая ширина, чтобы кнопка подстраивалась под содержимое */
-  border: 10px solid #ffffff;
-}
 
-table {
+.table {
+  align-self: flex-start;
   width: 100%;
-  border-collapse: collapse;
-  margin-left: -36.5%;
-  align-items: flex-start;
-  position: absolute;
-
 }
 
-th, td {
+.table table {
+  width: 95%;
+  border-collapse: collapse;
+  position: absolute;
+}
+
+.table th, td {
   border: 1px solid #7B5244; /* Изменил цвет границ ячеек на черный */
   padding: 8px;
   text-align: center;
   color: #7B5244;
 }
 
-th {
+.table th {
   background-color: #D3AFAA;
 }
 

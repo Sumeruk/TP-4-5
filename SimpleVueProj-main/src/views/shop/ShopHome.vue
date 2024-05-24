@@ -48,7 +48,7 @@ export default {
   align-items: center;
   height: 100vh;
   width: 80%;
-  overflow-y: visible;
+  /*overflow-y: visible;*/
 }
 
 .homeShop {

@@ -1,15 +1,12 @@
 <template>
-  <div id="Registration">
+  <div class="containerForAddUser">
     <HeadSiteForAdm/>
-
     <h2>Новый аккаунт</h2>
     <form @submit.prevent="createUser">
       <label for="username">Имя</label>
       <input type="text" id="username" v-model="newUser.name">
-
       <label for="usersurname">Фамилия</label>
       <input type="text" id="usersurname" v-model="newUser.surname">
-
       <label for="email">Почта</label>
       <input type="email" id="email" v-model="newUser.email">
 
@@ -26,7 +23,8 @@
         Создать
       </button>
     </form>
-  </div>
+    </div>
+
 </template>
 
 <script>
@@ -68,7 +66,14 @@ export default {
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/*div{*/
+/*  border: 1px solid black;*/
+/*}*/
+
+.containerForAddUser{
+  width: 30%;
+  margin: 0 auto 20px;
+}
 
 form {
   display: flex;
@@ -78,7 +83,6 @@ form {
   border: 1px solid #fff;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
-  position: relative;
 }
 
 h2 {

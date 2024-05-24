@@ -90,8 +90,7 @@ body {
 
 .container {
   width: 30%;
-  margin: 20px auto;
-  margin-top: 200px;
+  margin: 200px auto 20px;
 }
 
 form {

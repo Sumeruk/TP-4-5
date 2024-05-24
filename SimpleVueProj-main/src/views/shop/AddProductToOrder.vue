@@ -1,9 +1,7 @@
 <template>
-  <div id="Registration">
+  <div id="RegistrationProduct">
     <HeadSiteForShop/>
-
     <div>
-
       <h2>Добавить товар к заказу</h2>
       <form @submit.prevent="setProduct">
         <label for="username">Название</label>
@@ -13,19 +11,19 @@
         <input type="number" id="amount" v-model="product.amount">
 
         <button type="submit">Добавить товар</button>
-
-
       </form>
     </div>
+
     <button class="action" @click="createOrder">Сделать заказ</button>
     <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
-    <div>
-      <table>
+
+    <div class="productTable">
+      <table class="productTable">
         <thead>
         <tr>
           <th>Название</th>
           <th>Количество</th>
-          <th></th>
+          <th>Действие</th>
 
         </tr>
         </thead>
@@ -40,7 +38,14 @@
         </tr>
         </tbody>
       </table>
+<!--      <ul>-->
+<!--        <li v-for="(item, index) in order" :key="index">-->
+<!--          <p>{{ item.name }}  {{item.amount}}</p>-->
+<!--        </li>-->
+<!--      </ul>-->
     </div>
+
+
   </div>
 </template>
 
@@ -102,12 +107,25 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-#Registration {
+#RegistrationProduct {
   flex-direction: column;
-  position: fixed;
+  /*position: fixed;*/
+  margin-top: -15%;
 }
 .hidden {
   display: none;
+}
+.productTable {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.productTable table {
+  margin-left: -15%;
+  width:200%;
+  border-collapse: collapse;
+  position: absolute;
+  max-width: 800px;
 }
 
 .show {
@@ -185,19 +203,22 @@ input[type="submit"]:hover {
   color: #D3AFAA;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: auto;
-  align-items: flex-start;
-  position: absolute;
-}
+/*table {*/
+/*  width: 800px;*/
+/*  border-collapse: collapse;*/
+/*  margin: auto;*/
+/*  align-items: flex-start;*/
+/*  position: absolute;*/
+/*}*/
 
-th, td {
+th, tr, td {
+  max-width: 50%;
+  min-width: 100px;
   border: 1px solid #7B5244; /* Изменил цвет границ ячеек на черный */
   padding: 8px;
   text-align: center;
   color: #7B5244;
+  word-wrap: anywhere;
 }
 
 th {
