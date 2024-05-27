@@ -2,7 +2,7 @@
   <div id="home">
     <!-- Шапка с кнопками -->
     <HeadSiteForShop/>
-    <!-- Формы для каждого сотрудника -->
+    <!-- Формы для каждого заказа -->
     <div v-for="(order, index) in orders" :key="index" class="order-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
 

@@ -24,6 +24,7 @@ import AddProductToOrder from "@/views/shop/AddProductToOrder";
 import RecentOrders from "@/views/shop/RecentOrders";
 import EditProduct from "@/views/adm/EditProduct";
 import OldOrder from "@/views/shop/OldOrder";
+import OrderForStorekeeper from "@/views/strorekeeper/OrderForStorekeeper";
 
 const routes = [
   {
@@ -159,7 +160,9 @@ const routes = [
     component: ShopHome
   },
   {
-    path: '/'
+    path: '/order/storekeeper/:orderId',
+    name: 'orderForStorekeeper',
+    component: OrderForStorekeeper
   }
 ]
 

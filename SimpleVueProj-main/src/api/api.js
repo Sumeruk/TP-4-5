@@ -66,5 +66,8 @@ export default {
     },
     getEmployersForJob() {
         return axiosApi.get('/employee/getEmployersForJob')
+    },
+    setOrderFromEmployer(orderId){
+        return axiosApi.put('/employee/setOrder', orderId)
     }
 }
