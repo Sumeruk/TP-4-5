@@ -3,7 +3,7 @@
     <!-- Шапка с кнопками -->
     <HeadSiteForShop/>
     <!-- Формы для каждого сотрудника -->
-    <div v-for="(order, index) in orders" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
+    <div v-for="(order, index) in orders" :key="index" class="order-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
 
         <router-link :to="{name : 'oldOrder', params :{shopId : this.shopId, orderId: order.name} }">
@@ -76,7 +76,7 @@ export default {
 }
 
 /* Стили для формы */
-.employee-form {
+.order-form {
   max-width: 600px; /* Ограничиваем максимальную ширину формы */
   padding: 20px;
   border: 5px solid #ffffff;

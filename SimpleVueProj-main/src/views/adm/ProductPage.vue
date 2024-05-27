@@ -190,7 +190,6 @@ h2 {
   width: 33%;
 }
 
-
 .table {
   align-self: flex-start;
   width: 100%;

@@ -14,7 +14,7 @@ import ReportPage from "@/views/boss/ReportPage";
 import ProductPage from "@/views/adm/ProductPage";
 import HomeBoss from "@/views/boss/HomeBoss";
 import LeftoversPage from "@/views/boss/LeftoversPage";
-import OrderList from "@/views/adm/OrderList";
+import OrderList from "@/views/boss/OrderList";
 import HomeStorekeeper from "@/views/strorekeeper/HomeStorekeeper";
 import WorkPage from "@/views/strorekeeper/WorkPage";
 import HomeAdmin from "@/views/adm/HomeAdmin";
@@ -123,17 +123,12 @@ const routes = [
     component: ProductPage
   },
   {
-    path: '/boss',
-    name: 'boss',
-    component: HomeBoss
-  },
-  {
     path: '/product/allProducts',
     name: 'let',
     component: LeftoversPage
   },
   {
-    path: '/order',
+    path: '/order/:orderId',
     name: 'order',
     component: OrderList
   },
@@ -162,6 +157,9 @@ const routes = [
     path: '/shop',
     name: 'shop',
     component: ShopHome
+  },
+  {
+    path: '/'
   }
 ]
 

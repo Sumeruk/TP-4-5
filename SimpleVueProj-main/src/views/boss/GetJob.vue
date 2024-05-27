@@ -1,17 +1,14 @@
 <template>
-  <div id="home">
+  <div id="getJobHome">
     <!-- Шапка с кнопками -->
     <HeadSiteForBoss/>
 
-    <div class="job">
+    <div class="order">
       Заказ:
-      <div v-for="(job, index) in jobs" :key="index" class="jobs-form"
-           :class="{ 'first-form': index === 0 }">
-
-        <div>
-          {{ job.name }}
-          {{ job.amount }}
-        </div>
+      <div class="orders-form">
+        <router-link :to="{name : 'order', params :{orderId: this.order.number} }" class="orderLink">
+          №{{ this.order.number }}
+        </router-link>
       </div>
     </div>
 
@@ -30,7 +27,7 @@
         </div>
 
         <div>
-          <button>
+          <button @click = 'getJobForEmployer(this.order, employee.id)'>
             <router-link to="/home" class="actions">Выдать задачу</router-link>
           </button>
         </div>
@@ -42,6 +39,7 @@
 
 <script>
 import HeadSiteForBoss from "@/components/HeadSiteForBoss";
+import api from "@/api/api";
 
 export default {
   components: {
@@ -51,18 +49,45 @@ export default {
   data() {
     return {
       employees: [
-        {name: 'Иван Иванов', position: 'Кладовщик'},
-        {name: 'Иван Иванов', position: 'Кладовщик'},
-        {name: 'Иван Иванов', position: 'Кладовщик'},
-        {name: 'Иван Иванов', position: 'Кладовщик'},
-        {name: 'Иван Иванов', position: 'Кладовщик'}
+        {id: 12, name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 13,name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 14,name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 15,name: 'Иван Иванов', position: 'Кладовщик'},
+        {id: 16,name: 'Иван Иванов', position: 'Кладовщик'}
       ],
-      jobs: [
-        {name: 'SNICKERS', amount: '30шт'},
-        {name: 'Ноутбук Vivo', amount: '5шт'},
-      ]
+      order: {number: '232323-22'}
     };
   },
+  created() {
+    this.getOrder();
+    this.getEmployersForJob();
+  },
+  methods: {
+    getOrder() {
+      api.getOrderForBoss().then(response => {
+        this.order = response.data;
+        console.log(response.status);
+        }).catch(error =>{
+          console.log(error)
+      });
+    },
+    getEmployersForJob(){
+      api.getEmployersForJob().then(response => {
+        this.employees = response.data;
+        console.log(response.status);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    getJobForEmployer(orderId, employeeId){
+      console.log(orderId, employeeId)
+      api.getJobForEmployer(orderId, employeeId).then(response =>{
+        console.log(response.status);
+      }).catch(error =>{
+        console.log(error);
+      });
+    }
+  }
 }
 </script>
 
@@ -71,13 +96,13 @@ export default {
 /*  border: 1px solid black;*/
 /*}*/
 
-#home {
+#getJobHome {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   width: 50%;
-  overflow-y: visible;
+  /*overflow-y: visible;*/
 }
 
 .actions {
@@ -86,11 +111,13 @@ export default {
   border-radius: 40px;
 }
 
-.job {
-  width: 50%;
-  margin-top: -60%;
+.order {
+  width: 30%;
+  margin-top: 50%;
+  /*position: absolute;*/
 }
-.jobs-form{
+
+.orders-form {
   max-width: 600px; /* Ограничиваем максимальную ширину формы */
   padding: 20px;
   border: 5px solid #ffffff;
@@ -99,11 +126,10 @@ export default {
   background-color: #D3AFAA;
   text-align: center;
   display: flex;
-
 }
 
 .empl {
-  margin-top: 29%;
+  margin-top: 0;
 }
 
 /* Стили для формы */
@@ -154,5 +180,8 @@ button {
 button:hover {
   background-color: #F9F6DE;
   color: #D3AFAA;
+}
+.orderLink:hover{
+  color: #654321;
 }
 </style>

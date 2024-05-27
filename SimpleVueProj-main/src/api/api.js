@@ -57,5 +57,14 @@ export default {
     },
     setProductFromDelivery(product) {
         return axiosApi.put('/product/setProducts/' + product);
+    },
+    getOrderForBoss(){
+        return axiosApi.get('/order/getLastOrder/');
+    },
+    getJobForEmployer(orderId, employerId) {
+        return axiosApi.post('/employer/getJobForEmployer/', orderId, employerId);
+    },
+    getEmployersForJob() {
+        return axiosApi.get('/employee/getEmployersForJob')
     }
 }

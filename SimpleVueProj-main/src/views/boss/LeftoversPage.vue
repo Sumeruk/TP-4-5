@@ -1,53 +1,53 @@
 <template>
-  <div class="ProductBoss">
+  <div class="prodPageBoss">
     <HeadSiteForBoss/>
 
-    <h2 class="page-title">Остатки товара</h2>
-
-
-    <div class="searchProductsBoss">
-      <input type="text" v-model="search" placeholder="Поиск...">
-      <button class="searchProductsBossButton" @click="searchProduct(search)">Найти</button>
+    <div>
+      <h2 class="page-title">Остатки товаров</h2>
+      <div class="searchDiv">
+        <input type="text" v-model="search" placeholder="Поиск...">
+        <button class="actions" @click="searchProduct(search)">Найти</button>
+      </div>
     </div>
 
-    <table>
 
-      <thead>
-      <tr>
-        <th>Артикул</th>
-        <th>Название продукта</th>
-        <th>Цена</th>
-        <th>Вес</th>
-        <th>Мера измерения</th>
-        <th>Поставщик</th>
-        <th>Описание</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr v-for="product in products" :key="product.id">
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.weight }}</td>
-        <td>{{ product.units }}</td>
-        <td>{{ product.provider }}</td>
-        <td>{{ product.description }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Артикул</th>
+          <th>Название продукта</th>
+          <th>Цена</th>
+          <th>Вес</th>
+          <th>Мера измерения</th>
+          <th>Поставщик</th>
+          <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="product in products" :key="product.id">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.weight }}</td>
+          <td>{{ product.units }}</td>
+          <td>{{ product.provider }}</td>
+          <td>{{ product.description }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
 import HeadSiteForBoss from "@/components/HeadSiteForBoss";
-import api from "@/api/api";
+import api from '../../api/api.js';
 
 export default {
-  components: {
-    HeadSiteForBoss
-  },
-  name: "LeftoversPage",
+  name: "ProductPage",
+  components: {HeadSiteForBoss},
+
   data() {
     return {
       search: '',
@@ -91,7 +91,6 @@ export default {
       ]
     }
   },
-
   created() {
     this.getAllProducts();
   },
@@ -118,34 +117,38 @@ export default {
     }
   }
 
-}
+};
 </script>
 
 <style scoped>
-.ProductBoss {
+/*div {*/
+/*  border: 1px solid black;*/
+/*}*/
+
+.prodPageBoss {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow-y: visible;
+
 }
 
-.ProductBoss h2 {
-  margin-top: -20%;
+h2 {
+  align-items: center;
 }
 
-.page-title {
-  text-align: center;
-  margin-top: -300px; /* Уменьшил отрицательный отступ */
-}
-
-.searchProductsBoss {
+.searchDiv {
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 80%;
-  margin-left: 24%;
+  width: 200%;
+  margin-left: -25%;
 }
 
-.searchProductsBoss input {
-  padding: 10px; /* Увеличиваем внутренние отступы */
+.searchDiv input {
+  padding: 12px; /* Увеличиваем внутренние отступы */
   border-radius: 40px; /* Увеличиваем радиус скругления */
   border: 2px solid #F9F6DE; /* Увеличиваем толщину границы */
   margin-right: 10px; /* Уменьшаем отступ между строкой поиска и кнопкой */
@@ -153,8 +156,7 @@ export default {
   width: 33%;
 }
 
-.searchProductsBoss .searchProductsBossButton {
-  margin-top: -10px;
+.searchDiv .actions {
   margin-right: 10px;
   border-radius: 40px;
   display: block;
@@ -162,21 +164,48 @@ export default {
   width: 33%;
 }
 
-
-table {
-  width: 100vw;
-  border-collapse: collapse;
-  margin: auto;
+.table {
+  align-self: flex-start;
+  width: 100%;
 }
 
-th, td {
+.table table {
+  width: 95%;
+  border-collapse: collapse;
+  position: absolute;
+}
+
+.table th, td {
   border: 1px solid #7B5244; /* Изменил цвет границ ячеек на черный */
   padding: 8px;
   text-align: center;
   color: #7B5244;
 }
 
-th {
+.table th {
   background-color: #D3AFAA;
+}
+
+.action {
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 40px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 70%; /* Ширина кнопки равна ширине формы */
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
 }
 </style>
