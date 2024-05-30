@@ -3,6 +3,8 @@ package ru.vsu.cs.springboot.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -10,11 +12,11 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "Users")
-public class User {
+public class User implements Identifiable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -24,4 +26,8 @@ public class User {
     private String email;
     private String role;
 
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

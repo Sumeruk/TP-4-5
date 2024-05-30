@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "Products")
-public class Product {
+public class Product implements Identifiable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,8 @@ public class Product {
     private String provider;
     private String description;
 
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

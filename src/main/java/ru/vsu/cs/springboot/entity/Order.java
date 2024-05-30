@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "Orders")
-public class Order {
+public class Order implements Identifiable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +21,9 @@ public class Order {
     private int loaderId;
     private Date date;
     private String status;
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
