@@ -1,9 +1,11 @@
 package ru.vsu.cs.springboot.service.impl;
 
+import org.springframework.stereotype.Service;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.service.UserService;
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Override

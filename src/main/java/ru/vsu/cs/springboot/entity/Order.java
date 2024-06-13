@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,5 +24,10 @@ public class Order implements Identifiable<Integer> {
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public Integer getId(){
+        return this.id;
     }
 }
