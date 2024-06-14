@@ -3,10 +3,10 @@ package ru.vsu.cs.springboot.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Date;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,12 +18,14 @@ public class User implements Identifiable<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "surname", nullable = false)
+    @Column(nullable = false)
     private String surname;
     private String email;
+    private String phone;
+    private Date birthday;
     private String role;
 
     @Override

@@ -1,13 +1,18 @@
 package ru.vsu.cs.springboot.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import ru.vsu.cs.springboot.entity.User;
+import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.service.UserService;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UserRepository userRepository;
     @Override
     public User getPersonByEmail(String email) {
         // Implementation depends on how you store and retrieve users
@@ -60,17 +65,49 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer integer) {
-
+    public void delete(Integer id) {
+        userRepository.deleteById(id);
     }
 
     @Override
-    public User getById(Integer integer) {
-        return null;
+    public User getById(Integer id){
+        try {
+            return userRepository.getReferenceById(id);
+        } catch (Exception ex){
+            return null;
+        }
     }
+
+//    @Override
+//    public User getById(Integer id){
+//        try {
+//            return new User();
+//        } catch (Exception ex){
+//            return null;
+//        }
+//    }
 
     @Override
     public List<User> getAll() {
-        return List.of();
+        return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> getUsersByParameter(String parameter){
+        try {
+            return userRepository.
+                    findUsersByNameContainingOrSurnameContainingOrEmailContaining(parameter, parameter, parameter);
+        } catch (IllegalArgumentException | DataAccessException ex){
+            return null;
+        }
+    }
+
+    @Override
+    public User saveUser(User newUser){
+        try {
+            return userRepository.save(newUser);
+        } catch (Exception ex){
+            return null;
+        }
     }
 }
