@@ -19,8 +19,8 @@
       </div>
 
       <div>
-        <p>{{ employee.name }}</p>
-        <p>{{ employee.position }}</p>
+        <p>{{ employee.name }} {{ employee.surname }}</p>
+        <p>{{ employee.role }}</p>
       </div>
 
       <div>
@@ -47,12 +47,48 @@ export default {
   data() {
     return {
       employees: [
-        {id: 11, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 12, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 13, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 14, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 15, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 16, name: 'Иван Иванов', position: 'Кладовщик'},
+        { id: 12,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
+        { id: 13,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
+        { id: 14,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
+        { id: 15,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
+        { id: 16,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
+        { id: 17,
+          name: 'Имя',
+          surname: 'Фамилия',
+          email: 'dd@gmail.com',
+          phone:'940',
+          birthday:'',
+          role:'role'},
       ],
       search:''
     };

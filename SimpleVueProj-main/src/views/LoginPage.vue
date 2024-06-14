@@ -11,7 +11,7 @@
 
     </form>
     <button>
-      <router-link to="/boss" class="actions">Авторизоваться</router-link>
+      <router-link to="/home" class="actions">Авторизоваться</router-link>
     </button>
   </div>
 </template>

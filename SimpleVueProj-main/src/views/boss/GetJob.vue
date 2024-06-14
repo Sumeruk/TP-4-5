@@ -18,7 +18,7 @@
            :class="{ 'first-form': index === 0 }">
 
         <div>
-          <img src="../assect/Face.jpg" class="avatar" alt="StockTrack Pro Logo">
+          <img src="../assect/NullFace.png"  class="avatar" alt="StockTrack Pro Logo">
         </div>
 
         <div>
@@ -49,11 +49,11 @@ export default {
   data() {
     return {
       employees: [
-        {id: 12, name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 13,name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 14,name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 15,name: 'Иван Иванов', position: 'Кладовщик'},
-        {id: 16,name: 'Иван Иванов', position: 'Кладовщик'}
+        {id: 12, name: 'Вадим Вахитов', position: 'Кладовщик'},
+        {id: 13,name: 'Cергей Мамаев', position: 'Кладовщик'},
+        {id: 14,name: 'Максим Иванченко', position: 'Кладовщик'},
+        {id: 15,name: 'Вадим Вахитов', position: 'Кладовщик'},
+        {id: 16,name: 'Сергей Безручко', position: 'Кладовщик'}
       ],
       order: {number: '232323-22'}
     };

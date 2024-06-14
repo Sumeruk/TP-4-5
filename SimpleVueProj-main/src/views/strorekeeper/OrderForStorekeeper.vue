@@ -46,9 +46,11 @@ export default {
   },
   methods: {
     getProductsFromOrder() {
-      const apiDat = [{name: 'Первый товар', amount: '33'},
-      {name: 'Второй товар', amount: '10'},
-      {name: 'Третрий товар', amount: '99'}];
+      const apiDat = [
+        {name: 'Вишня', amount: '4'},
+        {name: 'Молоко 1л', amount: '20'}
+        // {name: 'Кофе', amount: '30'}
+      ];
 
       this.order = apiDat.map((item) => ({ ...item, checked: false }));
       api.getProductsFromOrder(this.shopId, this.order).then(response => {
