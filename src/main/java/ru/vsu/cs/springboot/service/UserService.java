@@ -19,5 +19,4 @@ public interface UserService extends Service<User, Integer>{
 
     List<User> getUsersByParameter(String parameter);
 
-    User saveUser(User newUser);
 }

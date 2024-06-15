@@ -13,7 +13,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("/allEmployers")
     public ResponseEntity<List<User>> getAllEmployers(){
@@ -35,7 +35,7 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user){
-        User savedUser = userService.saveUser(user);
+        User savedUser = userService.add(user);
         System.out.println(user);
         System.out.println(savedUser);
 
@@ -48,7 +48,7 @@ public class EmployeeController {
 
     @PutMapping("/edit/{employerId}")
     public ResponseEntity<String> updateUser(@PathVariable Integer employerId, @RequestBody User user){
-        User updatedUser = userService.saveUser(user);
+        User updatedUser = userService.add(user);
         if(updatedUser != null){
             return ResponseEntity.ok("User updated");
         } else {

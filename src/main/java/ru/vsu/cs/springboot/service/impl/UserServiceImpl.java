@@ -55,13 +55,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User add(User entity) {
-        return null;
-    }
-
-    @Override
     public User update(User entity) {
-        return null;
+        try {
+            return userRepository.save(entity);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -103,7 +102,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User newUser){
+    public User add(User newUser){
         try {
             return userRepository.save(newUser);
         } catch (Exception ex){

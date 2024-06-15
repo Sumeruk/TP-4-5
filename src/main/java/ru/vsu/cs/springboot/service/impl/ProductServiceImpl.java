@@ -17,12 +17,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product add(Product product) {
-        return productRepository.save(product);
+        try {
+            return productRepository.save(product);
+        } catch (Exception ex){
+            return null;
+        }
     }
 
     @Override
     public Product update(Product product) {
-        return productRepository.save(product);
+        try {
+            return productRepository.save(product);
+        } catch (Exception ex){
+            return null;
+        }
     }
 
     @Override

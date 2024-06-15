@@ -21,11 +21,6 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAll();
 
-        products = new ArrayList<>();
-        products.add(new Product());
-        products.add(new Product());
-        products.add(new Product());
-
         return ResponseEntity.ok(products);
     }
 
@@ -79,16 +74,4 @@ public class ProductController {
         productService.delete(id);
         return ResponseEntity.ok("Product deleted successfully.");
     }
-
-    //    @GetMapping("/provider/{provider}")
-//    public ResponseEntity<List<Product>> getProductsByProvider(@PathVariable String provider) {
-//        List<Product> products = productService.getProductsByProvider(provider);
-//        return ResponseEntity.ok(products);
-//    }
-//
-//    @GetMapping("/name/{name}")
-//    public ResponseEntity<List<Product>> getProductsByName(@PathVariable String name) {
-//        List<Product> products = productService.getProductsByName(name);
-//        return ResponseEntity.ok(products);
-//    }
 }
