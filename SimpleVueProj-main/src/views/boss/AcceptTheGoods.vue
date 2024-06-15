@@ -5,7 +5,7 @@
     <h2>Принять товар</h2>
     <form @submit.prevent="setProductFromDelivery">
       <label for="nameOfProduct">Название</label>
-      <input type="text" id="nameOfProduct" v-model="addedProducts.name">
+      <input type="text" id="nameOfProduct" v-model="addedProducts.id">
 
       <label for="amount">Количество</label>
       <input type="number" id="amount" v-model="addedProducts.amount">
@@ -27,7 +27,7 @@ export default {
     return{
     addedProducts:
       {
-        name:'',
+        id:'',
         amount: 0
       }
     }
@@ -36,12 +36,12 @@ export default {
     setProductFromDelivery(){
       api.setProductFromDelivery(this.addedProducts).then(response => {
         console.log(response.status);
-        this.addedProducts.name = '';
+        this.addedProducts.id = '';
         this.addedProducts.amount = 0;
       })
           .catch(error => {
             console.error(error);
-            this.addedProducts.name = '';
+            this.addedProducts.id = '';
             this.addedProducts.amount = 0;
           });
     }

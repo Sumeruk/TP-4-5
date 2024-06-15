@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosApi = axios.create({
-    baseURL: '/api/stockTrack',
+    baseURL: '',
     timeout: 1000,
     headers: {
         "Content-type": "application/json"
@@ -17,34 +17,34 @@ export default {
         return axiosApi.get('/api/employee/edit/' + employerId);
     },
     searchEmployers(parameters) {
-        return axiosApi.get('/api/employee/allEmployers', parameters)
+        return axiosApi.get('/api/employee/allEmployers/search', parameters)
     },
     createUser(user) {
-        return axiosApi.post('/api/employee/edit/', user);
+        return axiosApi.post('/api/employee/create', user);
     },
     updateEmployer(employerId, employer) {
-        return axiosApi.post('/api/employee/edit/' + employerId, employer);
+        return axiosApi.put('/api/employee/update/' + employerId, employer);
     },
     deleteEmployer(employerId) {
-        return axiosApi.delete('/api/employee/edit/' + employerId);
+        return axiosApi.delete('/api/employee/delete/' + employerId);
     },
     getAllProducts() {
         return axiosApi.get('/api/products/allProducts');
     },
     getProduct(employerId){
-        return axiosApi.get('/api/product/edit/' + employerId);
+        return axiosApi.get('/api/products/edit/' + employerId);
     },
     createProduct(product){
-        return axiosApi.post('/api/products/edit/', product)
+        return axiosApi.post('/api/products/create', product)
     },
-    updateProduct(employerId, employer) {
-        return axiosApi.post('/api/products/edit/' + employerId, employer);
+    updateProduct(productId, product) {
+        return axiosApi.post('/api/products/update/' + productId, product);
     },
     searchProducts(parameters) {
-        return axiosApi.get('/api/products/allProducts', parameters)
+        return axiosApi.get('/api/products/allProducts/search', parameters)
     },
     deleteProduct(productId) {
-        return axiosApi.delete('/api/product/edit/' + productId)
+        return axiosApi.delete('/api/products/delete/' + productId)
     },
     createOrder(shopId, order){
         return axiosApi.post('/api/order/newOrder/'+ shopId, order)
@@ -56,7 +56,7 @@ export default {
         return axiosApi.get('/api/order/getOrders/'+ shopId + '/' + orderId);
     },
     setProductFromDelivery(product) {
-        return axiosApi.put('/api/product/setProducts/' + product);
+        return axiosApi.put('/api/products/setProducts', product);
     },
     getOrderForBoss(){
         return axiosApi.get('/api/order/getLastOrder/');

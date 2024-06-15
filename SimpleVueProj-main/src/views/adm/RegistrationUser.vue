@@ -51,8 +51,9 @@ export default {
 
   methods: {
     createUser() {
+      console.log(this.newUser);
       api.createUser(this.newUser).then(response => {
-        console.log(response.data);
+        console.log(response.status);
         console.log(response.data);
       })
           .catch(error => {

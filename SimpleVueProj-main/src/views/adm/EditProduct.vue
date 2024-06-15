@@ -68,7 +68,7 @@ export default {
   },
   methods:{
     getProduct(){
-      api.getProduct(this.id).then(entity => {
+      api.getProduct(this.currentProduct.id).then(entity => {
         this.currentProduct = entity.data;
         console.log(entity.status);
       })
