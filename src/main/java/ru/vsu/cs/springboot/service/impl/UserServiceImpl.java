@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Integer id){
         try {
-            return userRepository.getReferenceById(id);
+            return userRepository.findById(id).orElse(null);
         } catch (Exception ex){
             return null;
         }

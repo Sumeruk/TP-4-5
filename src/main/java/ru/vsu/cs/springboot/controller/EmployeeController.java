@@ -26,7 +26,7 @@ public class EmployeeController {
         if (user != null)
             return ResponseEntity.ok(user);
         else
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.notFound().build();
     }
     @GetMapping("/allEmployers/search")
     public ResponseEntity<List<User>> getEmployersByParameter(@RequestParam String parameters){
@@ -37,7 +37,6 @@ public class EmployeeController {
     public ResponseEntity<User> createUser(@RequestBody User user){
         User savedUser = userService.saveUser(user);
         System.out.println(user);
-        //return ResponseEntity.ok(savedUser);
         System.out.println(savedUser);
 
         if(savedUser != null){
@@ -56,4 +55,6 @@ public class EmployeeController {
             return ResponseEntity.badRequest().body("Cannot update a user");
         }
     }
+
+
 }

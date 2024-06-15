@@ -10,11 +10,11 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "Products")
-public class Product implements Identifiable<Integer> {
+public class Product implements Identifiable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,12 +26,12 @@ public class Product implements Identifiable<Integer> {
     private String description;
 
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId(){
+    public String getId(){
         return this.id;
     }
 }

@@ -7,9 +7,12 @@ import ru.vsu.cs.springboot.entity.Product;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, String> {
 
     List<Product> findByProvider(String provider);
 
     List<Product> findByName(String name);
+
+    List<Product> findProductsByNameContainingOrProviderContainingOrDescriptionContaining
+            (String name, String provider, String description);
 }

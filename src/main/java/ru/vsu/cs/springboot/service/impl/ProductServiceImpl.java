@@ -2,6 +2,7 @@ package ru.vsu.cs.springboot.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.vsu.cs.springboot.DTO.ProductFromDeliveryDTO;
 import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.repository.ProductRepository;
 import ru.vsu.cs.springboot.service.ProductService;
@@ -25,12 +26,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(String id) {
         productRepository.deleteById(id);
     }
 
     @Override
-    public Product getById(Integer id) {
+    public Product getById(String id) {
         return productRepository.findById(id).orElse(null);
     }
 
@@ -47,5 +48,41 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsByName(String name) {
         return productRepository.findByName(name);
+    }
+
+    @Override
+    public List<Product> getProductsByParameter(String parameter) {
+        return productRepository.findProductsByNameContainingOrProviderContainingOrDescriptionContaining(parameter,
+                parameter, parameter);
+    }
+
+    @Override
+    public Product increaseProductAmount(ProductFromDeliveryDTO productAmount) {
+        Product requiredProduct = productRepository.findById(productAmount.getId()).orElse(null);
+
+        if(requiredProduct == null)
+            return null;
+
+        int amount = requiredProduct.getQuantity();
+        int newAmount = amount + productAmount.getAmount();
+        requiredProduct.setQuantity(newAmount);
+
+        try {
+            requiredProduct = productRepository.save(requiredProduct);
+            return requiredProduct;
+        } catch (Exception ex){
+            return null;
+        }
+    }
+
+    @Override
+    public Product update(String id, Product entity) {
+        try {
+            productRepository.deleteById(id);
+            return productRepository.save(entity);
+        } catch (Exception ex){
+            return null;
+        }
+
     }
 }
