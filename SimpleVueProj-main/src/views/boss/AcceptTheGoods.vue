@@ -3,12 +3,12 @@
     <HeadSiteForBoss/>
 
     <h2>Принять товар</h2>
-    <form @submit.prevent="submitForm">
-      <label for="username">Название</label>
-      <input type="text" id="nameOfProduct" v-model="nameOfArrivedProduct">
+    <form @submit.prevent="setProductFromDelivery">
+      <label for="nameOfProduct">Название</label>
+      <input type="text" id="nameOfProduct" v-model="addedProducts.id">
 
-      <label for="usersurname">Количество</label>
-      <input type="number" id="amount" v-model="amountArrived">
+      <label for="amount">Количество</label>
+      <input type="number" id="amount" v-model="addedProducts.amount">
 
       <input type="submit" value="Добавить товар">
 
@@ -18,10 +18,35 @@
 
 <script>
 import HeadSiteForBoss from "@/components/HeadSiteForBoss";
+import api from "@/api/api";
 export default {
   components:{
     HeadSiteForBoss
+  },
+  data(){
+    return{
+    addedProducts:
+      {
+        id:'',
+        amount: 0
+      }
+    }
+  },
+  methods:{
+    setProductFromDelivery(){
+      api.setProductFromDelivery(this.addedProducts).then(response => {
+        console.log(response.status);
+        this.addedProducts.id = '';
+        this.addedProducts.amount = 0;
+      })
+          .catch(error => {
+            console.error(error);
+            this.addedProducts.id = '';
+            this.addedProducts.amount = 0;
+          });
+    }
   }
+
 };
 </script>
 

@@ -111,10 +111,9 @@ export default {
 /*}*/
 #OldOrder {
   flex-direction: column;
-  position: fixed;
+  /*position: fixed;*/
 }
 .addProductForOrder{
-  margin-top: -137%;
   margin-left: -12.5%;
   width: 125%;
 }

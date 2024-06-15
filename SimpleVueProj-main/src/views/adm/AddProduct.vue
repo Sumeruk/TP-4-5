@@ -30,9 +30,6 @@
       <label for="description">Описание</label>
       <textarea name="description" v-model="newProduct.description"></textarea>
 
-      <label for="quantity">Количество</label>
-      <input type="number" id="quantity" name="quantity" min="1" v-model="newProduct.number">
-
       <button type="submit">Добавить товар</button>
     </form>
   </div>
@@ -55,8 +52,7 @@ export default {
         weight: '',
         unit: '',
         provider: '',
-        description: '',
-        number: ''
+        description: ''
       }
     }
   },

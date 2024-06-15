@@ -2,10 +2,12 @@
   <div id="home">
     <!-- Шапка с кнопками -->
     <HeadSiteForStorekeep/>
-    <!-- Формы для каждого сотрудника -->
+    <!-- Формы для каждого заказа -->
     <div v-for="(order, index) in orders" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
-        <p>№{{ order.name }}</p>
+        <router-link :to="{name: 'orderForStorekeeper', params:{orderId: order.name}}">
+          №{{ order.name }}
+        </router-link>
       </div>
     </div>
   </div>
@@ -30,9 +32,7 @@ export default {
     };
   },
   methods: {
-    logout() {
-      // Логика выхода пользователя
-    }
+
   }
 };
 </script>

@@ -140,7 +140,7 @@ export default {
           .catch(error => {
             console.error(error);
           });
-    }
+    },
   }
 
 };
@@ -189,7 +189,6 @@ h2 {
   padding: 10px;
   width: 33%;
 }
-
 
 .table {
   align-self: flex-start;

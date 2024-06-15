@@ -5,10 +5,14 @@
     <h2>Отчет</h2>
     <form @submit.prevent="submitForm">
       <label for="username">Тип</label>
-      <input type="text" id="username" v-model="username">
+      <select v-model="selectedValue">
+        <option value="1">Отчет по товарам</option>
+        <option value="2">Отчет по работе кладовщиков</option>
+        <option value="3">erer</option>
+      </select>
 
       <label for="usersurname">Период</label>
-      <input id="usersurname" v-model="usersurname">
+      <input id="usersurname" v-model="period">
 
     </form>
     <button>
@@ -22,6 +26,13 @@ import HeadSiteForBoss from "@/components/HeadSiteForBoss";
 export default {
   components:{
     HeadSiteForBoss
+  },
+  data(){
+    return {
+      selectedValue: null,
+      period: '',
+
+    }
   }
 };
 </script>
@@ -40,6 +51,10 @@ form {
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   position: relative;
+}
+
+select{
+  width: 300px;
 }
 
 h2 {
