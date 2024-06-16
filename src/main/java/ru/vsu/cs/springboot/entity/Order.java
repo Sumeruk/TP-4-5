@@ -17,6 +17,7 @@ public class Order implements Identifiable<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int shopId;
     private int loaderId;
     private Date date;
     private String status;

@@ -3,17 +3,25 @@ package ru.vsu.cs.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
 import ru.vsu.cs.springboot.service.OrderService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/order")
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @PostMapping("/newOrder/{shopId}")
+    public ResponseEntity<Order> createOrder(@PathVariable Integer shopId, List<ProductWithAmountDTO> newOrder){
+        //из списка получаю idOrder, idProd, amount
+        //shopId -> idOrder, idShop, idEmpl
+        return ResponseEntity.ok(new Order());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable int id) {
