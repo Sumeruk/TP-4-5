@@ -30,6 +30,7 @@
 <script>
 import HeadSiteForAdm from "@/components/HeadSiteForAdm";
 import api from "@/api/api";
+import router from "@/router";
 
 export default {
   components: {
@@ -54,7 +55,7 @@ export default {
       console.log(this.newUser);
       api.createUser(this.newUser).then(response => {
         console.log(response.status);
-        console.log(response.data);
+        router.push('/employee/allEmployers');
       })
           .catch(error => {
             console.error(error);
@@ -65,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 /*div{*/
 /*  border: 1px solid black;*/
@@ -73,7 +74,9 @@ export default {
 
 .containerForAddUser{
   width: 30%;
-  margin: 0 auto 20px;
+  margin-top: 8%;
+  margin-left: 35%;
+
 }
 
 form {
@@ -98,7 +101,7 @@ form label {
 form input {
   margin-bottom: 10px; /* добавляем небольшое расстояние между полями ввода */
   padding: 8px;
-  width: 300px;
+  width: 95%;
   border-radius: 3px;
   border: 1px solid #ccc;
   background-color: #F9F6DE;
@@ -119,6 +122,7 @@ button {
   cursor: pointer;
   width: 100%; /* Ширина кнопки равна ширине формы */
   font-size: 18px;
+  padding: 10px;
 
   /*padding: 10px 20px;
   border-radius: 5px;

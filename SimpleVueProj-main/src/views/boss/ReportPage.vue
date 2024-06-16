@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -51,6 +51,7 @@ form {
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   position: relative;
+  margin-left: 37%;
 }
 
 select{
@@ -58,7 +59,7 @@ select{
 }
 
 h2 {
-  margin-top: 50px;
+  margin-top: 7%;
   color: #7B5244;
 }
 
@@ -87,7 +88,7 @@ button {
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 90%; /* Ширина кнопки равна ширине формы */
+  width: 30%; /* Ширина кнопки равна ширине формы */
   font-size: 18px;
 }
 

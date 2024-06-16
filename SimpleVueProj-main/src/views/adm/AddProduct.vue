@@ -38,6 +38,7 @@
 <script>
 import HeadSite from "@/components/HeadSiteForAdm";
 import api from '../../api/api.js';
+import router from "@/router";
 
 export default {
   components: {
@@ -59,10 +60,14 @@ export default {
   methods: {
     addProduct() {
       console.log(this.newProduct);
+      router.push("/adminProduct");
+      console.log('dkjfnkjdfnj')
       api.createProduct(this.newProduct).then(response => {
         console.log(response.status);
+        router.push('/adminProduct');
       })
           .catch(error => {
+            //todo обработка ошибки, вывод сообщения
             console.error(error);
           });
     }
@@ -71,10 +76,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 h1 {
-  margin-top: 100px;
+  margin-top: 5%;
 }
 
 body {
@@ -91,6 +96,7 @@ body {
 
 form {
   border: 1px solid #fff;
+  margin-top: -17%;
   padding: 20px;
   border-radius: 5px;
 }
@@ -119,7 +125,7 @@ input[type="number"] {
   box-sizing: border-box;
 }
 
-input[type="submit"] {
+button {
   margin-top: 10px;
   padding: 10px 60px;
   border-radius: 40px;
@@ -131,7 +137,7 @@ input[type="submit"] {
   font-size: 18px;
 }
 
-input[type="submit"]:hover {
+button :hover {
   background-color: #7B5244;
   color: #D3AFAA;
 }

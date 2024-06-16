@@ -14,8 +14,11 @@
       </form>
     </div>
 
-    <button class="action" @click="createOrder">Сделать заказ</button>
-    <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
+    <div>
+      <button class="action" @click="createOrder">Сделать заказ</button>
+      <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
+    </div>
+
 
     <div class="productTable">
       <table class="productTable">
@@ -60,6 +63,7 @@ export default {
   name: "AddProductToOrder",
   data() {
     return {
+      selectedProduct: '',
       order: [],
       product: {
         name: '',
@@ -70,6 +74,9 @@ export default {
     }
   },
   methods: {
+    searchProducts(){
+
+    },
     setProduct() {
 
       let productCopy = Object.assign({}, this.product);
@@ -100,7 +107,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /*div {*/
 /*  border: 1px solid black;*/
 /*}*/
@@ -108,23 +115,25 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 #RegistrationProduct {
+  /*display: flex;*/
+  /*justify-content: space-between;*/
   flex-direction: column;
+  text-align: center;
   /*position: fixed;*/
-  margin-top: -15%;
+  margin-top: 8%;
 }
 .hidden {
   display: none;
 }
 .productTable {
-  align-self: flex-start;
   width: 100%;
 }
 
 .productTable table {
-  margin-left: -15%;
+  margin-left: 22%;
   width:200%;
   border-collapse: collapse;
-  position: absolute;
+  /*position: absolute;*/
   max-width: 800px;
 }
 
@@ -135,8 +144,10 @@ export default {
   font-size: 20px;
 }
 button {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 40px;
+  padding: 10px;
   background-color: #D3AFAA;
   color: #7B5244;
   border: none;
@@ -150,26 +161,27 @@ button:hover {
   color: #D3AFAA;
 }
 .action {
-  margin-left: 10%;
-  margin-bottom: 10%;
+  margin-left: 34%;
+  margin-bottom: 2%;
   display: block;
   padding: 10px;
   border-radius: 40px;
-  width: 80%;
+  width: 30%;
 }
 form {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* располагаем элементы слева */
+  margin-left: 37%;
+  text-align: start;
+  flex-direction: column; /* располагаем элементы слева */
   padding: 20px;
   border: 1px solid #fff;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
-  position: fixed;
+  /*position: fixed;*/
+  width: 21.5%;
 }
-
-#Registration h2 {
-  margin-top: -100%;
+h2 {
+  margin-top: 0;
   color: #7B5244;
 }
 

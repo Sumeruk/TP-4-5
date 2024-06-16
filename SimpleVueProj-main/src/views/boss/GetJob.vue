@@ -102,6 +102,7 @@ export default {
   align-items: center;
   min-height: 100vh;
   width: 50%;
+  margin-left: 26%;
   /*overflow-y: visible;*/
 }
 
@@ -113,7 +114,7 @@ export default {
 
 .order {
   width: 30%;
-  margin-top: 50%;
+  margin-top: 10%;
   /*position: absolute;*/
 }
 

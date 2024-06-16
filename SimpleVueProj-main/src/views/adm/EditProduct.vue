@@ -78,11 +78,13 @@ export default {
     },
 
     updateProduct(){
+      console.log(this.id);
       api.updateProduct(this.id, this.currentProduct).then(response =>{
         console.log(response.status);
-        router.push('/products/allProducts')
+        router.push('/adminProduct');
       })
           .catch(error => {
+            console.log(this.id);
             console.error(error);
           });
     }
@@ -91,7 +93,7 @@ export default {
 ;
 </script>
 
-<style>
+<style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -104,10 +106,11 @@ form {
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   position: relative;
+  margin-left: 37%;
 }
 
 h2 {
-  margin-top: 50px;
+  margin-top: 7%;
   color: #7B5244;
 }
 
@@ -133,11 +136,12 @@ form input {
 button {
   margin-top: 10px;
   border-radius: 40px;
+  padding: 10px;
   background-color: #D3AFAA;
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 100%; /* Ширина кнопки равна ширине формы */
+  width: 40%; /* Ширина кнопки равна ширине формы */
   font-size: 18px;
 }
 

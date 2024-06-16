@@ -7,8 +7,8 @@
       <button class="butt">
         <router-link to="/employee/newUser" class="actions">Добавить</router-link>
       </button>
-      <input type="text" v-model="search" placeholder="Поиск...">
-      <button class="actions" @click="searchEmployers(search)">найти</button>
+      <input type="text" v-model="this.search" placeholder="Поиск...">
+      <button class="actions" @click="searchEmployers(this.search)">найти</button>
     </div>
 
     <!-- Формы для каждого сотрудника -->
@@ -118,9 +118,11 @@ export default {
           });
     },
     searchEmployers(parameters){
+      console.log(parameters);
       api.searchEmployers(parameters).then(response => {
         this.employees = response.data;
         console.log(response.status);
+        console.log(response.data);
       })
           .catch(error => {
             console.error(error);
@@ -143,6 +145,7 @@ export default {
   height: 600px;
   overflow-y: visible;
   width: 50%;
+  margin-left: 25%;
 }
 
 .searchDiv {

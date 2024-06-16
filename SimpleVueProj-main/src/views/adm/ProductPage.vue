@@ -8,8 +8,8 @@
         <button class="actions" @click="goToAddProduct">
           Добавить товар
         </button>
-        <input type="text" v-model="search" placeholder="Поиск...">
-        <button class="actions" @click="searchProduct(search)">Найти</button>
+        <input type="text" v-model="this.search" placeholder="Поиск...">
+        <button class="actions" @click="searchProduct(this.search)">Найти</button>
       </div>
     </div>
 
@@ -136,6 +136,7 @@ export default {
       api.searchProducts(parameters).then(response => {
         this.products = response.data;
         console.log(response.status);
+        console.log(response.data);
       })
           .catch(error => {
             console.error(error);
@@ -196,7 +197,7 @@ h2 {
 }
 
 .table table {
-  width: 95%;
+  width: 99%;
   border-collapse: collapse;
   position: absolute;
 }
@@ -222,6 +223,7 @@ button {
   margin-top: 10px;
   margin-bottom: 15px;
   border-radius: 40px;
+  padding: 7px;
   background-color: #D3AFAA;
   color: #7B5244;
   border: none;

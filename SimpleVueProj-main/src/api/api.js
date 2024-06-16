@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosApi = axios.create({
     baseURL: '',
-    timeout: 1000,
+    timeout: 5000,
     headers: {
         "Content-type": "application/json"
     }
@@ -17,7 +17,7 @@ export default {
         return axiosApi.get('/api/employee/edit/' + employerId);
     },
     searchEmployers(parameters) {
-        return axiosApi.get('/api/employee/allEmployers/search', parameters)
+        return axiosApi.get('/api/employee/allEmployers/search?parameters='+ parameters);
     },
     createUser(user) {
         return axiosApi.post('/api/employee/create', user);
@@ -38,10 +38,10 @@ export default {
         return axiosApi.post('/api/products/create', product)
     },
     updateProduct(productId, product) {
-        return axiosApi.post('/api/products/update/' + productId, product);
+        return axiosApi.put('/api/products/update/' + productId, product);
     },
-    searchProducts(parameters) {
-        return axiosApi.get('/api/products/allProducts/search', parameters)
+    searchProducts(search) {
+        return axiosApi.get('/api/products/allProducts/search?search='+ search)
     },
     deleteProduct(productId) {
         return axiosApi.delete('/api/products/delete/' + productId)

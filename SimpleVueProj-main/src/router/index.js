@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Registration from "@/views/adm/RegistrationUser";
+import TmpView from "@/views/shop/TmpView";
 //import HomeAdmin from "@/views/HomeAdmin";
 import WelcomePage from "@/views/WelcomePage";
 import LoginPage from "@/views/LoginPage";
@@ -47,11 +48,15 @@ const routes = [
     name: 'product',
     component: AddProduct
   },
-    //todo создать страницу обновления товара
   {
     path: '/product/edit/:id',
     name: 'editProduct',
     component: EditProduct
+  },
+  {
+    path: '/tmp',
+    name: 'tmp',
+    component: TmpView
   },
   {
     path: '/adminProduct',

@@ -170,7 +170,7 @@ h2 {
 }
 
 .table table {
-  width: 95%;
+  width: 99%;
   border-collapse: collapse;
   position: absolute;
 }

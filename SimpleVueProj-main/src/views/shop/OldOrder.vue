@@ -16,7 +16,7 @@
 
     <button class="action" @click="createOrder">Повторить заказ</button>
     <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
-    <div>
+    <div class="productTable">
       <table>
         <thead>
         <tr>
@@ -110,16 +110,26 @@ export default {
 /*  border: 1px solid black;*/
 /*}*/
 #OldOrder {
+  /*display: flex;*/
+  /*justify-content: space-between;*/
   flex-direction: column;
+  text-align: center;
   /*position: fixed;*/
+  margin-top: 8%;
 }
-.addProductForOrder{
-  margin-left: -12.5%;
-  width: 125%;
-}
-
 .hidden {
   display: none;
+}
+.productTable {
+  width: 100%;
+}
+
+.productTable table {
+  margin-left: 22%;
+  width:200%;
+  border-collapse: collapse;
+  /*position: absolute;*/
+  max-width: 800px;
 }
 
 .show {
@@ -127,6 +137,99 @@ export default {
   font-family: 'Roboto', sans-serif;
   color: #7B5244;
   font-size: 20px;
+}
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 40px;
+  padding: 10px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
+}
+.action {
+  margin-left: 34%;
+  margin-bottom: 2%;
+  display: block;
+  padding: 10px;
+  border-radius: 40px;
+  width: 30%;
+}
+form {
+  display: flex;
+  margin-left: 37%;
+  text-align: start;
+  flex-direction: column; /* располагаем элементы слева */
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  /*position: fixed;*/
+  width: 21.5%;
+}
+h2 {
+  margin-top: 0;
+  color: #7B5244;
+}
+
+form label {
+  margin-bottom: 5px; /* добавляем небольшое расстояние между метками и полями ввода */
+}
+
+form input {
+  margin-bottom: 10px; /* добавляем небольшое расстояние между полями ввода */
+  padding: 8px;
+  width: 300px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #F9F6DE;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  padding: 10px 60px;
+  border-radius: 40px;
+  background-color: #D3AFAA;
+  color: #7B5244;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+input[type="submit"]:hover {
+  background-color: #7B5244;
+  color: #D3AFAA;
+}
+
+/*table {*/
+/*  width: 800px;*/
+/*  border-collapse: collapse;*/
+/*  margin: auto;*/
+/*  align-items: flex-start;*/
+/*  position: absolute;*/
+/*}*/
+
+th, tr, td {
+  max-width: 50%;
+  min-width: 100px;
+  border: 1px solid #7B5244; /* Изменил цвет границ ячеек на черный */
+  padding: 8px;
+  text-align: center;
+  color: #7B5244;
+  word-wrap: anywhere;
+}
+
+th {
+  background-color: #D3AFAA;
 }
 
 </style>

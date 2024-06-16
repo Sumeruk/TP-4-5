@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -63,10 +63,11 @@ form {
   border-radius: 5px;
   font-family: 'Roboto', sans-serif;
   position: relative;
+  margin-left: 38%;
 }
 
 h2 {
-  margin-top: 50px;
+  margin-top: 7%;
   color: #7B5244;
 }
 
@@ -91,7 +92,7 @@ input[type="submit"] {
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 36%;
   font-size: 18px;
 }
 input[type="submit"]:hover {
