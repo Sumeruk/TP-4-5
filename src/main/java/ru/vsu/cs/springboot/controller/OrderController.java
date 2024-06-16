@@ -7,6 +7,9 @@ import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
 import ru.vsu.cs.springboot.service.OrderService;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,10 +20,15 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/newOrder/{shopId}")
-    public ResponseEntity<Order> createOrder(@PathVariable Integer shopId, List<ProductWithAmountDTO> newOrder){
-        //из списка получаю idOrder, idProd, amount
-        //shopId -> idOrder, idShop, idEmpl
-        return ResponseEntity.ok(new Order());
+    public ResponseEntity<String> createOrder(@PathVariable Integer shopId,
+                                              @RequestBody ArrayList<ProductWithAmountDTO> productsInOrder){
+        Order createdOrder = orderService.createOrder(shopId, productsInOrder);
+
+        if(createdOrder == null){
+            return ResponseEntity.badRequest().body("Не удалось создать заказ");
+        }
+
+        return ResponseEntity.ok("Заказ создан");
     }
 
     @GetMapping("/{id}")

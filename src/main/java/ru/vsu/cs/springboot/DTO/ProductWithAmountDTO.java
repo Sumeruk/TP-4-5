@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductWithAmountDTO {
     private String id;
+    private String name;
     private int amount;
 }

@@ -3,7 +3,7 @@ package ru.vsu.cs.springboot.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -21,6 +21,13 @@ public class Order implements Identifiable<Integer> {
     private int loaderId;
     private Date date;
     private String status;
+
+    public Order(int shopId, int loaderId, Date date, String status) {
+        this.shopId = shopId;
+        this.loaderId = loaderId;
+        this.date = date;
+        this.status = status;
+    }
 
     @Override
     public void setId(Integer id) {
