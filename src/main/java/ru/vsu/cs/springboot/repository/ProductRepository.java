@@ -15,4 +15,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     List<Product> findProductsByNameContainingOrProviderContainingOrDescriptionContaining
             (String name, String provider, String description);
+
 }

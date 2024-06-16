@@ -3,11 +3,11 @@ package ru.vsu.cs.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.vsu.cs.springboot.DTO.ProductFromDeliveryDTO;
+import ru.vsu.cs.springboot.DTO.ProductIdNameDTO;
+import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.service.ProductService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,10 +33,37 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/allProducts/searchAllProducts")
+    public ResponseEntity<List<ProductIdNameDTO>> getProductsForSearch(){
+        List<ProductIdNameDTO> productsForSearch = productService.getProductsForSearch();
+        if(productsForSearch != null){
+            return ResponseEntity.ok(productsForSearch);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+
     @GetMapping("/allProducts/search")
-    public ResponseEntity<List<Product>> getProductsFromSearch(@RequestParam String param) {
-        List<Product> foundProducts = productService.getProductsByParameter(param);
-        return ResponseEntity.ok(foundProducts);
+    public ResponseEntity<List<Product>> getProductsFromSearch(@RequestParam String search) {
+        List<Product> foundProducts = productService.getProductsByParameter(search);
+        if (foundProducts != null) {
+            System.out.println(search);
+            return ResponseEntity.ok(foundProducts);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/allProducts/searchByName")
+    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String search) {
+        List<Product> foundProducts = productService.getProductsByName(search);
+        if (foundProducts != null) {
+            System.out.println(search);
+            return ResponseEntity.ok(foundProducts);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @PostMapping("/create")
@@ -50,8 +77,8 @@ public class ProductController {
     }
 
     @PutMapping("/setProducts")
-    public ResponseEntity<String> setProductFromDelivery(@RequestBody ProductFromDeliveryDTO product){
-        Product updatedProduct = productService.increaseProductAmount(product);
+    public ResponseEntity<String> setProductFromDelivery(@RequestBody ProductWithAmountDTO product){
+        Product updatedProduct = productService.updateProductAmount(product);
         if (updatedProduct == null){
             return ResponseEntity.badRequest().body("Cannot find this product");
         }

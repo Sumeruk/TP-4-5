@@ -77,25 +77,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public User getById(Integer id){
-//        try {
-//            return new User();
-//        } catch (Exception ex){
-//            return null;
-//        }
-//    }
-
     @Override
     public List<User> getAll() {
-        return userRepository.findAll();
+        try {
+            return userRepository.findAll();
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
     public List<User> getUsersByParameter(String parameter){
         try {
             return userRepository.
-                    findUsersByNameContainingOrSurnameContainingOrEmailContaining(parameter, parameter, parameter);
+                    findUsersByNameContainingOrSurnameContainingOrEmailContainingOrRoleContaining
+                            (parameter, parameter, parameter, parameter);
         } catch (IllegalArgumentException | DataAccessException ex){
             return null;
         }

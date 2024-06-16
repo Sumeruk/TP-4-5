@@ -2,11 +2,13 @@ package ru.vsu.cs.springboot.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.vsu.cs.springboot.DTO.ProductFromDeliveryDTO;
+import ru.vsu.cs.springboot.DTO.ProductIdNameDTO;
+import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.repository.ProductRepository;
 import ru.vsu.cs.springboot.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     public Product add(Product product) {
         try {
             return productRepository.save(product);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -28,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     public Product update(Product product) {
         try {
             return productRepository.save(product);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -55,30 +57,42 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductsByName(String name) {
-        return productRepository.findByName(name);
+        try {
+            return productRepository.findByName(name);
+        } catch (Exception ex){
+            return null;
+        }
     }
 
     @Override
     public List<Product> getProductsByParameter(String parameter) {
-        return productRepository.findProductsByNameContainingOrProviderContainingOrDescriptionContaining(parameter,
-                parameter, parameter);
+        try {
+            return productRepository.findProductsByNameContainingOrProviderContainingOrDescriptionContaining(parameter,
+                    parameter, parameter);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
-    public Product increaseProductAmount(ProductFromDeliveryDTO productAmount) {
+    public Product updateProductAmount(ProductWithAmountDTO productAmount) {
         Product requiredProduct = productRepository.findById(productAmount.getId()).orElse(null);
 
-        if(requiredProduct == null)
+        if (requiredProduct == null)
             return null;
 
         int amount = requiredProduct.getQuantity();
-        int newAmount = amount + productAmount.getAmount();
-        requiredProduct.setQuantity(newAmount);
+        if (productAmount.getAmount() > 0) {
+            int newAmount = amount + productAmount.getAmount();
+            requiredProduct.setQuantity(newAmount);
+        } else {
+            return null;
+        }
 
         try {
             requiredProduct = productRepository.save(requiredProduct);
             return requiredProduct;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -88,6 +102,23 @@ public class ProductServiceImpl implements ProductService {
         try {
             productRepository.deleteById(id);
             return productRepository.save(entity);
+        } catch (Exception ex) {
+            return null;
+        }
+
+    }
+
+    @Override
+    public List<ProductIdNameDTO> getProductsForSearch() {
+        try {
+            List<Product> allProducts = productRepository.findAll();
+            List<ProductIdNameDTO> productsForSearch = new ArrayList<>();
+
+            for (Product product: allProducts) {
+                productsForSearch.add(new ProductIdNameDTO(product.getId(), product.getName()));
+            }
+
+            return productsForSearch;
         } catch (Exception ex){
             return null;
         }
