@@ -3,9 +3,35 @@
     <HeadSiteForShop/>
     <div>
       <h2>Добавить товар к заказу</h2>
+      <label for="search">
+        Название товара
+      </label>
+
+      <input
+          type="text"
+          id="search"
+          v-model="searchTerm"
+          placeholder="Поиск товара...">
+
+      <ul
+          v-if="searchProducts.length"
+      >
+        <li
+            v-for="product in searchProducts"
+            :key="product.name"
+            @click="selectProduct(product)"
+        >
+          {{ product.name }}
+        </li>
+      </ul>
+
+      <p
+          v-if="selectedProduct">
+        Последний выбранный товар: <span class="font-semibold">
+        Артикул {{ selectedProduct.id }} Название {{ selectedProduct.name }}</span>
+      </p>
+
       <form @submit.prevent="setProduct">
-        <label for="username">Название</label>
-        <input type="text" id="nameOfProduct" v-model="product.name">
 
         <label for="amount">Количество</label>
         <input type="number" id="amount" v-model="product.amount">
@@ -41,11 +67,11 @@
         </tr>
         </tbody>
       </table>
-<!--      <ul>-->
-<!--        <li v-for="(item, index) in order" :key="index">-->
-<!--          <p>{{ item.name }}  {{item.amount}}</p>-->
-<!--        </li>-->
-<!--      </ul>-->
+      <!--      <ul>-->
+      <!--        <li v-for="(item, index) in order" :key="index">-->
+      <!--          <p>{{ item.name }}  {{item.amount}}</p>-->
+      <!--        </li>-->
+      <!--      </ul>-->
     </div>
 
 
@@ -55,7 +81,23 @@
 <script>
 import HeadSiteForShop from "@/components/HeadSiteForShop";
 import api from "@/api/api";
+import {ref, computed} from 'vue'
 
+let products = [
+  {"id": "1213","name": "Åland Islands"},
+  {"id": "1214","name": "Algeria"},
+  {"id": "1215","name": "American Samoa"},
+  {"id": "1216","name": "Andorra"},
+  {"id": "1217","name": "Angola"},
+  {"id": "1218","name": "Anguilla"},
+  {"id": "1219","name": "Antarctica"}
+]
+
+let findProduct = {
+  id: '',
+  name: '',
+  amount: ''
+};
 export default {
   components: {
     HeadSiteForShop
@@ -63,9 +105,9 @@ export default {
   name: "AddProductToOrder",
   data() {
     return {
-      selectedProduct: '',
       order: [],
       product: {
+        id: '',
         name: '',
         amount: ''
       },
@@ -73,13 +115,62 @@ export default {
       shopId: this.$route.params.id
     }
   },
+
+  setup() {
+    let searchTerm = ref('')
+
+    const searchProducts = computed(() => {
+      if (searchTerm.value === '') {
+        return []
+      }
+
+      let matches = 0
+
+      return products.filter(product => {
+        if (product.name.toLowerCase().includes(searchTerm.value.toLowerCase()) && matches < 10) {
+          matches++
+          return product
+        }
+      })
+    });
+
+    const selectProduct = (product) => {
+      selectedProduct.value = product
+      searchTerm.value = ''
+      findProduct = selectedProduct.value;
+    }
+
+    let selectedProduct = ref('')
+
+    return {
+      products,
+      searchTerm,
+      searchProducts,
+      selectProduct,
+      selectedProduct
+    }
+  },
+
+  created() {
+    this.getProductsForSearch();
+  },
+
   methods: {
-    searchProducts(){
 
+    getProductsForSearch(){
+      api.getAllProductsForSearch().then(response => {
+        products = response.data;
+        console.log(response.status);
+      })
+          .catch(error => {
+            console.log(error);
+          })
     },
-    setProduct() {
 
-      let productCopy = Object.assign({}, this.product);
+    setProduct() {
+      findProduct.amount = this.product.amount;
+      this.product.id = findProduct.id;
+      let productCopy = Object.assign({}, findProduct);
       if(productCopy.name !== '' && productCopy.amount !== '') {
         this.order.push(productCopy);
         this.product.name = '';
@@ -235,5 +326,32 @@ th, tr, td {
 
 th {
   background-color: #D3AFAA;
+}
+
+ul {
+  position: absolute;
+  margin-left: 35%;
+  z-index: 10;
+  width: 30%;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+
+ul li {
+  margin: 0 0 0.25rem;
+  list-style: none;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
+}
+
+li{
+  cursor: pointer;
+}
+li:hover {
+  background-color: #f3f4f6;
 }
 </style>

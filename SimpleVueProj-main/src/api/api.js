@@ -31,6 +31,9 @@ export default {
     getAllProducts() {
         return axiosApi.get('/api/products/allProducts');
     },
+    getAllProductsForSearch(){
+        return axiosApi.get('/api/products/searchAllProducts');
+    },
     getProduct(employerId){
         return axiosApi.get('/api/products/edit/' + employerId);
     },
