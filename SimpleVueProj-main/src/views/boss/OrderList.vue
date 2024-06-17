@@ -8,12 +8,14 @@
       <table class="table">
         <thead>
         <tr>
+          <th>Артикул</th>
           <th>Название</th>
           <th>Количество</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(product, index) in order" :key="index">
+          <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.amount }}</td>
         </tr>
@@ -36,10 +38,12 @@ export default {
   data() {
     return {
       order: [
-        {name: 'Первый товар', amount: '33'},
-        {name: 'Второй товар', amount: '10'},
-        {name: 'Третрий товар', amount: '99'},
-      ]
+        {id:'23',name: 'Первый товар', amount: '33'},
+        {id:'23',name: 'Второй товар', amount: '10'},
+        {id:'23',name: 'Третрий товар', amount: '99'},
+      ],
+      orderId: this.$route.params.orderId,
+      shopId: 0
     }
   },
   created() {
@@ -47,8 +51,9 @@ export default {
   },
   methods: {
     getProductsFromOrder() {
-      api.getProductsFromOrder(this.shopId, this.order).then(response => {
+      api.getProductsFromOrder(this.shopId, this.orderId).then(response => {
         this.order = response.data;
+        console.log(response.data);
         console.log(response.status);
       })
           .catch(error => {
@@ -63,17 +68,17 @@ export default {
 <style scoped>
 .page-title {
   text-align: center;
-  margin-top: -300px; /* Уменьшил отрицательный отступ */
+  margin-top: 7%; /* Уменьшил отрицательный отступ */
 }
 
 .table {
   align-self: center;
   width: 100%;
-  margin-left: -31%;
+  margin-left: 0;
 }
 
 .table table {
-  width: 80%;
+  width: 99%;
   border-collapse: collapse;
   position: absolute;
 }

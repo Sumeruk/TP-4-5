@@ -20,7 +20,12 @@
       <input type="date" id="birthdate" v-model="currentUser.birthday">
 
       <label for="position">Должность</label>
-      <input type="text" id="position" v-model="currentUser.role">
+      <select id="position" name="position" v-model="currentUser.role">
+        <option value="Кладовщик">Кладовщик</option>
+        <option value="Магазин">Магазин</option>
+        <option value="Начальник склада">Начальник склада</option>
+        <option value="Администратор">Администратор</option>
+      </select>
 
       <button type="submit" >
         Редактирование

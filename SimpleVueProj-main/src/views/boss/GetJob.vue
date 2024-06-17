@@ -5,10 +5,14 @@
 
     <div class="order">
       Заказ:
-      <div class="orders-form">
-        <router-link :to="{name : 'order', params :{orderId: this.order.number} }" class="orderLink">
-          №{{ this.order.number }}
+      <div class="orders-form" v-if="order">
+        <router-link :to="{name : 'order', params :{orderId: order.id} }" class="orderLink">
+          №{{ this.order.id }}
         </router-link>
+      </div>
+      <div class="empty-order" v-else>
+        <br>
+        Заказов для выполнения нет
       </div>
     </div>
 
@@ -18,7 +22,7 @@
            :class="{ 'first-form': index === 0 }">
 
         <div>
-          <img src="../assect/NullFace.png"  class="avatar" alt="StockTrack Pro Logo">
+          <img src="../assect/NullFace.png" class="avatar" alt="StockTrack Pro Logo">
         </div>
 
         <div>
@@ -27,9 +31,11 @@
         </div>
 
         <div>
-          <button @click = 'getJobForEmployer(this.order, employee.id)'>
-            <router-link to="/home" class="actions">Выдать задачу</router-link>
+          <button @click='getJobForEmployer(this.order.id, employee.id)'>
+            Выдать задание
           </button>
+<!--            <router-link to="/home" class="actions">Выдать задачу</router-link>-->
+
         </div>
       </div>
     </div>
@@ -50,12 +56,12 @@ export default {
     return {
       employees: [
         {id: 12, name: 'Вадим Вахитов', position: 'Кладовщик'},
-        {id: 13,name: 'Cергей Мамаев', position: 'Кладовщик'},
-        {id: 14,name: 'Максим Иванченко', position: 'Кладовщик'},
-        {id: 15,name: 'Вадим Вахитов', position: 'Кладовщик'},
-        {id: 16,name: 'Сергей Безручко', position: 'Кладовщик'}
+        {id: 13, name: 'Cергей Мамаев', position: 'Кладовщик'},
+        {id: 14, name: 'Максим Иванченко', position: 'Кладовщик'},
+        {id: 15, name: 'Вадим Вахитов', position: 'Кладовщик'},
+        {id: 16, name: 'Сергей Безручко', position: 'Кладовщик'}
       ],
-      order: {number: '232323-22'}
+      order: {id: 32323, number: '232323-22'}
     };
   },
   created() {
@@ -67,11 +73,11 @@ export default {
       api.getOrderForBoss().then(response => {
         this.order = response.data;
         console.log(response.status);
-        }).catch(error =>{
-          console.log(error)
+      }).catch(error => {
+        console.log(error)
       });
     },
-    getEmployersForJob(){
+    getEmployersForJob() {
       api.getEmployersForJob().then(response => {
         this.employees = response.data;
         console.log(response.status);
@@ -79,13 +85,26 @@ export default {
         console.log(error);
       });
     },
-    getJobForEmployer(orderId, employeeId){
-      console.log(orderId, employeeId)
-      api.getJobForEmployer(orderId, employeeId).then(response =>{
+
+    getJobForEmployer(orderId, employeeId) {
+      console.log(orderId, employeeId);
+
+      api.setEmployerToOrder(orderId, employeeId).then(response => {
         console.log(response.status);
-      }).catch(error =>{
+
+      }).catch(error => {
         console.log(error);
       });
+
+      api.getJobForEmployer(employeeId).then(response => {
+        console.log(response.status);
+      }).catch(error => {
+        console.log(error);
+      });
+
+      this.getEmployersForJob();
+
+      location.reload();
     }
   }
 }
@@ -114,7 +133,7 @@ export default {
 
 .order {
   width: 30%;
-  margin-top: 10%;
+  margin-top: 12%;
   /*position: absolute;*/
 }
 
@@ -170,6 +189,7 @@ input {
 button {
   margin-top: 20px;
   border-radius: 40px;
+  padding: 10px;
   background-color: #F9F6DE;
   color: #7B5244;
   border: none;
@@ -182,7 +202,8 @@ button:hover {
   background-color: #F9F6DE;
   color: #D3AFAA;
 }
-.orderLink:hover{
+
+.orderLink:hover {
   color: #654321;
 }
 </style>

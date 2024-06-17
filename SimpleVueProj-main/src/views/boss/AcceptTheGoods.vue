@@ -72,6 +72,7 @@ export default {
     addedProducts:
       {
         id:'',
+        name:'',
         amount: 0
       }
     }
@@ -99,6 +100,7 @@ export default {
       selectedProduct.value = product
       searchTerm.value = ''
       findProduct = selectedProduct.value;
+      console.log(findProduct);
     }
 
     let selectedProduct = ref('')
@@ -129,7 +131,7 @@ export default {
 
     setProductFromDelivery(){
       this.addedProducts.id = findProduct.id;
-      this.addedProducts.amount = findProduct.amount;
+      this.addedProducts.name = findProduct.name;
       api.setProductFromDelivery(this.addedProducts).then(response => {
         console.log(response.status);
         this.addedProducts.id = '';
