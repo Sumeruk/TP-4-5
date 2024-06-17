@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findUsersByNameContainingOrSurnameContainingOrEmailContainingOrRoleContaining
             (String name, String surname, String email, String role);
+
+    List<User> findByStatusEqualsAndRole(int status, String role);
 }

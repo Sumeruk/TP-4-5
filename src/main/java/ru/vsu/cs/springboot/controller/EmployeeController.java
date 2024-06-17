@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -68,6 +70,22 @@ public class EmployeeController {
     public ResponseEntity<String> deleteUser(@PathVariable Integer employerId){
         userService.delete(employerId);
         return ResponseEntity.ok("Deleted");
+    }
+
+    @GetMapping("/getEmployersForJob")
+    public ResponseEntity<List<User>> getEmployersForJob(){
+        List<User> freeEmployers = userService.getEmployersForJob();
+        return ResponseEntity.ok(Objects.requireNonNullElseGet(freeEmployers, ArrayList::new));
+    }
+
+    @PutMapping("makeEmployerWorking/{employerId}")
+    public ResponseEntity<String> makeEmployerWorking(@PathVariable int employerId){
+        boolean result = userService.makeEmployerWorking(employerId);
+        if(result){
+            return ResponseEntity.ok("made employer working");
+        } else  {
+            return ResponseEntity.ok("cannot make employer working");
+        }
     }
 
 

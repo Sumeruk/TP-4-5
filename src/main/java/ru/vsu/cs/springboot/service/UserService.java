@@ -19,4 +19,7 @@ public interface UserService extends Service<User, Integer>{
 
     List<User> getUsersByParameter(String parameter);
 
+    List<User> getEmployersForJob();
+
+    boolean makeEmployerWorking(int employerId);
 }

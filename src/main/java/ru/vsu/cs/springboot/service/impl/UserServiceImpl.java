@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.service.UserService;
+
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public User getPersonByEmail(String email) {
         // Implementation depends on how you store and retrieve users
@@ -55,10 +57,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User add(User newUser) {
+        try {
+            newUser.setStatus(-1);
+            return userRepository.save(newUser);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @Override
     public User update(User entity) {
         try {
             return userRepository.save(entity);
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -69,10 +81,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Integer id){
+    public User getById(Integer id) {
         try {
             return userRepository.findById(id).orElse(null);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }
@@ -81,28 +93,48 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         try {
             return userRepository.findAll();
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public List<User> getUsersByParameter(String parameter){
+    public List<User> getUsersByParameter(String parameter) {
         try {
             return userRepository.
                     findUsersByNameContainingOrSurnameContainingOrEmailContainingOrRoleContaining
                             (parameter, parameter, parameter, parameter);
-        } catch (IllegalArgumentException | DataAccessException ex){
+        } catch (IllegalArgumentException | DataAccessException ex) {
+            return null;
+        }
+    }
+
+    //TOD ATTENTION ATTENTION!!!!!!!!!!! -1 -> 0
+
+    @Override
+    public List<User> getEmployersForJob() {
+        try {
+            return userRepository.findByStatusEqualsAndRole(-1, "Кладовщик");
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public User add(User newUser){
+    public boolean makeEmployerWorking(int employerId) {
         try {
-            return userRepository.save(newUser);
-        } catch (Exception ex){
-            return null;
+            User workingUser = userRepository.getReferenceById(employerId);
+
+            if (workingUser.getRole().equals("Кладовщик")) {
+                workingUser.setStatus(1);
+                userRepository.save(workingUser);
+                return true;
+            } else
+                return false;
+        } catch (Exception e) {
+            return false;
         }
     }
+
+
 }

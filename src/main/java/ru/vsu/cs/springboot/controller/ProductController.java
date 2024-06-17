@@ -48,7 +48,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProductsFromSearch(@RequestParam String search) {
         List<Product> foundProducts = productService.getProductsByParameter(search);
         if (foundProducts != null) {
-            System.out.println(search);
+//            System.out.println(search);
             return ResponseEntity.ok(foundProducts);
         } else {
             return ResponseEntity.badRequest().body(null);
@@ -87,7 +87,8 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable String id, @RequestBody Product product) {
+    public ResponseEntity<String> updateProduct(@PathVariable String id,
+                                                @RequestBody Product product) {
         //product.setId(id);
         Product updatedProduct = productService.update(id, product);
         if (updatedProduct == null) {

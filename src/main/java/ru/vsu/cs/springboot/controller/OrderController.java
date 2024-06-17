@@ -3,8 +3,11 @@ package ru.vsu.cs.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.vsu.cs.springboot.DTO.ProductForOrderDTO;
 import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
+import ru.vsu.cs.springboot.entity.OrderProduct;
+import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.service.OrderService;
 
 import java.sql.Date;
@@ -21,14 +24,58 @@ public class OrderController {
 
     @PostMapping("/newOrder/{shopId}")
     public ResponseEntity<String> createOrder(@PathVariable Integer shopId,
-                                              @RequestBody ArrayList<ProductWithAmountDTO> productsInOrder){
+                                              @RequestBody ArrayList<ProductWithAmountDTO> productsInOrder) {
         Order createdOrder = orderService.createOrder(shopId, productsInOrder);
 
-        if(createdOrder == null){
-            return ResponseEntity.badRequest().body("Не удалось создать заказ");
+        if (createdOrder == null) {
+            return ResponseEntity.badRequest().body("Failed to create an order");
         }
 
-        return ResponseEntity.ok("Заказ создан");
+        return ResponseEntity.ok("Order created");
+    }
+
+    @GetMapping("/getOrders/{shopId}")
+    public ResponseEntity<List<Order>> getAllOrdersForShop(@PathVariable int shopId) {
+        List<Order> ordersFromShop = orderService.getOrdersByShopId(shopId);
+        if (ordersFromShop != null) {
+            return ResponseEntity.ok(ordersFromShop);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/getOrders/{shopId}/{orderId}")
+    public ResponseEntity<List<ProductForOrderDTO>> getProductsFromOrder(@PathVariable int shopId,
+                                                                         @PathVariable int orderId) {
+        List<ProductForOrderDTO> productsFromOrder = orderService.getProductsFromOrder(shopId, orderId);
+
+        if (productsFromOrder != null) {
+            return ResponseEntity.ok(productsFromOrder);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+    }
+
+    @GetMapping("/getLastOrder")
+    public ResponseEntity<Order> getFirstFreeOrder(){
+        Order firstFreeOrder= orderService.getFirstFreeOrder();
+        if (firstFreeOrder != null){
+            return ResponseEntity.ok(firstFreeOrder);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @PutMapping("/setEmployerToOrder/{orderId}/{employerId}")
+    public ResponseEntity<String> setEmployerToOrder(@PathVariable int orderId,
+                                                     @PathVariable int employerId){
+        boolean result = orderService.setEmployerToOrder(orderId, employerId);
+        if (result){
+            return ResponseEntity.ok("Success update order");
+        } else {
+            return ResponseEntity.badRequest().body("Error update order");
+        }
     }
 
     @GetMapping("/{id}")
@@ -56,12 +103,6 @@ public class OrderController {
     public ResponseEntity<List<Order>> getAllOrders() {
         List<Order> orders = orderService.getAll();
         return ResponseEntity.ok(orders);
-    }
-
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order createdOrder = orderService.add(order);
-        return ResponseEntity.ok(createdOrder);
     }
 
     @PutMapping("/{id}")

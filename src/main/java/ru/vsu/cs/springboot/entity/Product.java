@@ -21,7 +21,7 @@ public class Product implements Identifiable<String> {
     private Integer quantity;
     private Integer price;
     private Integer weight;
-    private String units;
+    private String unit;
     private String provider;
     private String description;
 

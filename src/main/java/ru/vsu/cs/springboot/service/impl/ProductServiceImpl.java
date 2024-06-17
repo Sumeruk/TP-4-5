@@ -20,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product add(Product product) {
         try {
+            product.setQuantity(0);
             return productRepository.save(product);
         } catch (Exception ex) {
             return null;

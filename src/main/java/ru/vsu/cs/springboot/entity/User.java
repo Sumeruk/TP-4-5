@@ -27,6 +27,7 @@ public class User implements Identifiable<Integer> {
     private String phone;
     private Date birthday;
     private String role;
+    private int status; //-1 0 1 not-work free work
 
     @Override
     public void setId(Integer id) {
