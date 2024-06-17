@@ -50,6 +50,7 @@
       <table class="productTable">
         <thead>
         <tr>
+          <th>Артикул</th>
           <th>Название</th>
           <th>Количество</th>
           <th>Действие</th>
@@ -58,6 +59,7 @@
         </thead>
         <tbody>
         <tr v-for="(product, index) in order" :key="index">
+          <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.amount }}</td>
           <td>
@@ -112,7 +114,7 @@ export default {
         amount: ''
       },
       errorMessage:'dfvdf',
-      shopId: this.$route.params.id
+      shopId: this.$route.params.shopId
     }
   },
 

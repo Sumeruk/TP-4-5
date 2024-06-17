@@ -5,9 +5,8 @@
     <!-- Формы для каждого заказа -->
     <div v-for="(order, index) in orders" :key="index" class="order-form" :class="{ 'first-form': index === 0 }">
       <div class="number">
-
-        <router-link :to="{name : 'oldOrder', params :{shopId : this.shopId, orderId: order.name} }">
-          №{{ order.name }}
+        <router-link :to="{name : 'oldOrder', params :{shopId : this.shopId, orderId: order.id } }">
+          №{{ order.id }}
         </router-link>
       </div>
     </div>
@@ -27,11 +26,11 @@ export default {
     return {
       shopId: this.$route.params.shopId,
       orders: [
-        {name: '33442-998'},
-        {name: '55302-008'},
-        {name: '22349-994'},
-        {name: '73800-456'},
-        {name: '23457-994'}
+        {id:'12', name: '33442-998'},
+        {id:'13',name: '55302-008'},
+        {id:'14',name: '22349-994'},
+        {id:'15',name: '73800-456'},
+        {id:'16',name: '23457-994'}
       ]
     };
   },
@@ -43,6 +42,7 @@ export default {
       api.getAllOrdersFromShopWithShopId(this.shopId).then(response => {
         this.orders = response.data;
         console.log(response.status);
+        console.log(response.data);
       }).catch(error => {
         console.log(error);
       })

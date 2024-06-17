@@ -17,6 +17,7 @@
         <tr>
           <th>Артикул</th>
           <th>Название продукта</th>
+          <th>Количество</th>
           <th>Цена</th>
           <th>Вес</th>
           <th>Мера измерения</th>
@@ -28,6 +29,7 @@
         <tr v-for="product in products" :key="product.id">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
           <td>{{ product.price }}</td>
           <td>{{ product.weight }}</td>
           <td>{{ product.units }}</td>
@@ -55,6 +57,7 @@ export default {
         {
           id: 1,
           name: 'Вареники',
+          quantity: '12',
           price: '22',
           weight: '100',
           units: 'шт',
@@ -64,6 +67,7 @@ export default {
         {
           id: 2,
           name: 'Вареники',
+          quantity: '12',
           price: '22',
           weight: '100',
           units: 'шт',
@@ -73,6 +77,7 @@ export default {
         {
           id: 3,
           name: 'Вареники',
+          quantity: '12',
           price: '22',
           weight: '100',
           units: 'шт',
@@ -82,6 +87,7 @@ export default {
         {
           id: 4,
           name: 'Вареники',
+          quantity: '12',
           price: '22',
           weight: '100',
           units: 'шт',

@@ -32,7 +32,7 @@ export default {
         return axiosApi.get('/api/products/allProducts');
     },
     getAllProductsForSearch(){
-        return axiosApi.get('/api/products/searchAllProducts');
+        return axiosApi.get('/api/products/allProducts/searchAllProducts');
     },
     getProduct(employerId){
         return axiosApi.get('/api/products/edit/' + employerId);

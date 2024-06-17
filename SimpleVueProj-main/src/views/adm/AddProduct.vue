@@ -49,6 +49,7 @@ export default {
       newProduct: {
         id: '',
         name: '',
+        quantity: 0,
         price: '',
         weight: '',
         unit: '',
@@ -61,7 +62,6 @@ export default {
     addProduct() {
       console.log(this.newProduct);
       router.push("/adminProduct");
-      console.log('dkjfnkjdfnj')
       api.createProduct(this.newProduct).then(response => {
         console.log(response.status);
         router.push('/adminProduct');
