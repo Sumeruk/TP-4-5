@@ -35,7 +35,7 @@
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
           <td>{{ product.weight }}</td>
-          <td>{{ product.units }}</td>
+          <td>{{ product.unit }}</td>
           <td>{{ product.provider }}</td>
           <td>{{ product.description }}</td>
           <td>
@@ -71,7 +71,7 @@ export default {
           name: 'Вареники',
           price: '22',
           weight: '100',
-          units: 'шт',
+          unit: 'шт',
           provider: 'five',
           description: 'Хорошие вареники'
         },
@@ -80,7 +80,7 @@ export default {
           name: 'Вареники',
           price: '22',
           weight: '100',
-          units: 'шт',
+          unit: 'шт',
           provider: 'five',
           description: 'Хорошие вареники'
         },
@@ -89,7 +89,7 @@ export default {
           name: 'Вареники',
           price: '22',
           weight: '100',
-          units: 'шт',
+          unit: 'шт',
           provider: 'five',
           description: 'Хорошие вареники'
         },
@@ -98,7 +98,7 @@ export default {
           name: 'Вареники',
           price: '22',
           weight: '100',
-          units: 'шт',
+          unit: 'шт',
           provider: 'five',
           description: 'Хорошие вареники'
         },

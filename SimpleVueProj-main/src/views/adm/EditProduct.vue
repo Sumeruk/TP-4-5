@@ -31,9 +31,6 @@
       <label for="description">Описание</label>
       <textarea name="description" v-model="currentProduct.description"></textarea>
 
-      <label for="quantity">Количество</label>
-      <input type="number" id="quantity" name="quantity" min="1" v-model="currentProduct.number">
-
       <button type="submit">
         Редактирование
       </button>
@@ -57,7 +54,7 @@ export default {
         name: 'Вареники',
         price: '22',
         weight: '100',
-        units: 'шт',
+        unit: 'шт',
         provider: 'five',
         description: 'Хорошие вареники'
       },
