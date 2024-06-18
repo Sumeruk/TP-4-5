@@ -19,13 +19,14 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		User user1 = new User
-//				.name("1")
-//				.surname("1")
-//				.email("1@mail.com")
-//				.role("Employee")
-//				.build();
-//
-//		userRepository.save(user1);
+		User user1 = User.builder()
+				.name("1")
+				.surname("1")
+				.email("1@mail.com")
+				.role("Кладовщик")
+				.password("111")
+				.build();
+
+		userRepository.save(user1);
 	}
 }
