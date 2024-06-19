@@ -23,7 +23,9 @@ public class URLConfig {
 
 
     private static final String[] AUTH_WHITELIST = {
-            "/**",
+            //"/**",
+            "/",
+            "/login",
             "/api/v1/auth/**",
             "/v3/api-docs/**",
             "/v3/api-docs.yaml",
@@ -45,6 +47,36 @@ public class URLConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
+
+                .requestMatchers("/api/products/adm/**")
+                .hasAuthority("ROLE_Администратор")
+                .requestMatchers("/api/employee/adm/**")
+                .hasAuthority("ROLE_Администратор")
+
+                .requestMatchers("/api/products/boss/**")
+                .hasAuthority("ROLE_Начальник склада")
+                .requestMatchers("/api/employee/boss/**")
+                .hasAuthority("ROLE_Начальник склада")
+
+                .requestMatchers("/api/products/allProducts")
+                .hasAnyAuthority("ROLE_Администратор", "Администратор", "ROLE_Начальник склада")
+                .requestMatchers("/api/products/allProducts/search**")
+                .hasAnyAuthority("ROLE_Магазин", "ROLE_Начальник склада", "ROLE_Администратор")
+                .requestMatchers("/api/products/allProducts/searchAllProducts")
+                .hasAnyAuthority("ROLE_Магазин", "ROLE_Начальник склада")
+
+                .requestMatchers("/api/order/boss/**")
+                .hasAuthority("ROLE_Начальник склада")
+                .requestMatchers("/api/order/shop/**")
+                .hasAuthority("ROLE_Магазин")
+
+                .requestMatchers("/api/order/getOrders/**")
+                .hasAnyAuthority("ROLE_Магазин", "ROLE_Начальник склада")
+
+
+
+
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

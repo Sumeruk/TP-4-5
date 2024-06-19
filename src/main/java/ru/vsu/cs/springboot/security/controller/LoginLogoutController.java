@@ -9,7 +9,7 @@ import ru.vsu.cs.springboot.security.service.LoginLogoutService;
 
 @RestController
 @RequestMapping("/api/auth")
-public class LoginController {
+public class LoginLogoutController {
 
     @Autowired
     private LoginLogoutService loginLogoutService;
@@ -26,7 +26,14 @@ public class LoginController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logoutUser(@RequestBody AuthenticationRequest user){
-        return ResponseEntity.badRequest().body("logout successful");
+    public ResponseEntity<String> logoutUser(@RequestBody int userId){
+
+        if(loginLogoutService.logout(userId)){
+
+            return ResponseEntity.ok("logout successful");
+        } else {
+
+            return ResponseEntity.badRequest().body("Cannot set status");
+        }
     }
 }

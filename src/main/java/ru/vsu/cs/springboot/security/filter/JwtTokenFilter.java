@@ -35,7 +35,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         try {
 
-
+            System.out.println(authHeader);
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 filterChain.doFilter(request, response);
                 return;
@@ -48,15 +48,23 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
+                System.out.println("---DEBUG---" + userDetails.getUsername());
+
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
                             null,
                             userDetails.getAuthorities()
                     );
+
+                    System.out.println("---DEBUG " + userDetails.getAuthorities());
+
+                    System.out.println("---DEBUG---Token Valid");
                     authenticationToken.setDetails(
                             new WebAuthenticationDetailsSource().buildDetails(request)
                     );
+
+
 
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 }
@@ -64,7 +72,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 
             response.getWriter().write("Unauthorized: " + e.getMessage());
         }

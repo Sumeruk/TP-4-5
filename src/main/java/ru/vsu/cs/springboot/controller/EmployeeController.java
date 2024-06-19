@@ -18,7 +18,7 @@ public class EmployeeController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/allEmployers")
+    @GetMapping("/adm/allEmployers")
     public ResponseEntity<List<UserInfoDTO>> getAllEmployers(){
         List<UserInfoDTO> allUsers = userService.getAll();
         if(allUsers != null){
@@ -28,7 +28,7 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/edit/{employerId}")
+    @GetMapping("/adm/edit/{employerId}")
     public ResponseEntity<UserInfoDTO> getEmployer(@PathVariable int employerId){
         UserInfoDTO user = userService.getById(employerId);
         if (user != null)
@@ -36,7 +36,8 @@ public class EmployeeController {
         else
             return ResponseEntity.notFound().build();
     }
-    @GetMapping("/allEmployers/search")
+
+    @GetMapping("/adm/allEmployers/search")
     public ResponseEntity<List<UserInfoDTO>> getEmployersByParameter(@RequestParam String parameters){
         List<UserInfoDTO> foundProducts = userService.getUsersByParameter(parameters);
         if(foundProducts != null) {
@@ -46,7 +47,7 @@ public class EmployeeController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping("/adm/create")
     public ResponseEntity<?> createUser(@RequestBody UserInfoDTO user){
         User savedUser = userService.add(user);
 
@@ -57,7 +58,7 @@ public class EmployeeController {
         }
     }
 
-    @PutMapping("/update/{employerId}")
+    @PutMapping("/adm/update/{employerId}")
     public ResponseEntity<String> updateUser(@PathVariable Integer employerId, @RequestBody UserInfoDTO user){
         User updatedUser = userService.add(user);
         if(updatedUser != null){
@@ -67,19 +68,19 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/delete/{employerId}")
+    @DeleteMapping("/adm/delete/{employerId}")
     public ResponseEntity<String> deleteUser(@PathVariable Integer employerId){
         userService.delete(employerId);
         return ResponseEntity.ok("Deleted");
     }
 
-    @GetMapping("/getEmployersForJob")
+    @GetMapping("/boss/getEmployersForJob")
     public ResponseEntity<List<UserInfoDTO>> getEmployersForJob(){
         List<UserInfoDTO> freeEmployers = userService.getEmployersForJob();
         return ResponseEntity.ok(Objects.requireNonNullElseGet(freeEmployers, ArrayList::new));
     }
 
-    @PutMapping("makeEmployerWorking/{employerId}")
+    @PutMapping("/boss/makeEmployerWorking/{employerId}")
     public ResponseEntity<String> makeEmployerWorking(@PathVariable int employerId){
         boolean result = userService.makeEmployerWorking(employerId);
         if(result){

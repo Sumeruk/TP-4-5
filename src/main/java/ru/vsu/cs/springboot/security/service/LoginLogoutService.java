@@ -3,11 +3,13 @@ package ru.vsu.cs.springboot.security.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.security.DTO.AuthenticationRequest;
@@ -46,11 +48,13 @@ public class LoginLogoutService {
                 System.out.println("DEBUG------RESPONSE " + AuthenticationResponse.builder()
                         .token(jwtToken)
                         .role(userFromRequest.get().getRole())
+                        .id(userFromRequest.get().getId())
                         .build());
 
                 return AuthenticationResponse.builder()
                         .token(jwtToken)
                         .role(userFromRequest.get().getRole())
+                        .id(userFromRequest.get().getId())
                         .build();
             } else {
                 try {
@@ -60,20 +64,36 @@ public class LoginLogoutService {
                                     authenticationRequest.getPassword()
                             ));
 
+
+                    userFromRequest.get().setStatus(0);
+
                     var jwtToken = jwtService.generateToken(userFromRequest.get());
 
+                    System.out.println("DEBUG-----new token " + jwtToken);
                     return AuthenticationResponse.builder()
                             .token(jwtToken)
                             .role(userFromRequest.get().getRole())
+                            .id(userFromRequest.get().getId())
                             .build();
                 } catch (AuthenticationException exception){
-                    return new AuthenticationResponse("0", "0");
+                    return new AuthenticationResponse("0", 0, "0");
                 }
 
             }
         } else {
-            return new AuthenticationResponse("0", "0");
+            return new AuthenticationResponse("0", 0, "0");
         }
 
+    }
+
+    public boolean logout(int userId){
+        try {
+            User user = userRepository.getReferenceById(userId);
+            user.setStatus(-1);
+            userRepository.save(user);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 }
