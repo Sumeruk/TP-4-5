@@ -19,10 +19,10 @@
       <!--    ЗДЕСЬ КНОПКИ-->
       <div class="butts">
         <button>
-          <router-link :to="{name : 'newOrder', params :{shopId : 2} }" class="actions">Сделать заказ</router-link>
+          <router-link :to="{name : 'newOrder', params : {shopId : this.shopId }}" class="actions">Сделать заказ</router-link>
         </button>
         <button>
-          <router-link :to="{name : 'recentOrders', params :{shopId : 2} }" class="actions">Предыдущие заказы</router-link>
+          <router-link :to="{name : 'recentOrders', params : {shopId : this.shopId } }" class="actions">Предыдущие заказы</router-link>
         </button>
 
 
@@ -33,11 +33,23 @@
 
 <script>
 import HeadSiteForShop from "@/components/HeadSiteForShop";
+
+console.log(localStorage.getItem("id"))
+
+
 export default {
   components:{
     HeadSiteForShop
   },
   name: "ShopHome",
+
+
+  data(){
+    return {
+      // shopId: localStorage.getItem("id")
+      shopId: 3
+    }
+  }
 }
 </script>
 

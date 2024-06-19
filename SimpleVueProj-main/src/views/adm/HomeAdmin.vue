@@ -7,7 +7,7 @@
         <h1>Мой профиль</h1>
         <form @submit.prevent="submitForm">
           <img src="../assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
-          <label for="username">Джон Доу</label>
+<!--          <label for="username">Джон Доу</label>-->
           <div class="info-row">
             <img src="../assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">
             <router-link to="/policy">Политика конфидициальности</router-link>
@@ -38,6 +38,11 @@ export default {
   components: {
     HeadSiteForAdm
   },
+
+  created() {
+    console.log(localStorage.getItem("jwtToken"))
+  },
+
   methods: {
     submitForm() {
       // Логика обработки отправки формы
@@ -63,7 +68,7 @@ export default {
 .homeAdm {
   display: flex;
   width: 80%;
-  margin-left: 8%;
+  margin-left:20%;
 }
 
 .butts {

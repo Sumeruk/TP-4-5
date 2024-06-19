@@ -51,12 +51,12 @@ export default {
     return {
       currentProduct: {
         id: this.$route.params.id,
-        name: 'Вареники',
-        price: '22',
-        weight: '100',
-        unit: 'шт',
-        provider: 'five',
-        description: 'Хорошие вареники'
+        name: '',
+        price: '',
+        weight: '',
+        unit: '',
+        provider: '',
+        description: ''
       },
     }
   },

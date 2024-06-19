@@ -116,6 +116,9 @@ export default {
         console.log(response.status);
       })
           .catch(error => {
+                if (error.response.status === 401){
+                  router.push("/login")
+                }
             console.error(error);
           });
     },

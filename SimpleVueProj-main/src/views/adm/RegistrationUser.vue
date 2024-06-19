@@ -4,11 +4,11 @@
     <h2>Новый аккаунт</h2>
     <form @submit.prevent="createUser">
       <label for="username">Имя</label>
-      <input type="text" id="username" v-model="newUser.name">
+      <input type="text" id="username" v-model="newUser.name" required>
       <label for="usersurname">Фамилия</label>
-      <input type="text" id="usersurname" v-model="newUser.surname">
+      <input type="text" id="usersurname" v-model="newUser.surname" required>
       <label for="email">Почта</label>
-      <input type="email" id="email" v-model="newUser.email">
+      <input type="email" id="email" v-model="newUser.email" required>
 
       <label for="phone">Номер телефона</label>
       <input type="tel" id="phone" v-model="newUser.phone">
@@ -17,7 +17,12 @@
       <input type="date" id="birthdate" v-model="newUser.birthday">
 
       <label for="position">Должность</label>
-      <input type="text" id="position" v-model="newUser.role">
+      <select id="position" name="position" v-model="newUser.role" required>
+        <option value="Кладовщик">Кладовщик</option>
+        <option value="Магазин">Магазин</option>
+        <option value="Начальник склада">Начальник склада</option>
+        <option value="Администратор">Администратор</option>
+      </select>
 
       <button type="submit">
         Создать

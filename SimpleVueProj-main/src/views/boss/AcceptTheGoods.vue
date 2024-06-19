@@ -40,6 +40,8 @@
       <input type="submit" value="Добавить товар">
 
     </form>
+
+    <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -49,13 +51,13 @@ import api from "@/api/api";
 import {ref, computed} from 'vue'
 
 let products = [
-  {"id": "1213","name": "Åland Islands"},
-  {"id": "1214","name": "Algeria"},
-  {"id": "1215","name": "American Samoa"},
-  {"id": "1216","name": "Andorra"},
-  {"id": "1217","name": "Angola"},
-  {"id": "1218","name": "Anguilla"},
-  {"id": "1219","name": "Antarctica"}
+  {"id": "","name": ""}
+  // {"id": "1214","name": "Algeria"},
+  // {"id": "1215","name": "American Samoa"},
+  // {"id": "1216","name": "Andorra"},
+  // {"id": "1217","name": "Angola"},
+  // {"id": "1218","name": "Anguilla"},
+  // {"id": "1219","name": "Antarctica"}
 ]
 
 let findProduct = {
@@ -74,7 +76,8 @@ export default {
         id:'',
         name:'',
         amount: 0
-      }
+      },
+      errorMessage:'dfvdf',
     }
   },
 
@@ -136,12 +139,22 @@ export default {
         console.log(response.status);
         this.addedProducts.id = '';
         this.addedProducts.amount = 0;
+        this.showErrorMessage();
+        this.errorMessage = 'Товар добавлен';
       })
           .catch(error => {
             console.error(error);
             this.addedProducts.id = '';
             this.addedProducts.amount = 0;
+            this.showErrorMessage();
+            this.errorMessage = 'Выберите товар';
           });
+    },
+
+    showErrorMessage() {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.classList.remove('hidden');
+      errorMessage.classList.add('show');
     }
   }
 
@@ -151,6 +164,17 @@ export default {
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #7B5244;
+  font-size: 20px;
+}
 
 form {
   display: flex;

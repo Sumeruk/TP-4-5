@@ -10,8 +10,25 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
-  name: 'HeadSite'
+  name: 'HeadSite',
+  created() {
+    this.checkRole();
+  },
+
+  methods: {
+    checkRole(){
+      // const decoded = jwtDecode.verify(localStorage.getItem("jwtToken"),
+      //     "d02171be0387362dcb67f64f305f2a39bd952b6a527e40134364fc3d9f99d6f9")
+      //
+      // console.log(decoded);
+      if (localStorage.getItem("role") !== "Начальник склада"){
+        router.push('/login');
+      }
+    }
+  }
 }
 </script>
 

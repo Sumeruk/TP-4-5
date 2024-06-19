@@ -46,13 +46,13 @@ export default {
   data() {
     return {
       currentUser: {
-        id: 12,
-        name: 'Имя',
-        surname: 'Фамилия',
-        email: 'dd@gmail.com',
-        phone:'940',
+        id: this.$route.params.id,
+        name: '',
+        surname: '',
+        email: '',
+        phone:'',
         birthday:'',
-        role:'role',
+        role:'',
       },
       id: this.$route.params.id
     }

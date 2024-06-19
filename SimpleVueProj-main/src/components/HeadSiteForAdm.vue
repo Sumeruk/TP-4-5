@@ -10,8 +10,28 @@
 </template>
 
 <script>
+import router from "@/router";
+//import jwtDecode from 'jsonwebtoken';
+
+
 export default {
-  name: "HeadSiteForAdm"
+  name: "HeadSiteForAdm",
+
+  created() {
+    this.checkRole();
+  },
+
+  methods: {
+    checkRole(){
+      // const decoded = jwtDecode.verify(localStorage.getItem("jwtToken"),
+      //     "d02171be0387362dcb67f64f305f2a39bd952b6a527e40134364fc3d9f99d6f9")
+      //
+      // console.log(decoded);
+      if (localStorage.getItem("role") !== "Администратор"){
+        router.push('/login');
+      }
+    }
+  }
 }
 </script>
 

@@ -16,6 +16,8 @@
       </div>
     </div>
 
+    <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
+
     <div class="empl">
 
       <div v-for="(employee, index) in employees" :key="index" class="employee-form"
@@ -55,13 +57,14 @@ export default {
   data() {
     return {
       employees: [
-        {id: 12, name: 'Вадим Вахитов', position: 'Кладовщик'},
-        {id: 13, name: 'Cергей Мамаев', position: 'Кладовщик'},
-        {id: 14, name: 'Максим Иванченко', position: 'Кладовщик'},
-        {id: 15, name: 'Вадим Вахитов', position: 'Кладовщик'},
-        {id: 16, name: 'Сергей Безручко', position: 'Кладовщик'}
+        {id: 0, name: '', position: ''},
+        // {id: 13, name: 'Cергей Мамаев', position: 'Кладовщик'},
+        // {id: 14, name: 'Максим Иванченко', position: 'Кладовщик'},
+        // {id: 15, name: 'Вадим Вахитов', position: 'Кладовщик'},
+        // {id: 16, name: 'Сергей Безручко', position: 'Кладовщик'}
       ],
-      order: {id: 32323, number: '232323-22'}
+      order: {id: 0, number: ''},
+      errorMessage:'dfvdf',
     };
   },
   created() {
@@ -89,23 +92,36 @@ export default {
     getJobForEmployer(orderId, employeeId) {
       console.log(orderId, employeeId);
 
-      api.setEmployerToOrder(orderId, employeeId).then(response => {
-        console.log(response.status);
+      if (orderId !== undefined){
+        api.setEmployerToOrder(orderId, employeeId).then(response => {
+          console.log(response.status);
 
-      }).catch(error => {
-        console.log(error);
-      });
+        }).catch(error => {
+          console.log(error);
+        });
 
-      api.getJobForEmployer(employeeId).then(response => {
-        console.log(response.status);
-      }).catch(error => {
-        console.log(error);
-      });
+        api.getJobForEmployer(employeeId).then(response => {
+          console.log(orderId)
+          console.log(response.status);
+        }).catch(error => {
+          console.log(error);
+        });
 
-      this.getEmployersForJob();
+        this.getEmployersForJob();
 
-      location.reload();
+        location.reload();
+      } else {
+        this.showErrorMessage();
+        this.errorMessage = "Нет заказов для выдачи";
+      }
+    },
+
+    showErrorMessage() {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.classList.remove('hidden');
+      errorMessage.classList.add('show');
     }
+
   }
 }
 </script>
@@ -114,6 +130,17 @@ export default {
 /*div {*/
 /*  border: 1px solid black;*/
 /*}*/
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #7B5244;
+  font-size: 20px;
+}
 
 #getJobHome {
   display: flex;
