@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.vsu.cs.springboot.DTO.UserInfoDTO;
 import ru.vsu.cs.springboot.entity.User;
+import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.service.UserService;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +19,17 @@ public class EmployeeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/boss/employersAnalytics/{dateStart}/{dateEnd}")
+    public ResponseEntity<?> getEmployersAnalytics(@PathVariable String dateStart, @PathVariable String dateEnd){
+        try {
+            return ResponseEntity.ok(userRepository.employersAnalytics(Date.valueOf(dateStart), Date.valueOf(dateEnd)));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("wrong parameters");
+        }
+    }
 
     @GetMapping("/adm/allEmployers")
     public ResponseEntity<List<UserInfoDTO>> getAllEmployers(){

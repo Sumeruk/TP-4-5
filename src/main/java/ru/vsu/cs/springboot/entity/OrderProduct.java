@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "OrderProduct")
+@Table(name = "Order_Product")
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "ORDERID")
     private Integer orderId;
+    @Column(name = "PRODUCTID")
     private String productId;
     private Integer amount;
 

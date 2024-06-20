@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.vsu.cs.springboot.DTO.ProductIdNameDTO;
 import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Product;
+import ru.vsu.cs.springboot.repository.ProductRepository;
 import ru.vsu.cs.springboot.service.ProductService;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -16,6 +18,19 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @GetMapping("/boss/prodAnalytics/{dateStart}/{dateEnd}")
+    public ResponseEntity<?> analytics(@PathVariable String dateStart, @PathVariable String dateEnd){
+        try {
+            return ResponseEntity.ok(productRepository.productAnalytics(Date.valueOf(dateStart),
+                    Date.valueOf(dateEnd)));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("wrong parameters");
+        }
+    }
 
     @GetMapping("/allProducts")
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -55,17 +70,6 @@ public class ProductController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
-//    @GetMapping("/allProducts/searchByName")
-//    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String search) {
-//        List<Product> foundProducts = productService.getProductsByName(search);
-//        if (foundProducts != null) {
-//            System.out.println(search);
-//            return ResponseEntity.ok(foundProducts);
-//        } else {
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//    }
 
     @PostMapping("/adm/create")
     public ResponseEntity<String> createProduct(@RequestBody Product product) {
