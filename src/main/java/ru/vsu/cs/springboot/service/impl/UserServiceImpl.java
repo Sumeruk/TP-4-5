@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
     public User add(UserInfoDTO newUserFromFront) {
         try {
             User newUser = User.builder()
+                    .id(newUserFromFront.getId())
                     .name(newUserFromFront.getName())
                     .surname(newUserFromFront.getSurname())
                     .email(newUserFromFront.getEmail())

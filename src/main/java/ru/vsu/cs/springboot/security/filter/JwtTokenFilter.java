@@ -17,8 +17,6 @@ import ru.vsu.cs.springboot.security.service.JwtService;
 
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -37,7 +35,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         try {
 
-            System.out.println(LocalDate.now() + authHeader);
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 filterChain.doFilter(request, response);
                 return;
@@ -50,8 +47,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
-                System.out.println("---DEBUG---" + userDetails.getUsername());
-
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
@@ -59,14 +54,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                             userDetails.getAuthorities()
                     );
 
-                    System.out.println("---DEBUG " + userDetails.getAuthorities());
-
-                    System.out.println("---DEBUG---Token Valid");
                     authenticationToken.setDetails(
                             new WebAuthenticationDetailsSource().buildDetails(request)
                     );
-
-
 
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 }

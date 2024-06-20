@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.vsu.cs.springboot.entity.Order;
 import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.entity.User;
+import ru.vsu.cs.springboot.repository.OrderRepository;
 import ru.vsu.cs.springboot.repository.ProductRepository;
 import ru.vsu.cs.springboot.repository.UserRepository;
 
@@ -21,6 +23,9 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -64,11 +69,18 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.price(5)
 				.build();
 
+		Order order = Order.builder().
+				shopId(4).
+				loaderId(2)
+				.build();
+
 		userRepository.save(adm);
 		userRepository.save(kl);
 		userRepository.save(ns);
 		userRepository.save(shop);
 
 		productRepository.save(product);
+
+		orderRepository.save(order);
 	}
 }

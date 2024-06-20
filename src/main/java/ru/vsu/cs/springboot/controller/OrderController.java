@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.vsu.cs.springboot.DTO.ProductForOrderDTO;
 import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
+import ru.vsu.cs.springboot.repository.OrderRepository;
 import ru.vsu.cs.springboot.service.OrderService;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,29 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @GetMapping("/boss/orderAnalytics/{dateStart}/{dateEnd}")
+    public ResponseEntity<?> orderAnalytics(@PathVariable String dateStart, @PathVariable String dateEnd) {
+        try {
+            return ResponseEntity.ok(orderRepository.orderAnalytic(Date.valueOf(dateStart),
+                    Date.valueOf(dateEnd)));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("wrong parameters");
+        }
+    }
+
+    @GetMapping("/boss/dateAnalytics/{dateStart}")
+    public ResponseEntity<?> dateAnalytics(@PathVariable String dateStart) {
+        try {
+            return ResponseEntity.ok(orderRepository.dateAnalytic(Date.valueOf(dateStart)));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("wrong parameters");
+        }
+    }
+
 
     @PostMapping("/shop/newOrder/{shopId}")
     public ResponseEntity<String> createOrder(@PathVariable Integer shopId,
@@ -56,9 +81,9 @@ public class OrderController {
     }
 
     @GetMapping("/boss/getLastOrder")
-    public ResponseEntity<Order> getFirstFreeOrder(){
-        Order firstFreeOrder= orderService.getFirstFreeOrder();
-        if (firstFreeOrder != null){
+    public ResponseEntity<Order> getFirstFreeOrder() {
+        Order firstFreeOrder = orderService.getFirstFreeOrder();
+        if (firstFreeOrder != null) {
             return ResponseEntity.ok(firstFreeOrder);
         } else {
             return ResponseEntity.noContent().build();
@@ -67,9 +92,9 @@ public class OrderController {
 
     @PutMapping("/boss/setEmployerToOrder/{orderId}/{employerId}")
     public ResponseEntity<String> setEmployerToOrder(@PathVariable int orderId,
-                                                     @PathVariable int employerId){
+                                                     @PathVariable int employerId) {
         boolean result = orderService.setEmployerToOrder(orderId, employerId);
-        if (result){
+        if (result) {
             return ResponseEntity.ok("Success update order");
         } else {
             return ResponseEntity.badRequest().body("Error update order");
@@ -77,9 +102,9 @@ public class OrderController {
     }
 
     @GetMapping("/empl/getOrders/{employerId}")
-    public ResponseEntity<List<Order>> getOrdersForEmployerJob(@PathVariable Integer employerId){
+    public ResponseEntity<List<Order>> getOrdersForEmployerJob(@PathVariable Integer employerId) {
         List<Order> jobOrders = orderService.getOrdersToLoaderJob(employerId);
-        if (jobOrders != null){
+        if (jobOrders != null) {
             return ResponseEntity.ok(jobOrders);
         } else {
             return ResponseEntity.badRequest().body(null);
@@ -87,8 +112,8 @@ public class OrderController {
     }
 
     @PutMapping("/empl/setOrder/{orderId}")
-    public ResponseEntity<String> setOrderCollect(@PathVariable Integer orderId){
-        if (orderService.setOrderCollect(orderId)){
+    public ResponseEntity<String> setOrderCollect(@PathVariable Integer orderId) {
+        if (orderService.setOrderCollect(orderId)) {
             return ResponseEntity.ok("Successfully collected order");
         } else {
             return ResponseEntity.badRequest().body("Error while processing collected order");

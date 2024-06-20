@@ -1,6 +1,5 @@
 package ru.vsu.cs.springboot.service.impl;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
@@ -9,9 +8,11 @@ import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
 import ru.vsu.cs.springboot.entity.OrderProduct;
 import ru.vsu.cs.springboot.entity.Product;
+import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.repository.OrderProductRepository;
 import ru.vsu.cs.springboot.repository.OrderRepository;
 import ru.vsu.cs.springboot.repository.ProductRepository;
+import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.service.OrderService;
 
 import java.sql.Date;
@@ -29,6 +30,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderProductRepository orderProductRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Override
@@ -202,6 +205,9 @@ public class OrderServiceImpl implements OrderService {
 
             collectedOrder.setStatus("собран");
 
+            User loader = userRepository.getReferenceById(collectedOrder.getLoaderId());
+            loader.setStatus(0);
+            userRepository.save(loader);
             System.out.println("DEBUG----инфа про собранный заказ" + collectedOrder);
 
             List<OrderProduct> productsFromOrder = orderProductRepository.getOrderProductByOrderId(orderId);

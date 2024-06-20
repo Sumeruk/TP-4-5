@@ -17,8 +17,12 @@ public class Order implements Identifiable<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "SHOPID")
     private int shopId;
+    @Column(name = "LOADERID")
     private int loaderId;
+    @Column(name = "DATE")
     private Date date;
     private String status;
 
