@@ -208,13 +208,13 @@ public class OrderServiceImpl implements OrderService {
             User loader = userRepository.getReferenceById(collectedOrder.getLoaderId());
             loader.setStatus(0);
             userRepository.save(loader);
-            System.out.println("DEBUG----инфа про собранный заказ" + collectedOrder);
+            //System.out.println("DEBUG----инфа про собранный заказ" + collectedOrder);
 
             List<OrderProduct> productsFromOrder = orderProductRepository.getOrderProductByOrderId(orderId);
             for (OrderProduct orderProduct : productsFromOrder) {
                 Product currProd = productRepository.getReferenceById(orderProduct.getProductId());
 
-                System.out.println("DEBUG----инфа про товар" + currProd);
+                //System.out.println("DEBUG----инфа про товар" + currProd);
                 int oldAmount = currProd.getQuantity();
                 int newAmount = oldAmount - orderProduct.getAmount();
 

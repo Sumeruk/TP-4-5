@@ -40,16 +40,16 @@ public class LoginLogoutService {
                 userFromRequest.get().setStatus(0);
 
                 userRepository.save(userFromRequest.get());
-                System.out.println("DEBUG------ пользователь" + userFromRequest.get());
+                //System.out.println("DEBUG------ пользователь" + userFromRequest.get());
 
                 var jwtToken = jwtService.generateToken(userFromRequest.get());
 
 
-                System.out.println("DEBUG------RESPONSE " + AuthenticationResponse.builder()
-                        .token(jwtToken)
-                        .role(userFromRequest.get().getRole())
-                        .id(userFromRequest.get().getId())
-                        .build());
+                //System.out.println("DEBUG------RESPONSE " + AuthenticationResponse.builder()
+//                        .token(jwtToken)
+//                        .role(userFromRequest.get().getRole())
+//                        .id(userFromRequest.get().getId())
+//                        .build());
 
                 return AuthenticationResponse.builder()
                         .token(jwtToken)
@@ -69,11 +69,11 @@ public class LoginLogoutService {
 
                     userRepository.save(userFromRequest.get());
 
-                    System.out.println("DEBUG------ существующий пользователь" + userFromRequest.get());
+                    //System.out.println("DEBUG------ существующий пользователь" + userFromRequest.get());
 
                     var jwtToken = jwtService.generateToken(userFromRequest.get());
 
-                    System.out.println("DEBUG-----new token " + jwtToken);
+                    //System.out.println("DEBUG-----new token " + jwtToken);
                     return AuthenticationResponse.builder()
                             .token(jwtToken)
                             .role(userFromRequest.get().getRole())
