@@ -33,6 +33,7 @@
 ### Видео
 - [Видеопрезентация](https://youtu.be/Uae18-5Jc48)
 - [Обзор серверной части приложения](https://youtu.be/AozhnNIHPVc)
+- [Обзор клиентской части приложения](https://youtu.be/VMWFSeBHdkI)
   
 ### Сервисы
 - [Miro](https://miro.com/app/board/uXjVNsfyAZI=/?share_link_id=263686175546)
