@@ -8,6 +8,7 @@
       <table class="table">
         <thead>
         <tr>
+          <th>Артикул</th>
           <th>Название</th>
           <th>Количество</th>
           <th>Собран</th>
@@ -15,6 +16,7 @@
         </thead>
         <tbody>
         <tr v-for="(product, index) in order" :key="index">
+          <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.amount }}</td>
           <td><input type="checkbox" v-model="product.checked"/></td>
@@ -28,6 +30,7 @@
 <script>
 import HeadSiteForStorekeep from "@/components/HeadSiteForStorekeep";
 import api from "@/api/api";
+import router from "@/router";
 
 export default {
   components: {
@@ -38,7 +41,8 @@ export default {
     return {
       order: [],
       showAttentionMessage: false,
-      orderId: this.$route.params.orderId
+      orderId: this.$route.params.orderId,
+      shopId: 0
     }
   },
   created() {
@@ -46,14 +50,14 @@ export default {
   },
   methods: {
     getProductsFromOrder() {
-      const apiDat = [
-        {name: 'Вишня', amount: '4'},
-        {name: 'Молоко 1л', amount: '20'}
-        // {name: 'Кофе', amount: '30'}
-      ];
+      // const apiDat = [
+      //   {id: '123', name: 'Name  tovar', amount: '20'}
+      //   // {name: 'Кофе', amount: '30'}
+      // ];
+      //
+      // this.order = apiDat.map((item) => ({...item, checked: false}));
 
-      this.order = apiDat.map((item) => ({ ...item, checked: false }));
-      api.getProductsFromOrder(this.shopId, this.order).then(response => {
+      api.getProductsFromOrder(this.shopId, this.orderId).then(response => {
         this.order = response.data.map((item) => ({ ...item, checked: false }));
         console.log(response.status);
       })
@@ -61,12 +65,14 @@ export default {
             console.error(error);
           });
     },
-    checkIfAllItemsChecked(){
+    checkIfAllItemsChecked() {
       this.showAttentionMessage = !this.order.every((item) => item.checked);
-      if (this.showAttentionMessage === true){
-        api.setOrderFromEmployer(this.orderId).then(response =>{
+      if (this.showAttentionMessage !== true) {
+
+        api.setOrderFromEmployer(this.orderId).then(response => {
+          router.push("/orders/toDo");
           console.log(response.status);
-        }).catch(error =>{
+        }).catch(error => {
           console.log(error)
         })
       }
@@ -78,18 +84,20 @@ export default {
 
 <style scoped>
 
-.ordSt{
-flex-direction: column;
+.ordSt {
+  flex-direction: column;
 }
+
 .page-title {
   text-align: center;
-  margin-top: -300px; /* Уменьшил отрицательный отступ */
+  margin-top: 100px; /* Уменьшил отрицательный отступ */
 }
 
 .table {
+  margin-top: 20px;
   align-self: center;
   width: 100%;
-  margin-left: -31%;
+  margin-left: 5%;
 }
 
 .table table {
@@ -120,7 +128,8 @@ button {
   width: 100%;
   font-size: 18px;
 }
-.actions{
+
+.actions {
   display: block;
   padding: 10px;
   border-radius: 40px;

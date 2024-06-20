@@ -84,6 +84,7 @@
 import HeadSiteForShop from "@/components/HeadSiteForShop";
 import api from "@/api/api";
 import {ref, computed} from 'vue'
+import router from "@/router";
 
 let products = [
   {"id": "1213","name": "Åland Islands"},
@@ -183,13 +184,19 @@ export default {
       this.order.splice(index, 1);
     },
     createOrder(){
-      api.createOrder(this.shopId, this.order).then(response =>{
-        console.log(response.status);
-      }).catch(error => {
-        console.error(error);
+      if(this.order.length > 0) {
+        api.createOrder(this.shopId, this.order).then(response => {
+          console.log(response.status);
+          router.push("/shop");
+        }).catch(error => {
+          console.error(error);
+          this.showErrorMessage();
+          this.errorMessage = 'Невозможно сделать заказ!';
+        });
+      } else {
         this.showErrorMessage();
-        this.errorMessage = 'Невозможно сделать заказ!';
-      });
+        this.errorMessage = 'Невозможно сделать пустой заказ!';
+      }
     },
     showErrorMessage() {
       const errorMessage = document.getElementById('error-message');

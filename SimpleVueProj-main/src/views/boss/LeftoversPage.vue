@@ -55,45 +55,15 @@ export default {
       search: '',
       products: [
         {
-          id: 1,
-          name: 'Вареники',
-          quantity: '12',
-          price: '22',
-          weight: '100',
-          units: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 2,
-          name: 'Вареники',
-          quantity: '12',
-          price: '22',
-          weight: '100',
-          units: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 3,
-          name: 'Вареники',
-          quantity: '12',
-          price: '22',
-          weight: '100',
-          units: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 4,
-          name: 'Вареники',
-          quantity: '12',
-          price: '22',
-          weight: '100',
-          units: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
+          id: "",
+          name: '',
+          quantity: '',
+          price: '',
+          weight: '',
+          units: '',
+          provider: '',
+          description: ''
+        }
       ]
     }
   },

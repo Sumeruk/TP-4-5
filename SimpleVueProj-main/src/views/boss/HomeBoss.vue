@@ -21,8 +21,8 @@
       <div class="butts">
         <button>
           <router-link to="/orders/getOrders" class="actions">Выдача заданий</router-link>
-        </button>
-        <button>
+        </button >
+        <button >
           <router-link to="/product/setProducts" class="actions">Принять товар</router-link>
         </button>
         <button>
@@ -44,7 +44,8 @@ import HeadSite from "@/components/HeadSiteForBoss";
 export default {
   components: {
     HeadSite
-  }
+  },
+
 };
 </script>
 

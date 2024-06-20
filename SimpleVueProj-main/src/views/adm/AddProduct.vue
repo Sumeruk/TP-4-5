@@ -64,7 +64,7 @@ export default {
       router.push("/adminProduct");
       api.createProduct(this.newProduct).then(response => {
         console.log(response.status);
-        router.push('/adminProduct');
+        router.push('/adm');
       })
           .catch(error => {
             //todo обработка ошибки, вывод сообщения

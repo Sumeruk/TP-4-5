@@ -3,10 +3,12 @@
     <!-- Шапка с кнопками -->
     <HeadSiteForStorekeep/>
     <!-- Формы для каждого заказа -->
+    <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
+
     <div v-for="(order, index) in orders" :key="index" class="employee-form" :class="{ 'first-form': index === 0 }">
-      <div class="number">
-        <router-link :to="{name: 'orderForStorekeeper', params:{orderId: order.name}}">
-          №{{ order.name }}
+      <div class="number" v-if="orders">
+        <router-link :to="{name: 'orderForStorekeeper', params:{orderId: order.id}}">
+          №{{ order.id }}
         </router-link>
       </div>
     </div>
@@ -15,6 +17,7 @@
 
 <script>
 import HeadSiteForStorekeep from "@/components/HeadSiteForStorekeep";
+import api from "@/api/api";
 
 export default {
   components: {
@@ -22,22 +25,57 @@ export default {
   },
   data() {
     return {
-      orders: [
-        {name: '33442-998'},
-        {name: '55302-008'},
-        {name: '22349-994'},
-        {name: '73800-456'},
-        {name: '23457-994'}
-      ]
+      orders: [],
+      errorMessage:'dfvdf',
     };
   },
+
+  created() {
+    this.getOrdersForEmployer();
+  },
+
   methods: {
 
+    getOrdersForEmployer(){
+
+      api.getOrdersForEmployer(localStorage.getItem("id")).then(response =>{
+        this.orders = response.data;
+        console.log(response.status);
+
+        if (this.orders.length === 0){
+          this.showErrorMessage();
+          this.errorMessage = "Нет заказов для выполнения";
+        }
+      }).catch(error => {
+        console.log(error.status);
+        this.showErrorMessage();
+        this.errorMessage = "Не удалось отобразить заказы";
+      })
+    },
+
+    showErrorMessage() {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.classList.remove('hidden');
+      errorMessage.classList.add('show');
+    }
   }
 };
 </script>
 
 <style scoped>
+
+.hidden {
+  display: none;
+}
+
+.show {
+  margin-top: 100px;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #7B5244;
+  font-size: 20px;
+}
+
 #home {
   display: flex;
   flex-direction: column;

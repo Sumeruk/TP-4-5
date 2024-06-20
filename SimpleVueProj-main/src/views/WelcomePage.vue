@@ -11,24 +11,53 @@
   </div>
 </template>
 
+<script>
+import api from "@/api/api";
+
+export default {
+  name: "WelcomePage",
+
+  created() {
+    this.logout();
+    this.reset();
+  },
+  methods: {
+    logout(){
+      api.logout(localStorage.getItem('id')).then(response =>{
+        console.log(response.status);
+      }).catch(error =>{
+        console.log(error.status);
+      })
+    },
+    reset(){
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("role");
+      localStorage.removeItem("id");
+    }
+  }
+}
+</script>
+
+
 <style scoped>
 
 .login-form {
   text-align: center;
+  margin-top: 10%;
 }
 
 .logo {
   width: 150px;
   height: auto;
   margin-bottom: 10px;
-  margin-left: 10%; /* Сдвигаем картинку вправо на 20% относительно ширины родительского элемента */
+  /*margin-left: 10%; !* Сдвигаем картинку вправо на 20% относительно ширины родительского элемента *!*/
 }
 
 h1 {
   font-family: 'Segoe UI Light', sans-serif;
   align-items: center;
   color: #7B5244;
-  margin-top: 140px;
+  /*margin-top: 140px;*/
 }
 
 .actions{
@@ -44,7 +73,7 @@ button {
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 40%;
   font-size: 18px;
 }
 
@@ -55,13 +84,4 @@ button:hover {
 
 </style>
 
-<script>
-export default {
-  name: "WelcomePage",
-  methods: {
-    submitForm() {
-      // Логика отправки формы
-    }
-  }
-}
-</script>
+

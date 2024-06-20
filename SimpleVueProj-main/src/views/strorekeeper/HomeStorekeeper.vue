@@ -1,10 +1,10 @@
 <template>
   <div id="homeStorekeeper">
     <HeadSiteForStorekeep />
+    <h1>Мой профиль</h1>
 
     <div class="homeBoss">
       <div>
-        <h1>Мой профиль</h1>
         <div class="face">
           <img src="../assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
           <label for="username">Кладовщик</label>
@@ -57,14 +57,15 @@ export default {
 /* Стили для шапки */
 
 h1{
-  margin-top: 10%;
+  margin-top: 6%;
+
 }
 /* Стили для формы */
 .face {
   width: 100%;
   max-width: 600px;
   max-height: 600px;
-  margin-top: 60%; /* Отступ сверху для формы */
+  margin-top: 30%; /* Отступ сверху для формы */
   padding: 20px;
   border: 1px ;
   border-radius: 5px;
@@ -79,7 +80,7 @@ h1{
 }
 
 .butts{
-  margin-top: 60%;
+  margin-top: 30%;
   width: 40%;
   align-items: center;
 }
