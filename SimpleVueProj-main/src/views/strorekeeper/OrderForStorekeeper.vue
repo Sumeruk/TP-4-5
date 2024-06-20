@@ -115,12 +115,13 @@ th {
 button {
   margin-top: 40px;
   padding: 10px 20px;
+  margin-left : 19%;
   border-radius: 40px;
   background-color: #D3AFAA;
   color: #7B5244;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 60%;
   font-size: 18px;
 }
 

@@ -32,7 +32,7 @@
           <td>{{ product.quantity }}</td>
           <td>{{ product.price }}</td>
           <td>{{ product.weight }}</td>
-          <td>{{ product.units }}</td>
+          <td>{{ product.unit }}</td>
           <td>{{ product.provider }}</td>
           <td>{{ product.description }}</td>
         </tr>
