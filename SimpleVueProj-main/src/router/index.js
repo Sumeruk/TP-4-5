@@ -52,11 +52,6 @@ const routes = [
     component: EditProduct
   },
   {
-    path: '/tmp',
-    name: 'tmp',
-    component: TmpView
-  },
-  {
     path: '/adminProduct',
     name: 'admProd',
     component: ProductPage
