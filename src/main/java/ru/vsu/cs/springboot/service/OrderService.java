@@ -12,6 +12,8 @@ public interface OrderService extends Service<Order, Integer> {
 
     List<Order> getOrdersByLoaderId(int loaderId);
 
+    List<Order> getOrdersToLoaderJob(int loaderId);
+
     List<Order> getOrdersByStatus(String status);
 
     List<Order> getOrdersByShopId(int shopId);
@@ -23,5 +25,7 @@ public interface OrderService extends Service<Order, Integer> {
     Order getFirstFreeOrder();
 
     boolean setEmployerToOrder(int orderId, int employerId);
+
+    boolean setOrderCollect(int orderId);
 }
 

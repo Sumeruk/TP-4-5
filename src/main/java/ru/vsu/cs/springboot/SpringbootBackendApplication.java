@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.entity.User;
+import ru.vsu.cs.springboot.repository.ProductRepository;
 import ru.vsu.cs.springboot.repository.UserRepository;
 
 @SpringBootApplication
@@ -16,6 +18,9 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -52,9 +57,18 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.password("111")
 				.build();
 
+		Product product = Product.builder()
+				.id("1")
+				.name("Плюшки")
+				.quantity(0)
+				.price(5)
+				.build();
+
 		userRepository.save(adm);
 		userRepository.save(kl);
 		userRepository.save(ns);
 		userRepository.save(shop);
+
+		productRepository.save(product);
 	}
 }

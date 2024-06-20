@@ -71,9 +71,10 @@ public class URLConfig {
                 .hasAuthority("ROLE_Магазин")
 
                 .requestMatchers("/api/order/getOrders/**")
-                .hasAnyAuthority("ROLE_Магазин", "ROLE_Начальник склада")
+                .hasAnyAuthority("ROLE_Магазин", "ROLE_Начальник склада", "ROLE_Кладовщик")
 
-
+                .requestMatchers("/api/order/empl/**")
+                .hasAuthority("ROLE_Кладовщик")
 
 
 

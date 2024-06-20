@@ -158,6 +158,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserInfoDTO> getEmployersForJob() {
         try {
+            System.out.println("DEBUG----КОГО ОН НЕ МОЖЕТ НАЙТИ" + userRepository.getReferenceById(2).getRole() + " " +
+                    userRepository.getReferenceById(2).getStatus());
             List<User> freeUser = userRepository.findByStatusEqualsAndRole(0, "Кладовщик");
             return listUserToDto(freeUser);
         } catch (Exception e) {

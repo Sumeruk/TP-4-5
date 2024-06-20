@@ -76,6 +76,7 @@ public class EmployeeController {
 
     @GetMapping("/boss/getEmployersForJob")
     public ResponseEntity<List<UserInfoDTO>> getEmployersForJob(){
+
         List<UserInfoDTO> freeEmployers = userService.getEmployersForJob();
         return ResponseEntity.ok(Objects.requireNonNullElseGet(freeEmployers, ArrayList::new));
     }

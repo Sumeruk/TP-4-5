@@ -58,7 +58,20 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrdersByLoaderId(int loaderId) {
-        return orderRepository.findByLoaderId(loaderId);
+        try {
+            return orderRepository.findByLoaderId(loaderId);
+        } catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<Order> getOrdersToLoaderJob(int loaderId) {
+        try {
+            return orderRepository.findByStatusAndLoaderId("в работе", loaderId);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @Override
@@ -178,6 +191,32 @@ public class OrderServiceImpl implements OrderService {
 
             return true;
         } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setOrderCollect(int orderId) {
+        try {
+            Order collectedOrder = orderRepository.getReferenceById(orderId);
+
+            collectedOrder.setStatus("собран");
+
+            System.out.println("DEBUG----инфа про собранный заказ" + collectedOrder);
+
+            List<OrderProduct> productsFromOrder = orderProductRepository.getOrderProductByOrderId(orderId);
+            for (OrderProduct orderProduct : productsFromOrder) {
+                Product currProd = productRepository.getReferenceById(orderProduct.getProductId());
+
+                System.out.println("DEBUG----инфа про товар" + currProd);
+                int oldAmount = currProd.getQuantity();
+                int newAmount = oldAmount - orderProduct.getAmount();
+
+                currProd.setQuantity(newAmount);
+                productRepository.save(currProd);
+            }
+            return true;
+        } catch (Exception e){
             return false;
         }
     }

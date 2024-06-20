@@ -17,6 +17,8 @@ import ru.vsu.cs.springboot.security.service.JwtService;
 
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -35,7 +37,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         try {
 
-            System.out.println(authHeader);
+            System.out.println(LocalDate.now() + authHeader);
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 filterChain.doFilter(request, response);
                 return;

@@ -6,12 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.vsu.cs.springboot.DTO.ProductForOrderDTO;
 import ru.vsu.cs.springboot.DTO.ProductWithAmountDTO;
 import ru.vsu.cs.springboot.entity.Order;
-import ru.vsu.cs.springboot.entity.OrderProduct;
-import ru.vsu.cs.springboot.entity.Product;
 import ru.vsu.cs.springboot.service.OrderService;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +73,25 @@ public class OrderController {
             return ResponseEntity.ok("Success update order");
         } else {
             return ResponseEntity.badRequest().body("Error update order");
+        }
+    }
+
+    @GetMapping("/empl/getOrders/{employerId}")
+    public ResponseEntity<List<Order>> getOrdersForEmployerJob(@PathVariable Integer employerId){
+        List<Order> jobOrders = orderService.getOrdersToLoaderJob(employerId);
+        if (jobOrders != null){
+            return ResponseEntity.ok(jobOrders);
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @PutMapping("/empl/setOrder/{orderId}")
+    public ResponseEntity<String> setOrderCollect(@PathVariable Integer orderId){
+        if (orderService.setOrderCollect(orderId)){
+            return ResponseEntity.ok("Successfully collected order");
+        } else {
+            return ResponseEntity.badRequest().body("Error while processing collected order");
         }
     }
 }
