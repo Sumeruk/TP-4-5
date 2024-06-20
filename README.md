@@ -32,6 +32,7 @@
 - [Презентация предзащита](https://github.com/Sumeruk/TP-4-5/blob/main/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F/%D0%9F%D1%80%D0%B5%D0%B4%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%B0%20%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82.pdf)
 ### Видео
 - [Видеопрезентация](https://youtu.be/Uae18-5Jc48)
+- [Обзор серверной части приложения](https://youtu.be/AozhnNIHPVc)
   
 ### Сервисы
 - [Miro](https://miro.com/app/board/uXjVNsfyAZI=/?share_link_id=263686175546)
