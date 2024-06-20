@@ -33,7 +33,7 @@ export default {
         email: '',
         password: ''
       },
-      errorMessage:'dfvdf',
+      errorMessage: '',
     }
   },
 
@@ -44,7 +44,9 @@ export default {
             localStorage.setItem("role", response.data.role);
             localStorage.setItem("id", response.data.id);
 
-            localStorage.getItem("jwtToken")
+            console.log("токен при регистрации" + localStorage.getItem("jwtToken"))
+            console.log("роль при регистрации" + localStorage.getItem("role"))
+            console.log("id при регистрации" + localStorage.getItem("id"))
             switch (response.data.role) {
               case "Кладовщик":
                 router.push("/storekeeper")
@@ -63,7 +65,7 @@ export default {
             }
           }
       ).catch(error => {
-        if (error.response.status === 400){
+        if (error.response.status === 400) {
           this.showErrorMessage();
           this.errorMessage = 'Неверное имя пользователя или пароль';
         }
@@ -85,12 +87,14 @@ export default {
 .hidden {
   display: none;
 }
+
 .show {
   display: block;
   font-family: 'Roboto', sans-serif;
   color: #7B5244;
   font-size: 20px;
 }
+
 .login-page {
   max-width: 400px;
   margin: 0 auto;

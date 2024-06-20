@@ -88,6 +88,9 @@ export default {
     getOrderForBoss() {
         return axiosApi.get('/api/order/boss/getLastOrder');
     },
+    getOrdersForEmployer(employerId){
+        return axiosApi.get('/api/order/empl/getOrders/'+ employerId)
+    },
     getJobForEmployer(employerId) {
         return axiosApi.put('/api/employee/boss/makeEmployerWorking/' + employerId);
     },
@@ -98,6 +101,6 @@ export default {
         return axiosApi.get('/api/employee/boss/getEmployersForJob')
     },
     setOrderFromEmployer(orderId) {
-        return axiosApi.put('/api/employee/setOrder', orderId)
+        return axiosApi.put('/api/order/empl/setOrder/'+ orderId)
     }
 }

@@ -38,9 +38,7 @@ export default {
   data() {
     return {
       order: [
-        {id:'23',name: 'Первый товар', amount: '33'},
-        {id:'23',name: 'Второй товар', amount: '10'},
-        {id:'23',name: 'Третрий товар', amount: '99'},
+        {id:'',name: '', amount: '33'},
       ],
       orderId: this.$route.params.orderId,
       shopId: 0
