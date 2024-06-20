@@ -3,10 +3,13 @@ package ru.vsu.cs.springboot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.vsu.cs.springboot.DTO.UserInfoDTO;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -15,9 +18,9 @@ public class EmployeeController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/allEmployers")
-    public ResponseEntity<List<User>> getAllEmployers(){
-        List<User> allUsers = userService.getAll();
+    @GetMapping("/adm/allEmployers")
+    public ResponseEntity<List<UserInfoDTO>> getAllEmployers(){
+        List<UserInfoDTO> allUsers = userService.getAll();
         if(allUsers != null){
             return ResponseEntity.ok(allUsers);
         } else {
@@ -25,17 +28,18 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/edit/{employerId}")
-    public ResponseEntity<User> getEmployer(@PathVariable int employerId){
-        User user = userService.getById(employerId);
+    @GetMapping("/adm/edit/{employerId}")
+    public ResponseEntity<UserInfoDTO> getEmployer(@PathVariable int employerId){
+        UserInfoDTO user = userService.getById(employerId);
         if (user != null)
             return ResponseEntity.ok(user);
         else
             return ResponseEntity.notFound().build();
     }
-    @GetMapping("/allEmployers/search")
-    public ResponseEntity<List<User>> getEmployersByParameter(@RequestParam String parameters){
-        List<User> foundProducts = userService.getUsersByParameter(parameters);
+
+    @GetMapping("/adm/allEmployers/search")
+    public ResponseEntity<List<UserInfoDTO>> getEmployersByParameter(@RequestParam String parameters){
+        List<UserInfoDTO> foundProducts = userService.getUsersByParameter(parameters);
         if(foundProducts != null) {
             return ResponseEntity.ok(foundProducts);
         } else {
@@ -43,19 +47,19 @@ public class EmployeeController {
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    @PostMapping("/adm/create")
+    public ResponseEntity<?> createUser(@RequestBody UserInfoDTO user){
         User savedUser = userService.add(user);
 
         if(savedUser != null){
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok("Successful create user");
         } else {
             return ResponseEntity.badRequest().body(new User());
         }
     }
 
-    @PutMapping("/update/{employerId}")
-    public ResponseEntity<String> updateUser(@PathVariable Integer employerId, @RequestBody User user){
+    @PutMapping("/adm/update/{employerId}")
+    public ResponseEntity<String> updateUser(@PathVariable Integer employerId, @RequestBody UserInfoDTO user){
         User updatedUser = userService.add(user);
         if(updatedUser != null){
             return ResponseEntity.ok("User updated");
@@ -64,10 +68,27 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/delete/{employerId}")
+    @DeleteMapping("/adm/delete/{employerId}")
     public ResponseEntity<String> deleteUser(@PathVariable Integer employerId){
         userService.delete(employerId);
         return ResponseEntity.ok("Deleted");
+    }
+
+    @GetMapping("/boss/getEmployersForJob")
+    public ResponseEntity<List<UserInfoDTO>> getEmployersForJob(){
+
+        List<UserInfoDTO> freeEmployers = userService.getEmployersForJob();
+        return ResponseEntity.ok(Objects.requireNonNullElseGet(freeEmployers, ArrayList::new));
+    }
+
+    @PutMapping("/boss/makeEmployerWorking/{employerId}")
+    public ResponseEntity<String> makeEmployerWorking(@PathVariable int employerId){
+        boolean result = userService.makeEmployerWorking(employerId);
+        if(result){
+            return ResponseEntity.ok("made employer working");
+        } else  {
+            return ResponseEntity.ok("cannot make employer working");
+        }
     }
 
 

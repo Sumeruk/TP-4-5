@@ -1,0 +1,27 @@
+package ru.vsu.cs.springboot.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "OrderProduct")
+public class OrderProduct {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private Integer orderId;
+    private String productId;
+    private Integer amount;
+
+    public OrderProduct(Integer orderId, String productId, Integer amount) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.amount = amount;
+    }
+}

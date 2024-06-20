@@ -3,16 +3,21 @@ package ru.vsu.cs.springboot.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import ru.vsu.cs.springboot.DTO.UserInfoDTO;
 import ru.vsu.cs.springboot.entity.User;
 import ru.vsu.cs.springboot.repository.UserRepository;
 import ru.vsu.cs.springboot.service.UserService;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public User getPersonByEmail(String email) {
         // Implementation depends on how you store and retrieve users
@@ -48,17 +53,47 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean login(User userDto) {
-        // Authenticate the user and start a session or similar
-        // This could involve checking the provided credentials against stored values
-        return false; // Placeholder return value
+    public User add(UserInfoDTO newUserFromFront) {
+        try {
+            User newUser = User.builder()
+                    .name(newUserFromFront.getName())
+                    .surname(newUserFromFront.getSurname())
+                    .email(newUserFromFront.getEmail())
+                    .phone(newUserFromFront.getPhone())
+                    .birthday(newUserFromFront.getBirthday())
+                    .role(newUserFromFront.getRole())
+                    .status(-1).build();
+
+            return userRepository.save(newUser);
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     @Override
-    public User update(User entity) {
+    public User add(User newUser) {
         try {
-            return userRepository.save(entity);
-        } catch (Exception e){
+            return userRepository.save(newUser);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public User update(UserInfoDTO newUserFromFront) {
+        try {
+            User newUser = User.builder()
+                    .id(newUserFromFront.getId())
+                    .name(newUserFromFront.getName())
+                    .surname(newUserFromFront.getSurname())
+                    .email(newUserFromFront.getEmail())
+                    .phone(newUserFromFront.getPhone())
+                    .birthday(newUserFromFront.getBirthday())
+                    .role(newUserFromFront.getRole())
+                    .status(-1).build();
+
+            return userRepository.save(newUser);
+        } catch (Exception e) {
             return null;
         }
     }
@@ -69,40 +104,84 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Integer id){
+    public UserInfoDTO getById(Integer id) {
         try {
-            return userRepository.findById(id).orElse(null);
-        } catch (Exception ex){
+            return userToDTO(Objects.requireNonNull(userRepository.findById(id).orElse(null)));
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private UserInfoDTO userToDTO(User user){
+        return UserInfoDTO.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .surname(user.getSurname())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .birthday(user.getBirthday())
+                .role(user.getRole())
+                .build();
+    }
+
+    private List<UserInfoDTO> listUserToDto(List<User> users){
+        List<UserInfoDTO> result = new ArrayList<>();
+        for (User user: users) {
+            result.add(userToDTO(user));
+        }
+        return result;
+    }
+
+    @Override
+    public List<UserInfoDTO> getAll() {
+        try {
+            List<User> freeUsers = userRepository.findAll();
+            return listUserToDto(freeUsers);
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public List<User> getAll() {
+    public List<UserInfoDTO> getUsersByParameter(String parameter) {
         try {
-            return userRepository.findAll();
-        } catch (Exception e){
-            return null;
-        }
-    }
-
-    @Override
-    public List<User> getUsersByParameter(String parameter){
-        try {
-            return userRepository.
+            return listUserToDto(userRepository.
                     findUsersByNameContainingOrSurnameContainingOrEmailContainingOrRoleContaining
-                            (parameter, parameter, parameter, parameter);
-        } catch (IllegalArgumentException | DataAccessException ex){
+                            (parameter, parameter, parameter, parameter));
+        } catch (IllegalArgumentException | DataAccessException ex) {
+            return null;
+        }
+    }
+
+    //TOD ATTENTION ATTENTION!!!!!!!!!!! -1 -> 0
+
+    @Override
+    public List<UserInfoDTO> getEmployersForJob() {
+        try {
+            System.out.println("DEBUG----КОГО ОН НЕ МОЖЕТ НАЙТИ" + userRepository.getReferenceById(2).getRole() + " " +
+                    userRepository.getReferenceById(2).getStatus());
+            List<User> freeUser = userRepository.findByStatusEqualsAndRole(0, "Кладовщик");
+            return listUserToDto(freeUser);
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public User add(User newUser){
+    public boolean makeEmployerWorking(int employerId) {
         try {
-            return userRepository.save(newUser);
-        } catch (Exception ex){
-            return null;
+            User workingUser = userRepository.getReferenceById(employerId);
+
+            if (workingUser.getRole().equals("Кладовщик")) {
+                workingUser.setStatus(1);
+                userRepository.save(workingUser);
+                return true;
+            } else
+                return false;
+        } catch (Exception e) {
+            return false;
         }
     }
+
+
 }

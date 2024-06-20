@@ -1,61 +1,45 @@
-package ru.vsu.cs.springboot.entity;
+package ru.vsu.cs.springboot.security.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "Users")
-public class User implements UserDetails {
-
-    private final String ROLE_PREFIX = "ROLE_";
+public class UserAuth implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(nullable = false)
+    private Long id;
     private String name;
-
-    @Column(nullable = false)
     private String surname;
-    @Column(nullable = false)
-    private String email;
+    private String username;
     private String password;
-    private String phone;
-    private Date birthday;
     private String role;
-    private int status; //-1 0 1 not-work free work
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-
-        list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role));
-
-        return list;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return this.username;
     }
 
     @Override
@@ -78,3 +62,5 @@ public class User implements UserDetails {
         return true;
     }
 }
+
+

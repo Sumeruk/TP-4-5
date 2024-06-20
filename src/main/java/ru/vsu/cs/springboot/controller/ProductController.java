@@ -24,7 +24,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/adm/edit/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable String id) {
         Product product = productService.getById(id);
         if (product != null) {
@@ -33,6 +33,7 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
 
+    //нач и магаз
     @GetMapping("/allProducts/searchAllProducts")
     public ResponseEntity<List<ProductIdNameDTO>> getProductsForSearch(){
         List<ProductIdNameDTO> productsForSearch = productService.getProductsForSearch();
@@ -43,30 +44,30 @@ public class ProductController {
         }
     }
 
-
+    // нач и админ
     @GetMapping("/allProducts/search")
     public ResponseEntity<List<Product>> getProductsFromSearch(@RequestParam String search) {
         List<Product> foundProducts = productService.getProductsByParameter(search);
         if (foundProducts != null) {
-            System.out.println(search);
+//            System.out.println(search);
             return ResponseEntity.ok(foundProducts);
         } else {
             return ResponseEntity.badRequest().body(null);
         }
     }
 
-    @GetMapping("/allProducts/searchByName")
-    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String search) {
-        List<Product> foundProducts = productService.getProductsByName(search);
-        if (foundProducts != null) {
-            System.out.println(search);
-            return ResponseEntity.ok(foundProducts);
-        } else {
-            return ResponseEntity.badRequest().body(null);
-        }
-    }
+//    @GetMapping("/allProducts/searchByName")
+//    public ResponseEntity<List<Product>> getProductsByName(@RequestParam String search) {
+//        List<Product> foundProducts = productService.getProductsByName(search);
+//        if (foundProducts != null) {
+//            System.out.println(search);
+//            return ResponseEntity.ok(foundProducts);
+//        } else {
+//            return ResponseEntity.badRequest().body(null);
+//        }
+//    }
 
-    @PostMapping("/create")
+    @PostMapping("/adm/create")
     public ResponseEntity<String> createProduct(@RequestBody Product product) {
         Product createdProduct = productService.add(product);//?добавить в сервис проверку продукта
         if (createdProduct == null){
@@ -76,7 +77,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/setProducts")
+    @PutMapping("/boss/setProducts")
     public ResponseEntity<String> setProductFromDelivery(@RequestBody ProductWithAmountDTO product){
         Product updatedProduct = productService.updateProductAmount(product);
         if (updatedProduct == null){
@@ -86,8 +87,9 @@ public class ProductController {
 
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable String id, @RequestBody Product product) {
+    @PutMapping("/adm/update/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable String id,
+                                                @RequestBody Product product) {
         //product.setId(id);
         Product updatedProduct = productService.update(id, product);
         if (updatedProduct == null) {
@@ -96,7 +98,7 @@ public class ProductController {
         return ResponseEntity.ok("Product has been updated");
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/adm/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable String id) {
         productService.delete(id);
         return ResponseEntity.ok("Product deleted successfully.");

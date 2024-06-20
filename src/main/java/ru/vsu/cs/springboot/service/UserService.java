@@ -1,10 +1,22 @@
 package ru.vsu.cs.springboot.service;
 
+import ru.vsu.cs.springboot.DTO.UserInfoDTO;
 import ru.vsu.cs.springboot.entity.User;
 
 import java.util.List;
 
-public interface UserService extends Service<User, Integer>{
+public interface UserService {
+    User add(User entity);
+
+    User update(UserInfoDTO entity);
+
+    void delete(Integer id);
+
+    UserInfoDTO getById(Integer id);
+
+    List<UserInfoDTO> getAll();
+
+    User add(UserInfoDTO entity);
     User getPersonByEmail(String email);
 
     User getPersonByName(String Name);
@@ -15,8 +27,9 @@ public interface UserService extends Service<User, Integer>{
 
     boolean updatePersonData(User userDto);
 
-    boolean login(User userDto);
+    List<UserInfoDTO> getUsersByParameter(String parameter);
 
-    List<User> getUsersByParameter(String parameter);
+    List<UserInfoDTO> getEmployersForJob();
 
+    boolean makeEmployerWorking(int employerId);
 }

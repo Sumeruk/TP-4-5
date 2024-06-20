@@ -1,0 +1,82 @@
+package ru.vsu.cs.springboot.security.filter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+import ru.vsu.cs.springboot.security.service.JwtService;
+
+
+import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+
+@Component
+@AllArgsConstructor
+public class JwtTokenFilter extends OncePerRequestFilter {
+
+    private JwtService jwtService;
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
+            throws ServletException, IOException {
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String userEmail;
+
+        try {
+
+            System.out.println(LocalDate.now() + authHeader);
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            // Check if the token is valid
+            jwt = authHeader.substring(7);
+            userEmail = jwtService.extractUsername(jwt);
+
+            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+
+                System.out.println("---DEBUG---" + userDetails.getUsername());
+
+                if (jwtService.isTokenValid(jwt, userDetails)) {
+                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
+
+                    System.out.println("---DEBUG " + userDetails.getAuthorities());
+
+                    System.out.println("---DEBUG---Token Valid");
+                    authenticationToken.setDetails(
+                            new WebAuthenticationDetailsSource().buildDetails(request)
+                    );
+
+
+
+                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                }
+            }
+
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+
+            response.getWriter().write("Unauthorized: " + e.getMessage());
+        }
+    }
+}
