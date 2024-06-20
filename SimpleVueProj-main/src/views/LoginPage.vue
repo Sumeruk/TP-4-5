@@ -33,7 +33,7 @@ export default {
         email: '',
         password: ''
       },
-      errorMessage: '',
+      errorMessage: ' ',
     }
   },
 
@@ -44,9 +44,6 @@ export default {
             localStorage.setItem("role", response.data.role);
             localStorage.setItem("id", response.data.id);
 
-            console.log("токен при регистрации" + localStorage.getItem("jwtToken"))
-            console.log("роль при регистрации" + localStorage.getItem("role"))
-            console.log("id при регистрации" + localStorage.getItem("id"))
             switch (response.data.role) {
               case "Кладовщик":
                 router.push("/storekeeper")

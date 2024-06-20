@@ -60,14 +60,12 @@ export default {
   },
   methods: {
     addProduct() {
-      console.log(this.newProduct);
       router.push("/adminProduct");
       api.createProduct(this.newProduct).then(response => {
         console.log(response.status);
         router.push('/adm');
       })
           .catch(error => {
-            //todo обработка ошибки, вывод сообщения
             console.error(error);
           });
     }

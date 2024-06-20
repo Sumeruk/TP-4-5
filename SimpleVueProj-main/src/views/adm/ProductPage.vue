@@ -68,40 +68,7 @@ export default {
       products: [
         {
           id: 1,
-          name: 'Вареники',
-          price: '22',
-          weight: '100',
-          unit: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 2,
-          name: 'Вареники',
-          price: '22',
-          weight: '100',
-          unit: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 3,
-          name: 'Вареники',
-          price: '22',
-          weight: '100',
-          unit: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
-        {
-          id: 4,
-          name: 'Вареники',
-          price: '22',
-          weight: '100',
-          unit: 'шт',
-          provider: 'five',
-          description: 'Хорошие вареники'
-        },
+        }
       ]
     }
   },
@@ -135,11 +102,9 @@ export default {
       router.push('/product/addProduct');
     },
     searchProduct(parameters) {
-      console.log(parameters);
       api.searchProducts(parameters).then(response => {
         this.products = response.data;
         console.log(response.status);
-        console.log(response.data);
       })
           .catch(error => {
             console.error(error);

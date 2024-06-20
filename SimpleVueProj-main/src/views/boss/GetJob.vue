@@ -90,7 +90,6 @@ export default {
     },
 
     getJobForEmployer(orderId, employeeId) {
-      console.log(orderId, employeeId);
 
       if (orderId !== undefined){
         api.setEmployerToOrder(orderId, employeeId).then(response => {
@@ -101,7 +100,6 @@ export default {
         });
 
         api.getJobForEmployer(employeeId).then(response => {
-          console.log(orderId)
           console.log(response.status);
         }).catch(error => {
           console.log(error);

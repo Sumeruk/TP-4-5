@@ -7,9 +7,7 @@ import LoginPage from "@/views/LoginPage";
 import AddProduct from "@/views/adm/AddProduct";
 import PrivacyPolicy from "@/views/PrivacyPolicy";
 import AllEmployees from "@/views/adm/AllEmployees";
-import AddPassword from "@/views/adm/AddPassword";
 import EditPage from "@/views/adm/EditPage";
-import DeletePage from "@/views/adm/DeletePage";
 import AcceptTheGoods from "@/views/boss/AcceptTheGoods";
 import ReportPage from "@/views/boss/ReportPage";
 import ProductPage from "@/views/adm/ProductPage";
@@ -87,21 +85,9 @@ const routes = [
     component: AllEmployees
   },
   {
-    path: '/password',
-    name: 'password',
-    component: AddPassword
-  },
-  {
     path: '/employee/edit/:id',
     name: 'editEmpl',
     component: EditPage
-  },
-  {
-    //-----ATTENTION-WRONG-COMPONENT---------
-    //-----SHOULD-BE-REDIRECT-TO-AllEmployees---------
-    path: '/employee/delete/:id',
-    name: 'deleteEmpl',
-    component: DeletePage
   },
   {
     path: '/product/setProducts',

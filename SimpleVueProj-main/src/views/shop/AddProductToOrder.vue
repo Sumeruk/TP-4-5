@@ -36,7 +36,7 @@
         <label for="amount">Количество</label>
         <input type="number" id="amount" v-model="product.amount">
 
-        <button type="submit">Добавить товар</button>
+        <button class="addButton" type="submit">Добавить товар</button>
       </form>
     </div>
 
@@ -243,6 +243,9 @@ export default {
   color: #7B5244;
   font-size: 20px;
 }
+.addButton{
+  margin-left: 21%;
+}
 button {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -270,8 +273,8 @@ button:hover {
 }
 form {
   display: flex;
-  margin-left: 37%;
-  text-align: start;
+  margin-left: 32%;
+  /*text-align: start;*/
   flex-direction: column; /* располагаем элементы слева */
   padding: 20px;
   border: 1px solid #fff;
@@ -286,11 +289,14 @@ h2 {
 }
 
 form label {
-  margin-bottom: 5px; /* добавляем небольшое расстояние между метками и полями ввода */
+  margin-bottom: 5px;
+  margin-left: 40%/* добавляем небольшое расстояние между метками и полями ввода */
 }
 
 form input {
-  margin-bottom: 10px; /* добавляем небольшое расстояние между полями ввода */
+  margin-bottom: 10px;
+  margin-left: 21.5%;
+  /* добавляем небольшое расстояние между полями ввода */
   padding: 8px;
   width: 300px;
   border-radius: 3px;
@@ -315,13 +321,13 @@ input[type="submit"]:hover {
   color: #D3AFAA;
 }
 
-/*table {*/
-/*  width: 800px;*/
-/*  border-collapse: collapse;*/
-/*  margin: auto;*/
-/*  align-items: flex-start;*/
-/*  position: absolute;*/
-/*}*/
+table {
+  width: 800px;
+  border-collapse: collapse;
+  margin: auto;
+  align-items: flex-start;
+  position: absolute;
+}
 
 th, tr, td {
   max-width: 50%;

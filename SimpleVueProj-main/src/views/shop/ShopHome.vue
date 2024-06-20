@@ -47,7 +47,7 @@ export default {
   data(){
     return {
       // shopId: localStorage.getItem("id")
-      shopId: 3
+      shopId: localStorage.getItem("id")
     }
   }
 }

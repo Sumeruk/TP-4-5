@@ -15,7 +15,6 @@ const axiosApi = axios.create({
 
 axiosApi.interceptors.request.use(
     (config) => {
-        console.log("Request config:", config);
         // Если токен существует, добавляем его в заголовок авторизации
         if (localStorage.getItem("jwtToken")) {
             config.headers.Authorization = `Bearer ${localStorage.getItem("jwtToken")}`;
@@ -102,5 +101,18 @@ export default {
     },
     setOrderFromEmployer(orderId) {
         return axiosApi.put('/api/order/empl/setOrder/'+ orderId)
+    },
+    ordersAnalytics(dateStart, dateEnd){
+        return axiosApi('/api/order/boss/orderAnalytics/' + dateStart + '/' + dateEnd)
+    },
+    userAnalytic(dateStart, dateEnd){
+        return axiosApi.get('/api/employee/boss/employersAnalytics/'+ dateStart + '/' + dateEnd)
+    },
+    dateAnalytic(date){
+        return axiosApi.get('/api/order/boss/dateAnalytics/' + date)
+    },
+    productAnalytic(dateStart, dateEnd){
+        return axiosApi.get('/api/products/boss/prodAnalytics/' + dateStart + '/' + dateEnd)
     }
+
 }

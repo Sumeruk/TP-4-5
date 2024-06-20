@@ -42,7 +42,6 @@ export default {
       api.getAllOrdersFromShopWithShopId(this.shopId).then(response => {
         this.orders = response.data;
         console.log(response.status);
-        console.log(response.data);
       }).catch(error => {
         console.log(error);
       })

@@ -82,7 +82,6 @@ export default {
           });
     },
     searchProduct(parameters) {
-      console.log(parameters);
       api.searchProducts(parameters).then(response => {
         this.products = response.data;
         console.log(response.status);

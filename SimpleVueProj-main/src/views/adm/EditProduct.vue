@@ -75,7 +75,6 @@ export default {
     },
 
     updateProduct(){
-      console.log(this.id);
       api.updateProduct(this.id, this.currentProduct).then(response =>{
         console.log(response.status);
         router.push('/adminProduct');

@@ -2,11 +2,12 @@
   <div class="containerForAddUser">
     <HeadSiteForAdm/>
     <h2>Новый аккаунт</h2>
+    <p id="error-message" class="hidden" v-if="errorMessage">{{ errorMessage }}</p>
     <form @submit.prevent="createUser">
       <label for="username">Имя</label>
       <input type="text" id="username" v-model="newUser.name" required>
       <label for="usersurname">Фамилия</label>
-      <input type="text" id="usersurname" v-model="newUser.surname" required>
+      <input type="text" id="usersurname" v-model="newUser.surname">
       <label for="email">Почта</label>
       <input type="email" id="email" v-model="newUser.email" required>
 
@@ -28,7 +29,7 @@
         Создать
       </button>
     </form>
-    </div>
+  </div>
 
 </template>
 
@@ -52,32 +53,64 @@ export default {
         birthday: '',
         role: '',
       },
+      errorMessage: 'dfvdf'
     }
   },
 
   methods: {
     createUser() {
-      console.log(this.newUser);
-      api.createUser(this.newUser).then(response => {
-        console.log(response.status);
-        router.push('/employee/allEmployers');
-      })
-          .catch(error => {
-            console.error(error);
-          });
+      if (this.newUser.role === "Магазин") {
+        api.createUser(this.newUser).then(response => {
+          console.log(response.status);
+          router.push('/employee/allEmployers');
+        })
+            .catch(error => {
+              console.error(error);
+            });
+      } else {
+        if (this.newUser.surname === '') {
+          this.showErrorMessage();
+          this.errorMessage = 'Необходимо заполнить фамилию!';
+        } else {
+          api.createUser(this.newUser).then(response => {
+            console.log(response.status);
+            router.push('/employee/allEmployers');
+          })
+              .catch(error => {
+                console.error(error);
+              });
+        }
+      }
+    },
+    showErrorMessage() {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.classList.remove('hidden');
+      errorMessage.classList.add('show');
     }
   }
-  // Логика компонента
-};
+
+// Логика компонента
+}
+;
 </script>
 
 <style scoped>
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  color: #7B5244;
+  font-size: 20px;
+}
 
 /*div{*/
 /*  border: 1px solid black;*/
 /*}*/
 
-.containerForAddUser{
+.containerForAddUser {
   width: 30%;
   margin-top: 8%;
   margin-left: 35%;

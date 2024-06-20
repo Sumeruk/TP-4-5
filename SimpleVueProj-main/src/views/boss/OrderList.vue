@@ -51,7 +51,6 @@ export default {
     getProductsFromOrder() {
       api.getProductsFromOrder(this.shopId, this.orderId).then(response => {
         this.order = response.data;
-        console.log(response.data);
         console.log(response.status);
       })
           .catch(error => {

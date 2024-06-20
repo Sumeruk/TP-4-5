@@ -50,12 +50,6 @@ export default {
   },
   methods: {
     getProductsFromOrder() {
-      // const apiDat = [
-      //   {id: '123', name: 'Name  tovar', amount: '20'}
-      //   // {name: 'Кофе', amount: '30'}
-      // ];
-      //
-      // this.order = apiDat.map((item) => ({...item, checked: false}));
 
       api.getProductsFromOrder(this.shopId, this.orderId).then(response => {
         this.order = response.data.map((item) => ({ ...item, checked: false }));
@@ -70,8 +64,9 @@ export default {
       if (this.showAttentionMessage !== true) {
 
         api.setOrderFromEmployer(this.orderId).then(response => {
-          router.push("/orders/toDo");
           console.log(response.status);
+          router.push("/orders/toDo");
+
         }).catch(error => {
           console.log(error)
         })

@@ -83,11 +83,9 @@ export default {
           });
     },
     searchEmployers(parameters){
-      console.log(parameters);
       api.searchEmployers(parameters).then(response => {
         this.employees = response.data;
         console.log(response.status);
-        console.log(response.data);
       })
           .catch(error => {
             console.error(error);
