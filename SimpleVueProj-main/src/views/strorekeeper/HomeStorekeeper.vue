@@ -6,7 +6,7 @@
     <div class="homeBoss">
       <div>
         <div class="face">
-          <img src="../assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
+          <img src="../assect/NullFace.png" alt="StockTrack Pro Logo" class="avatar">
           <label for="username">Кладовщик</label>
           <div class="info-row">
             <img src="../assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">

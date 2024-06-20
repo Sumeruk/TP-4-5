@@ -7,7 +7,7 @@
       <div>
         <h1>Мой профиль</h1>
         <form @submit.prevent="submitForm">
-          <img src="../assect/Face.jpg" alt="StockTrack Pro Logo" class="avatar">
+          <img src="../assect/NullFace.png" alt="StockTrack Pro Logo" class="avatar">
           <label for="username">Начальник склада</label>
           <div class="info-row">
             <img src="../assect/Lock.jpg" alt="StockTrack Pro Logo" class="logo">
