@@ -34,7 +34,7 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.surname("k")
 				.email("k@mail.ru")
 				.role("Кладовщик")
-				.password("111")
+				.password("$2a$10$sGZWxIoAvqA7g8m8tDJYP.rs6ZQ4wf.iGygf9SWenyb/AksO.ar0m")
 				.status(-1)
 				.build();
 
@@ -43,7 +43,7 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.surname("ns")
 				.email("ns@mail.ru")
 				.role("Начальник склада")
-				.password("111")
+				.password("$2a$10$sGZWxIoAvqA7g8m8tDJYP.rs6ZQ4wf.iGygf9SWenyb/AksO.ar0m")
 				.build();
 
 		User adm = User.builder()
@@ -51,7 +51,7 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.surname("0")
 				.email("a@mail.ru")
 				.role("Администратор")
-				.password("111")
+				.password("$2a$10$sGZWxIoAvqA7g8m8tDJYP.rs6ZQ4wf.iGygf9SWenyb/AksO.ar0m")
 				.build();
 
 		User shop = User.builder()
@@ -59,7 +59,7 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 				.surname("sh")
 				.email("sh@mail.ru")
 				.role("Магазин")
-				.password("111")
+				.password("$2a$10$sGZWxIoAvqA7g8m8tDJYP.rs6ZQ4wf.iGygf9SWenyb/AksO.ar0m")
 				.build();
 
 		Product product = Product.builder()
