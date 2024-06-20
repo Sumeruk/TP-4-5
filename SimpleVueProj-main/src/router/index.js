@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Registration from "@/views/adm/RegistrationUser";
-import TmpView from "@/views/shop/TmpView";
+//import TmpView from "@/views/shop/TmpView";
 //import HomeAdmin from "@/views/HomeAdmin";
 import WelcomePage from "@/views/WelcomePage";
 import LoginPage from "@/views/LoginPage";
